@@ -10,6 +10,9 @@
         android:ems="10"
         android:id="@+id/gioihan" />
 
+klhkjuhkb n
+klnjkljk
+khkjh
     <Button
         android:text="Button"
         android:layout_width="match_parent"
@@ -21,4 +24,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ketqua" />
-</LinearLayout>
+</LinearLayout>kljkljlkj
+jhhjk
