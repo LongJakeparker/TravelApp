@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:id="@+id/rootView"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/myContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/lighter_gray"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_size"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/menu_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_home_en"
+                android:text="Button" />
+
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_size"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/menu_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_catalog"
+                android:text="Button" />
+
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_size"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/menu_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_search"
+                android:text="Button" />
+
+            <ImageButton
+                android:id="@+id/btn_notification"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_size"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/menu_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_notification"
+                android:text="Button" />
+
+            <ImageButton
+                android:id="@+id/btn_account"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_size"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/menu_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_account"
+                android:text="Button" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
