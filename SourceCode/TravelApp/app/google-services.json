@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "627566791250",
+    "project_id": "firebase-travelapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627566791250:android:c6912b8ca074fcda",
+        "android_client_info": {
+          "package_name": "com.greenacademy.travelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627566791250-qjpa4p5u0rgveo6aa3b4slvv66kgjl33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.greenacademy.travelapp",
+            "certificate_hash": "9EB954377E94813B1A724583674543F2BEB844B5"
+          }
+        },
+        {
+          "client_id": "627566791250-io1ui2gohhkqs70pnbkdhda0ebg4i2ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc_w9L7v5-InoD3uvdngYToBrvIlj3OSs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
