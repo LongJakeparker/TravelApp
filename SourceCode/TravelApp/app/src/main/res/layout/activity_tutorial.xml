@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tutorial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.greenacademy.travelapp.Activity.Activity.TutorialActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/myViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:text="Skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSkip"
+            android:background="@null"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSkip"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_notification_overlay"
+                android:id="@+id/ivView1"
+                android:longClickable="false"
+                android:layout_weight="1"
+                android:padding="@dimen/iv_padding"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_notification_overlay"
+                android:id="@+id/ivView2"
+                android:layout_weight="1"
+                android:padding="@dimen/iv_padding"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_notification_overlay"
+                android:id="@+id/ivView3"
+                android:layout_weight="1"
+                android:padding="@dimen/iv_padding"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_notification_overlay"
+                android:id="@+id/ivView4"
+                android:layout_weight="1"
+                android:padding="@dimen/iv_padding"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>
