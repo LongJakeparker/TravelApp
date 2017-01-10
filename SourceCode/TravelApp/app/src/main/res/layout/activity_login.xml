@@ -74,15 +74,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
-        <Button
-            android:text="Google +"
-            android:textAllCaps="false"
-            android:textSize="25dp"
-            android:textColor="@color/colorButtonLogin"
-            android:textStyle="bold"
-            android:background="#f14602"
+
+        <com.google.android.gms.common.SignInButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSigninGoogle" />
+
         <com.facebook.login.widget.LoginButton
             android:layout_marginTop="@dimen/edittext_login_paddingleft"
             android:id="@+id/buttonLoginFacebook"
