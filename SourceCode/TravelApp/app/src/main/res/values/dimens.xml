@@ -8,5 +8,6 @@
     <dimen name="size_image_login">50dp</dimen>
     <dimen name="width_button_dangnhap">200dp</dimen>
     <dimen name="smallTxtSize">20dp</dimen>
-    <dimen name="margin_edittext">10dp</dimen>
+    <dimen name="margin_edittext">30dp</dimen>
+    <dimen name="padding_facebook">13dp</dimen>
 </resources>
