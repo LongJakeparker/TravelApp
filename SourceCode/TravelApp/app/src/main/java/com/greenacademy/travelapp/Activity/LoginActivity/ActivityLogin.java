@@ -28,6 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
+import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.Activity.Utils.SignInGmail;
 import com.greenacademy.travelapp.R;
@@ -35,12 +36,13 @@ import com.greenacademy.travelapp.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, CheckUser {
     LoginButton btnlgnFacebook;
     CallbackManager callbackManager;
     SignInButton btnSigninGoogle;
     SignInGmail signInGmail;
     Button btnDangNhap;
+    TaskLogin taskLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         btnSigninGoogle.setOnClickListener(this);
 
         // phần Đăng nhập bình thường
-
+        btnDangNhap.setOnClickListener(this);
 
     }
 
@@ -127,6 +129,8 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
             case R.id.btnSigninGoogle:
                 signInGmail.startSignIn();
                 break;
+            case R.id.buttonLogin:
+                break;
         }
     }
 
@@ -146,5 +150,10 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
         //kết quả Facebook
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void ketqua(String kq) {
+
     }
 }
