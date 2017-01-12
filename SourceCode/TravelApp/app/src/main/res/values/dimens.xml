@@ -8,5 +8,5 @@
     <dimen name="size_image_login">50dp</dimen>
     <dimen name="width_button_dangnhap">200dp</dimen>
     <dimen name="smallTxtSize">20dp</dimen>
-    <dimen name="logo_"></dimen>
+    <dimen name="margin_edittext">10dp</dimen>
 </resources>
