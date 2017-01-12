@@ -13,7 +13,7 @@ import com.greenacademy.travelapp.R;
  * Created by Administrator on 12/01/2017.
  */
 
-public class TutorialFragment1 extends Fragment {
+public class TutorialFragment4 extends Fragment {
     View v;
 
     @Nullable

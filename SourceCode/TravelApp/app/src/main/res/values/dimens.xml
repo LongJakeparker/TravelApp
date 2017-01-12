@@ -11,4 +11,5 @@
     <dimen name="width_button_dangnhap">200dp</dimen>
     <dimen name="smallTxtSize">20dp</dimen>
     <dimen name="margin_edittext">10dp</dimen>
+    <dimen name="radio_size">27dp</dimen>
 </resources>
