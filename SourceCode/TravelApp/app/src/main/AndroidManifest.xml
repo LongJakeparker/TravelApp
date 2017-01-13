@@ -3,6 +3,8 @@
     package="com.greenacademy.travelapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".Activity.LoginActivity.Facebook.InitialFacebook"
@@ -25,6 +27,9 @@
         <activity android:name=".Activity.Activity.Activity.SplashScreenActivity" />
         <activity android:name=".Activity.LoginActivity.ActivityLogin" />
         <activity android:name=".Activity.Activity.TutorialActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAgNFnjWqBtfweopgTJbIPwzBCaf_mZRn8"/>
     </application>
 
 </manifest>
