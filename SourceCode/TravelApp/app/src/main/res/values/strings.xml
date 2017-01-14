@@ -2,4 +2,6 @@
     <string name="app_name">Travel App</string>
     <string name="title_activity_tutorial">TutorialActivity</string>
     <string name="facebook_app_id">390115607999497</string>
+    <string name="button_skip">Bỏ Qua</string>
+    <string name="button_start">Bắt Đầu</string>
 </resources>

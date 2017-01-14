@@ -12,4 +12,9 @@
     <dimen name="smallTxtSize">20dp</dimen>
     <dimen name="margin_edittext">30dp</dimen>
     <dimen name="padding_facebook">13dp</dimen>
+    <dimen name="radio_size">20dp</dimen>
+    <dimen name="padding_bottom">30dp</dimen>
+    <dimen name="padding_bottom_radio_and_button">10dp</dimen>
+    <dimen name="scale_radio_button">0.6</dimen>
+
 </resources>
