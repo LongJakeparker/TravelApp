@@ -10,6 +10,7 @@ import android.support.v7.view.ActionMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -36,6 +37,8 @@ import com.greenacademy.travelapp.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, CheckUser {
     LoginButton btnlgnFacebook;
     CallbackManager callbackManager;
@@ -43,6 +46,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     SignInGmail signInGmail;
     Button btnDangNhap;
     TaskLogin taskLogin;
+    TextView txtChuaCoTaiKhoan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +57,13 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         btnDangNhap = (Button) findViewById(R.id.buttonLogin);
         callbackManager = CallbackManager.Factory.create();
         signInGmail = new SignInGmail(this);
+        txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
 
         // phần Facebook
-        if (AccessToken.getCurrentAccessToken() != null) {
-            toiManHinhChinh();
+        if (Constant.INTERNET_CONNECTION){
+            if (AccessToken.getCurrentAccessToken() != null) {
+                toiManHinhChinh();
+            }
         }
 
         btnlgnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -84,6 +91,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
         // phần Đăng nhập bình thường
         btnDangNhap.setOnClickListener(this);
+        txtChuaCoTaiKhoan.setOnClickListener(this);
 
     }
 
@@ -94,6 +102,13 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    private void toiManHinhDangKy(){
+        //MainActivityDK là màn hình đăng ký
+//        Intent intent = new Intent(getApplicationContext(), MainActivityDK.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
     }
 
     private void layDuLieuFacebook(final LoginResult loginResult)
@@ -131,6 +146,9 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonLogin:
                 break;
+            case R.id.textViewChuaCoTaiKhoan:
+                toiManHinhDangKy();
+                break;
         }
     }
 
@@ -144,8 +162,12 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         //Trả về kết quả đăng nhập
         if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
-//            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-
+            ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
+            if (arrUserInfo != null){
+                toiManHinhChinh();
+            }else {
+                Toast.makeText(getApplicationContext(), Constant.FACEBOOK_ERROR, Toast.LENGTH_LONG).show();
+            }
         }
 
         //kết quả Facebook
