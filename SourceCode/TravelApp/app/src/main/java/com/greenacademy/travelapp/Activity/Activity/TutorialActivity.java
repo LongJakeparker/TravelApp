@@ -1,11 +1,12 @@
 package com.greenacademy.travelapp.Activity.Activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.greenacademy.travelapp.Activity.Adapter.ScreenSlideFragmentAdapter;
@@ -14,6 +15,7 @@ import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment1;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment2;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment3;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment4;
+import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.R;
 
 import java.util.LinkedList;
@@ -23,6 +25,7 @@ public class TutorialActivity extends AppCompatActivity {
     ViewPager tutorialPager;
     ScreenSlideFragmentAdapter myPagerAdapter;
     RadioGroup rgpTutorial;
+    Button btnSkip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class TutorialActivity extends AppCompatActivity {
 
         rgpTutorial = (RadioGroup) findViewById(R.id.rgpTutorial);
         rgpTutorial.check(R.id.rbtn1);
+
+
+        innitButton();
 
         initViewPager();
         tutorialPager.setPageTransformer(true, new ZoomOutPageTranformer());
@@ -57,6 +63,11 @@ public class TutorialActivity extends AppCompatActivity {
                         rgpTutorial.check(R.id.rbtn4);
                         break;
                 }
+                if(position == 3){
+                    btnSkip.setText(R.string.button_start);
+                }else {
+                    btnSkip.setText(R.string.button_skip);
+                }
             }
 
             @Override
@@ -66,6 +77,17 @@ public class TutorialActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void innitButton() {
+        btnSkip = (Button) findViewById(R.id.btnSkip);
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TutorialActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViewPager() {
