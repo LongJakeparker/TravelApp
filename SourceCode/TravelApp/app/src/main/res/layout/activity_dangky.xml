@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nen_login">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/icon_login"
+            android:id="@+id/imageView" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:background="@drawable/custom_edittext_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Tên người dùng"
+                android:paddingLeft="@dimen/edittext_login_paddingleft"
+                android:layout_below="@+id/imageViewLogo"
+                android:id="@+id/edTenNguoiDung" />
+
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/user"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:background="@drawable/custom_edittext_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:paddingLeft="@dimen/edittext_login_paddingleft"
+                android:id="@+id/edEmail"
+                android:layout_below="@+id/editText"
+                android:inputType="textPassword" />
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/user"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:background="@drawable/custom_edittext_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:paddingLeft="@dimen/edittext_login_paddingleft"
+                android:id="@+id/edPass"
+                android:layout_below="@+id/editText"
+                android:inputType="textPassword" />
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/password"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:background="@drawable/custom_edittext_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nhập lại Password"
+                android:paddingLeft="@dimen/edittext_login_paddingleft"
+                android:id="@+id/editTextPasswordLogin"
+                android:layout_below="@+id/edPassNhapLai"
+                android:inputType="textPassword" />
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/password"/>
+
+        </FrameLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDangKy"
+            android:text="Đăng ký"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
