@@ -2,6 +2,8 @@ package com.greenacademy.travelapp.Activity.Constant;
 
 import android.app.Activity;
 
+import com.greenacademy.travelapp.R;
+
 /**
  * Created by Administrator on 10/01/2017.
  */

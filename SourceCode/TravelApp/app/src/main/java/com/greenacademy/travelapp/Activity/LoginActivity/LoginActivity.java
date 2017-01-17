@@ -163,7 +163,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }
         }
-
         //kết quả Facebook
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
