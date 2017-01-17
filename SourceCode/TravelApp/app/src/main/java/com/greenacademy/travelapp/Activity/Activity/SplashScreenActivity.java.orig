@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import com.greenacademy.travelapp.Activity.App.App;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
-import com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin;
 import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.R;
 
@@ -18,19 +17,36 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3f8c39cfc3942716bd2ac52ea0e2424cc7b174e8
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
                     Thread.sleep(SPLASH_TIME_OUT);
+<<<<<<< HEAD
+                    Intent intent = new Intent(SplashScreenActivity.this, TutorialActivity.class);
+                    startActivity(intent);
+//                    if (mySharedPreferences.getString(Constant.Check_First_Time) == null){
+//                        mySharedPreferences.putString(Constant.Check_First_Time,Constant.Status_Check_False);
+//                        Intent intent = new Intent(SplashScreenActivity.this, TutorialActivity.class);
+//                        startActivity(intent);
+//                    }else if(mySharedPreferences.getString(Constant.Check_First_Time) == Constant.Status_Check_False){
+//                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    }
+=======
                     if(((App)getApplication()).GioiThieuLanDau.getValue()){
-                        Intent intent = new Intent(SplashScreenActivity.this, ActivityLogin.class);
+                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                         startActivity(intent);
                     }else{
                         ((App)getApplication()).GioiThieuLanDau.setValue(true);
                         Intent intent = new Intent(SplashScreenActivity.this, TutorialActivity.class);
                         startActivity(intent);
                     }
+>>>>>>> 3f8c39cfc3942716bd2ac52ea0e2424cc7b174e8
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

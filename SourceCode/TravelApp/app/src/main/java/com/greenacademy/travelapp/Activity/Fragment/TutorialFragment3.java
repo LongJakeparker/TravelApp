@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.greenacademy.travelapp.R;
 
@@ -20,7 +21,8 @@ public class TutorialFragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_tutorial, null);
-
+        RelativeLayout layout = (RelativeLayout) v.findViewById(R.id.layoutTutorial);
+        layout.setBackgroundResource(R.drawable.tutorial_3);
         return v;
     }
 }

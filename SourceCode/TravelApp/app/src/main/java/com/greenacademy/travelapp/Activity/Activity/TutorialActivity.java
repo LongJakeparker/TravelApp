@@ -15,6 +15,7 @@ import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment1;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment2;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment3;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment4;
+import com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin;
 import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.R;
 
@@ -84,7 +85,7 @@ public class TutorialActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TutorialActivity.this, MainActivity.class);
+                Intent intent = new Intent(TutorialActivity.this, ActivityLogin.class);
                 startActivity(intent);
             }
         });
