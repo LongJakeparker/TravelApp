@@ -1,13 +1,9 @@
 package com.greenacademy.travelapp.Activity.LoginActivity;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.view.ActionMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,10 +17,6 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -39,7 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, CheckUser {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, CheckUser {
     LoginButton btnlgnFacebook;
     CallbackManager callbackManager;
     SignInButton btnSigninGoogle;
@@ -47,6 +39,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     Button btnDangNhap;
     TaskLogin taskLogin;
     TextView txtChuaCoTaiKhoan;
+    String LOGIN_ERROR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +51,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         callbackManager = CallbackManager.Factory.create();
         signInGmail = new SignInGmail(this);
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
+        LOGIN_ERROR = getResources().getString(R.string.login_error);
 
         // phần Facebook
         if (Constant.INTERNET_CONNECTION){
@@ -80,7 +74,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), Constant.FACEBOOK_ERROR, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -166,7 +160,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
             if (arrUserInfo != null){
                 toiManHinhChinh();
             }else {
-                Toast.makeText(getApplicationContext(), Constant.FACEBOOK_ERROR, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }
         }
 
