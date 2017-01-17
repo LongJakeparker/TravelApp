@@ -24,9 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity"/>
-            
-        <activity android:name=".Activity.LoginActivity.ActivityLogin" />
+        <activity android:name=".Activity.LoginActivity.LoginActivity" />
         <activity android:name=".Activity.Activity.TutorialActivity" />
+        <activity android:name=".Activity.Activity.QuanAnActivity"/>
+            
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAgNFnjWqBtfweopgTJbIPwzBCaf_mZRn8"/>

@@ -12,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class SignInGmail {
 
-    public static final int REQUEST_CODE_GOOGLE_SIGN_IN = 1564;
+//    public static final int REQUEST_CODE_GOOGLE_SIGN_IN = 1564;
 
     GoogleApiClient googleApiClient;
     AppCompatActivity activity;
@@ -51,7 +52,7 @@ public class SignInGmail {
     // Tiến hành xử lý đăng nhập khi người dùng nhấn nút đăng nhập
     public void startSignIn() {
         Intent intentSignIn = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        activity.startActivityForResult(intentSignIn, REQUEST_CODE_GOOGLE_SIGN_IN);
+        activity.startActivityForResult(intentSignIn, Constant.REQUEST_CODE_GOOGLE_SIGN_IN);
     }
 
 

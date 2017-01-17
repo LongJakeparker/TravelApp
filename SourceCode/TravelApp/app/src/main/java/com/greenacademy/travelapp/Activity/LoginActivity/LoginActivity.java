@@ -1,14 +1,12 @@
 package com.greenacademy.travelapp.Activity.LoginActivity;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.view.ActionMode;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -19,54 +17,47 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
+import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 import com.greenacademy.travelapp.Activity.MainActivity;
+import com.greenacademy.travelapp.Activity.Utils.SignInGmail;
 import com.greenacademy.travelapp.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
-    final int RC_SIGN_IN = 313;
+import java.util.ArrayList;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, CheckUser {
     LoginButton btnlgnFacebook;
     CallbackManager callbackManager;
-
     SignInButton btnSigninGoogle;
-    GoogleApiClient googleApiClient;
-    GoogleSignInOptions googleSignInOptions;
+    SignInGmail signInGmail;
+    Button btnDangNhap;
+    TaskLogin taskLogin;
+    TextView txtChuaCoTaiKhoan;
+    String LOGIN_ERROR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-//        Thiết lập các thông số yêu cầu đăng nhập
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-//      Đối tượng truy cập Google Api SignIn và các thông số được thiết lập ở đối tượng trên
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
-                .build();
-//        Button Đăng nhập Gmail
         btnSigninGoogle = (SignInButton) findViewById(R.id.btnSigninGoogle);
-        btnSigninGoogle.setOnClickListener(this);
-
-
-
         btnlgnFacebook = (LoginButton) findViewById(R.id.buttonLoginFacebook);
+        btnDangNhap = (Button) findViewById(R.id.buttonLogin);
         callbackManager = CallbackManager.Factory.create();
+        signInGmail = new SignInGmail(this);
+        txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
+        LOGIN_ERROR = getResources().getString(R.string.login_error);
 
-        if (AccessToken.getCurrentAccessToken() != null) {
-            toiManHinhChinh();
+        // phần Facebook
+        if (Constant.INTERNET_CONNECTION){
+            if (AccessToken.getCurrentAccessToken() != null) {
+                toiManHinhChinh();
+            }
         }
 
         btnlgnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -83,9 +74,18 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), Constant.FACEBOOK_ERROR, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }
         });
+
+        // phần Google
+        signInGmail.startTichHopGoogleSignIn();
+
+        btnSigninGoogle.setOnClickListener(this);
+
+        // phần Đăng nhập bình thường
+        btnDangNhap.setOnClickListener(this);
+        txtChuaCoTaiKhoan.setOnClickListener(this);
 
     }
 
@@ -96,6 +96,13 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    private void toiManHinhDangKy(){
+        //MainActivityDK là màn hình đăng ký
+//        Intent intent = new Intent(getApplicationContext(), MainActivityDK.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
     }
 
     private void layDuLieuFacebook(final LoginResult loginResult)
@@ -129,14 +136,16 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
 //            Xử lý sự kiện nút Đăng nhập Gmail
             case R.id.btnSigninGoogle:
+                signInGmail.startSignIn();
+                break;
+            case R.id.buttonLogin:
+                break;
+            case R.id.textViewChuaCoTaiKhoan:
+                toiManHinhDangKy();
                 break;
         }
     }
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -146,23 +155,20 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //Trả về kết quả đăng nhập
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+        if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
+            ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
+            if (arrUserInfo != null){
+                toiManHinhChinh();
+            }else {
+                Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
+            }
         }
-
         //kết quả Facebook
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    @Override
+    public void ketqua(String kq) {
 
-        if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
-
-        } else {
-            // Signed out, show unauthenticated UI.
-        }
     }
-
 }

@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/nen_login"
-    tools:context="com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin">
+    tools:context="com.greenacademy.travelapp.Activity.LoginActivity.LoginActivity">
 
     <ImageView
         android:src="@drawable/icon_login"
@@ -17,65 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/imageViewLogo" />
-
-    <LinearLayout
-        android:layout_marginLeft="@dimen/margin_edittext"
-        android:layout_marginRight="@dimen/margin_edittext"
-        android:id="@+id/linearLayouteditText"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:background="@drawable/custom_edittext_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Email"
-                android:paddingLeft="@dimen/edittext_login_paddingleft"
-                android:layout_below="@+id/imageViewLogo"
-                android:id="@+id/editTextEmailLogin" />
-
-            <ImageView
-                android:padding="5dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/user"/>
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:background="@drawable/custom_edittext_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:paddingLeft="@dimen/edittext_login_paddingleft"
-                android:id="@+id/editTextPasswordLogin"
-                android:layout_below="@+id/editText"
-                android:inputType="textPassword" />
-            <ImageView
-                android:padding="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/password"/>
-        </FrameLayout>
-
-
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:layout_marginTop="@dimen/margin_quenmatkhau"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quên mật khẩu?"
-            android:layout_gravity="right"/>
-    </LinearLayout>
 
 
     <LinearLayout
@@ -163,6 +104,65 @@
         android:textColor="@color/colorWhite"
         android:id="@+id/textViewChuaCoTaiKhoan"
         android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayouteditText"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/linearLayoutDangNhapKhac"
+        android:layout_alignStart="@+id/linearLayoutDangNhapKhac">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:background="@drawable/custom_edittext_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Email"
+                android:paddingLeft="@dimen/edittext_login_paddingleft"
+                android:layout_below="@+id/imageViewLogo"
+                android:id="@+id/editTextEmailLogin" />
+
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/user"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:background="@drawable/custom_edittext_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:paddingLeft="@dimen/edittext_login_paddingleft"
+                android:id="@+id/editTextPasswordLogin"
+                android:layout_below="@+id/editText"
+                android:inputType="textPassword" />
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/password"/>
+        </FrameLayout>
+
+
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="@dimen/margin_quenmatkhau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quên mật khẩu?"
+            android:layout_gravity="right"/>
+    </LinearLayout>
 
 
 </RelativeLayout>
