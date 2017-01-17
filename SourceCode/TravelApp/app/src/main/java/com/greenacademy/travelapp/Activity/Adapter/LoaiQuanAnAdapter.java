@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.LoaiQuanViewHolder> {
-    private ArrayList<LoaiQuanAn> listData = new ArrayList<>();
+    private ArrayList<LoaiQuanAn> listData = new ArrayList<LoaiQuanAn>();
     public LoaiQuanAnAdapter(ArrayList<LoaiQuanAn> listData) {
         this.listData = listData;
     }
@@ -35,7 +35,7 @@ public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.Lo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listData.size();
     }
 
     public class LoaiQuanViewHolder extends RecyclerView.ViewHolder{

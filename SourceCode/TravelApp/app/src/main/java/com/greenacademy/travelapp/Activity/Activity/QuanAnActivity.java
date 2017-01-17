@@ -30,10 +30,10 @@ public class QuanAnActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        listImage.add(new LoaiQuanAn(R.drawable.icon_login));
-        listImage.add(new LoaiQuanAn(R.drawable.user));
-        listImage.add(new LoaiQuanAn(R.drawable.password));
-        listImage.add(new LoaiQuanAn(R.drawable.map_icon));
+        listImage.add(new LoaiQuanAn(R.mipmap.ic_launcher));
+        listImage.add(new LoaiQuanAn(R.mipmap.ic_launcher));
+        listImage.add(new LoaiQuanAn(R.mipmap.ic_launcher));
+        listImage.add(new LoaiQuanAn(R.mipmap.ic_launcher));
 
         adapter = new LoaiQuanAnAdapter(listImage);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
