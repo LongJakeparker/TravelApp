@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/nen_login"
-    tools:context="com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin">
+    tools:context=".Activity.Activity.LoginActivity.ActivityLogin">
 
     <ImageView
         android:src="@drawable/icon_login"

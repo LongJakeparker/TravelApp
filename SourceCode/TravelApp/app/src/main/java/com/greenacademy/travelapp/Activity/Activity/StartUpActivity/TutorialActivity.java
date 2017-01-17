@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.Activity;
+package com.greenacademy.travelapp.Activity.Activity.StartUpActivity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -15,8 +15,7 @@ import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment1;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment2;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment3;
 import com.greenacademy.travelapp.Activity.Fragment.TutorialFragment4;
-import com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin;
-import com.greenacademy.travelapp.Activity.MainActivity;
+import com.greenacademy.travelapp.Activity.Activity.LoginActivity.ActivityLogin;
 import com.greenacademy.travelapp.R;
 
 import java.util.LinkedList;

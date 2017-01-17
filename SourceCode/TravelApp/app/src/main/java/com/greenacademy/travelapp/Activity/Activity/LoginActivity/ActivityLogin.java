@@ -1,13 +1,9 @@
-package com.greenacademy.travelapp.Activity.LoginActivity;
+package com.greenacademy.travelapp.Activity.Activity.LoginActivity;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.ActionMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 

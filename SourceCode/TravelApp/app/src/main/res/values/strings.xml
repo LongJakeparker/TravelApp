@@ -4,4 +4,7 @@
     <string name="facebook_app_id">390115607999497</string>
     <string name="button_skip">Bỏ Qua</string>
     <string name="button_start">Bắt Đầu</string>
+
+    <string name="open_menu">Open Menu</string>
+    <string name="close_menu">Close Menu</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.Utils;
+package com.greenacademy.travelapp.Activity.Activity.LoginActivity.Gmail;
 
 import android.content.Intent;
 import android.net.Uri;
