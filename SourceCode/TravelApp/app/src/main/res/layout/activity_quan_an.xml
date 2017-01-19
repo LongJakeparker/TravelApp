@@ -110,10 +110,45 @@
                 android:layout_margin="@dimen/margin_quanan_text_recyclerview"
                 android:id="@+id/recyclerViewQuanGanToi"
                 android:layout_width="match_parent"
-                android:layout_height="182dp"
+                android:layout_height="@dimen/height_recyclerview_quan_gan_toi"
                 android:orientation="horizontal"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 android:layout_below="@+id/textViewQuanGanToi"
+                android:layout_alignLeft="@+id/textViewCacQuanAn"
+                android:layout_alignStart="@+id/textViewCacQuanAn" />
+
+            <TextView
+                android:layout_margin="@dimen/margin_quanan_text_recyclerview"
+                android:id="@+id/textViewTopCheckin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Top check in"
+                android:textSize="20dp"
+                android:textColor="@color/colorBrown"
+                android:layout_below="@+id/recyclerViewQuanGanToi"/>
+
+            <TextView
+                android:layout_marginRight="@dimen/margin_quanan_text_recyclerview"
+                android:gravity="center"
+                android:text="@string/xem_tat_ca"
+                android:textColor="@color/text_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/textViewCacQuanAn"
+                android:layout_alignRight="@+id/textViewCacQuanAn"
+                android:layout_alignEnd="@+id/textViewCacQuanAn"
+                android:layout_alignBottom="@+id/textViewTopCheckin"
+                android:layout_alignTop="@+id/textViewTopCheckin"
+                android:id="@+id/textViewXemTatCaTCI" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_margin="@dimen/margin_quanan_text_recyclerview"
+                android:id="@+id/recyclerViewTopCheckin"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:orientation="horizontal"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                android:layout_below="@+id/textViewTopCheckin"
                 android:layout_alignLeft="@+id/textViewCacQuanAn"
                 android:layout_alignStart="@+id/textViewCacQuanAn" />
         </RelativeLayout>
