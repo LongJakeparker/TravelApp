@@ -5,4 +5,5 @@
     <string name="button_skip">Bỏ Qua</string>
     <string name="login_error">Đã có lỗi xảy ra!!! Vui lòng đăng nhập lại</string>
     <string name="button_start">Bắt Đầu</string>
+    <string name="quan_an">Quán Ăn</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.Model.LoaiQuanAn;
 import com.greenacademy.travelapp.R;
@@ -17,20 +18,22 @@ import java.util.ArrayList;
 
 public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.LoaiQuanViewHolder> {
     private ArrayList<LoaiQuanAn> listData = new ArrayList<LoaiQuanAn>();
-    public LoaiQuanAnAdapter(ArrayList<LoaiQuanAn> listData) {
+    private int resource;
+    public LoaiQuanAnAdapter(int resource, ArrayList<LoaiQuanAn> listData) {
+        this.resource = resource;
         this.listData = listData;
     }
 
     @Override
     public LoaiQuanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.dong_quanan_loaiquan, parent, false);
+        View view = inflater.inflate(this.resource, parent, false);
         return new LoaiQuanViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(LoaiQuanViewHolder holder, int position) {
-        holder.img.setImageResource(listData.get(position).imageLQA);
+        holder.imgHinhLoaiQuan.setImageResource(listData.get(position).imageLQA);
     }
 
     @Override
@@ -39,11 +42,14 @@ public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.Lo
     }
 
     public class LoaiQuanViewHolder extends RecyclerView.ViewHolder{
-        ImageView img;
+        ImageView imgHinhLoaiQuan;
+        TextView txtTenLoai, txtSoLuong;
 
         public LoaiQuanViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.imv);
+            imgHinhLoaiQuan = (ImageView) itemView.findViewById(R.id.imageViewHinhLoaiQuan);
+            txtTenLoai = (TextView) itemView.findViewById(R.id.textViewTenLoaiQuan);
+            txtSoLuong = (TextView) itemView.findViewById(R.id.textViewSoLuongLoaiQuan);
         }
     }
 }

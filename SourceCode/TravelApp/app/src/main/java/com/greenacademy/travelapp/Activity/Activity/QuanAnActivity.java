@@ -1,11 +1,10 @@
 package com.greenacademy.travelapp.Activity.Activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
 
 import com.greenacademy.travelapp.Activity.Adapter.LoaiQuanAnAdapter;
 import com.greenacademy.travelapp.Activity.Model.LoaiQuanAn;
@@ -35,7 +34,7 @@ public class QuanAnActivity extends AppCompatActivity {
         listImage.add(new LoaiQuanAn(R.mipmap.ic_launcher));
         listImage.add(new LoaiQuanAn(R.mipmap.ic_launcher));
 
-        adapter = new LoaiQuanAnAdapter(listImage);
+        adapter = new LoaiQuanAnAdapter(R.layout.dong_quanan_loaiquan, listImage);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 

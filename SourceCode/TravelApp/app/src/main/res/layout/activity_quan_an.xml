@@ -35,18 +35,27 @@
                 android:textSize="25dp"
                 android:textColor="@color/colorWhite"
                 android:gravity="center"
-                android:text="Quán Ăn"
+                android:text="@string/quan_an"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/searchViewQuanAn"/>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/textViewCacQuanAn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duyệt theo đồ ăn"
+        android:textSize="20dp"
+        android:textColor="@color/colorBrown"
+        android:layout_below="@+id/toolbar"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewLoaiQuan"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/textViewCacQuanAn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:orientation="horizontal"
