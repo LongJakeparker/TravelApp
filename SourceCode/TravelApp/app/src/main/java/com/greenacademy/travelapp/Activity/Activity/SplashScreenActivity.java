@@ -1,14 +1,11 @@
 package com.greenacademy.travelapp.Activity.Activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.greenacademy.travelapp.Activity.App.App;
-import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin;
-import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
