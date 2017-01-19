@@ -18,22 +18,20 @@ import java.util.ArrayList;
 
 public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.LoaiQuanViewHolder> {
     private ArrayList<LoaiQuanAn> listData = new ArrayList<LoaiQuanAn>();
-    private int resource;
-    public LoaiQuanAnAdapter(int resource, ArrayList<LoaiQuanAn> listData) {
-        this.resource = resource;
+    public LoaiQuanAnAdapter(ArrayList<LoaiQuanAn> listData) {
         this.listData = listData;
     }
 
     @Override
     public LoaiQuanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(this.resource, parent, false);
+        View view = inflater.inflate(R.layout.dong_quanan_loaiquan, parent, false);
         return new LoaiQuanViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(LoaiQuanViewHolder holder, int position) {
-        holder.imgHinhLoaiQuan.setImageResource(listData.get(position).imageLQA);
+        holder.imgHinhLoaiQuan.setImageResource(listData.get(position).Image);
     }
 
     @Override

@@ -5,9 +5,9 @@ package com.greenacademy.travelapp.Activity.Model;
  */
 
 public class LoaiQuanAn {
-    public int imageLQA;
+    public int Image;
 
-    public LoaiQuanAn(int imageLQA) {
-        this.imageLQA = imageLQA;
+    public LoaiQuanAn(int image) {
+        this.Image = image;
     }
 }

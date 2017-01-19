@@ -6,4 +6,7 @@
     <string name="login_error">Đã có lỗi xảy ra!!! Vui lòng đăng nhập lại</string>
     <string name="button_start">Bắt Đầu</string>
     <string name="quan_an">Quán Ăn</string>
+    <string name="duyet_quanan">Quyệt theo đồ ăn</string>
+    <string name="xem_tat_ca">Xem tất cả</string>
+    <string name="quan_gan_toi">Quán gần tôi</string>
 </resources>

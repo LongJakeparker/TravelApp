@@ -6,4 +6,5 @@
     <color name="colorEdittextLogin">#FF3C5A99</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBrown">#362e2a</color>
+    <color name="text_green">#14f204</color>
 </resources>
