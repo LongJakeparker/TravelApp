@@ -16,7 +16,7 @@
     <dimen name="padding_icon_map">10dp</dimen>
     <dimen name="padding_bottom">50dp</dimen>
     <dimen name="padding_bottom_radio_and_button">20dp</dimen>
-    <item format="float" name="scale_radio_button" type="dimen">0.6</item>
+    <item name="scale_radio_button" format="float" type="dimen">0.6</item>
     <dimen name="text_size_button_skip_start">18dp</dimen>
 
 </resources>

@@ -13,21 +13,21 @@
       },
       "oauth_client": [
         {
-          "client_id": "627566791250-qjpa4p5u0rgveo6aa3b4slvv66kgjl33.apps.googleusercontent.com",
+          "client_id": "627566791250-s99nkqffiljlutsotfkur6o7ejq9p3ie.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.greenacademy.travelapp",
-            "certificate_hash": "9EB954377E94813B1A724583674543F2BEB844B5"
+            "certificate_hash": "12A329D50240FA4E4A3FD5AD49A623AB8B9929A1"
           }
         },
         {
-          "client_id": "627566791250-io1ui2gohhkqs70pnbkdhda0ebg4i2ec.apps.googleusercontent.com",
+          "client_id": "627566791250-p0l2aii9efet9eed90ukvvkj23fvurll.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDc_w9L7v5-InoD3uvdngYToBrvIlj3OSs"
+          "current_key": "AIzaSyBRD64vfTALqDDSZ8fQCrAdhbQvIH2OFIc"
         }
       ],
       "services": {

@@ -26,6 +26,7 @@ public class SignInGmail {
 
     GoogleApiClient googleApiClient;
     AppCompatActivity activity;
+    GoogleSignInAccount googleSignInAccount;
 
     public SignInGmail(AppCompatActivity activity) {
         this.activity = activity;
@@ -58,14 +59,29 @@ public class SignInGmail {
 
     // Xử lý kết quả trả về từ Intent trong onActivityResult
     public ArrayList<String> startXuLyKetQuaTraVe(Intent intent) {
-        ArrayList<String> arrUserInfo = null;
+        ArrayList<String> arrUserInfo = new ArrayList<>();
         // Đối tượng kết quả
         GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(intent);
 
         if (googleSignInResult.isSuccess()) {
             Log.d("Result", "Đăng nhập thành công");
-            GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
-            arrUserInfo = startLayThongTinNguoiDung(googleSignInAccount);
+            googleSignInAccount = googleSignInResult.getSignInAccount();
+            String userName = googleSignInAccount.getDisplayName();
+            String userEmail = googleSignInAccount.getEmail();
+            String userId = googleSignInAccount.getId();
+            Uri userUriPhoto = googleSignInAccount.getPhotoUrl();
+            if (userUriPhoto != null){
+                String userPhoto = userUriPhoto.toString();
+                arrUserInfo.add(userId);
+                arrUserInfo.add(userName);
+                arrUserInfo.add(userEmail);
+                arrUserInfo.add(userPhoto);
+            } else {
+                arrUserInfo.add(userId);
+                arrUserInfo.add(userName);
+                arrUserInfo.add(userEmail);
+            }
+
             Log.d("Account", googleSignInAccount.toString());
         } else {
             Log.d("Result", "Đăng nhập thất bại");
@@ -73,23 +89,5 @@ public class SignInGmail {
         return arrUserInfo;
     }
 
-    //Lấy thông tin người dùng
-    public ArrayList<String> startLayThongTinNguoiDung(GoogleSignInAccount googleSignInAccount){
-        String userName = googleSignInAccount.getDisplayName();
-        String userEmail = googleSignInAccount.getEmail();
-        String userId = googleSignInAccount.getId();
-        Uri userUriPhoto = googleSignInAccount.getPhotoUrl();
-        String userPhoto = userUriPhoto.toString();
-        //Id
-        //Họ tên
-        //Email
-        //Link Photo nhớ parse về lại URI
-        ArrayList<String> arrInFo = new ArrayList<>();
-        arrInFo.add(userId);
-        arrInFo.add(userName);
-        arrInFo.add(userEmail);
-        arrInFo.add(userPhoto);
-        return arrInFo;
-    }
 
 }

@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".Activity.App.App"
@@ -16,6 +16,7 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
         <activity android:name=".Activity.Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,14 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.LoginActivity.LoginActivity" />
         <activity android:name=".Activity.Activity.TutorialActivity" />
-        <activity android:name=".Activity.Activity.QuanAnActivity"/>
-            
+        <activity android:name=".Activity.Activity.QuanAnActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAgNFnjWqBtfweopgTJbIPwzBCaf_mZRn8"/>
+            android:value="AIzaSyAgNFnjWqBtfweopgTJbIPwzBCaf_mZRn8" />
+
+        <activity android:name=".Activity.Activity.ManHinhChinh.ManHinhChinhActivity"></activity>
     </application>
 
 </manifest>
