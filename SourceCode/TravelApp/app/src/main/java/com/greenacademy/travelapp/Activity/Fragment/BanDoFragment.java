@@ -6,10 +6,14 @@ package com.greenacademy.travelapp.Activity.Fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +21,19 @@ import android.view.ViewGroup;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.greenacademy.travelapp.Activity.Model.DiaDiemQuanAn;
 import com.greenacademy.travelapp.R;
+
+import java.util.ArrayList;
 
 public class BanDoFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
+    private ArrayList<DiaDiemQuanAn> quanAnGanToiList;
+
 
     @Nullable
     @Override
@@ -47,6 +60,37 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        mMap = googleMap;
+        Log.i("Ban do fragment Log","Khoi tao thanh cong map");
         mMap.setMyLocationEnabled(true);
+        Log.i("Ban do fragment Log","Tao nut truy cap vi tri hien tai");
+        Log.i("Ban do fragment Log","nhan dia diem cac quan an");
+        quanAnGanToiList = layDiaDiemGanToi();
+
+        addMarker();
+    }
+
+    private void addMarker() {
+        for (DiaDiemQuanAn ddqa: quanAnGanToiList
+             ) {
+             Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(ddqa.getLat(),ddqa.getLng()))
+                    .title(ddqa.getTitle())
+                    .icon(BitmapDescriptorFactory.fromResource(ddqa.getBitMapId())));
+            Log.i("Ban do fragment Log","Add marker quan an vao ban do");
+            Log.i("Ban do fragment Log",marker.toString());
+        }
+    }
+
+    private ArrayList<DiaDiemQuanAn> layDiaDiemGanToi() {
+        ArrayList<DiaDiemQuanAn> temp = new ArrayList<>();
+
+        //ham Api xu ly lay du lieu quan gan toi
+        if (temp.size()!=0) {
+            Log.i("Ban do fragment Log", "Nhan dia diem cac quan an thanh cong");
+        }else{
+            Log.i("Ban do fragment Log", "So luong quan an nhan duoc" + temp.size());
+        }
+        return temp;
     }
 }
