@@ -4,56 +4,95 @@ import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import static android.R.attr.data;
 
 /**
  * Created by User on 1/12/2017.
  */
 
-public class TaskLogin extends Thread {
-    String email, password;
+public class TaskLogin extends AsyncTask<String, String, String> {
+    UserLogin userLogin;
     CheckUser checkUser;
-    public TaskLogin(String email, String password, CheckUser checkUser){
-        this.email = email;
-        this.password = password;
+    public TaskLogin(UserLogin userLogin, CheckUser checkUser){
+        this.userLogin = userLogin;
         this.checkUser = checkUser;
     }
 
-    @Override
-    public void run() {
-        super.run();
+    //post server
 
-    }
+    /**
+     *
+     * @param link: link url
+     * @param json: chuoi json
+     * @return: chuoi ket qua tu server
+     *
+     */
 
-    private String docNoiDungServer(String theUrl)
-    {
-        StringBuilder content = new StringBuilder();
+    public String readURL(String link, String json){
+        StringBuilder stringBuilder = new StringBuilder();
 
-        try
-        {
-            URL url = new URL(theUrl);
+        try {
+            URL url = new URL(link);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestMethod("POST");
+            connection.connect();
 
-            URLConnection urlConnection = url.openConnection();
+            OutputStream outputStream = connection.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            writer.write(json);
+            writer.close();
+            outputStream.close();
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String line;
 
-            while ((line = bufferedReader.readLine()) != null)
-            {
-                content.append(line + "\n");
+            while ((line = bufferedReader.readLine()) != null){
+                stringBuilder.append(line + "\n");
             }
             bufferedReader.close();
-        }
-        catch(Exception e)
-        {
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return content.toString();
+        return stringBuilder.toString();
+    }
+
+    @Override
+    protected String doInBackground(String... params) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("Username", userLogin.Username);
+            jsonObject.accumulate("MatKhau", userLogin.MatKhau);
+            jsonObject.accumulate("KieuTk", userLogin.KieuTk);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return readURL(params[0], jsonObject.toString());
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        checkUser.ketqua(s);
     }
 }

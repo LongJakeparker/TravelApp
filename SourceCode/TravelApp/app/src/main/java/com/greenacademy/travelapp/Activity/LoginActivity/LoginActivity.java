@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TaskLogin taskLogin;
     TextView txtChuaCoTaiKhoan;
     String LOGIN_ERROR;
+    EditText edtEmail, edtPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSigninGoogle = (SignInButton) findViewById(R.id.btnSigninGoogle);
         btnlgnFacebook = (LoginButton) findViewById(R.id.buttonLoginFacebook);
         btnDangNhap = (Button) findViewById(R.id.buttonLogin);
+        edtEmail = (EditText) findViewById(R.id.editTextEmailLogin);
+        edtPass = (EditText) findViewById(R.id.editTextPasswordLogin);
         callbackManager = CallbackManager.Factory.create();
         signInGmail = new SignInGmail(this);
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
@@ -64,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(LoginResult loginResult) {
                 layDuLieuFacebook(loginResult);
-                toiManHinhChinh();
+//                toiManHinhChinh();
             }
 
             @Override
@@ -120,6 +125,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String userID = AccessToken.getCurrentAccessToken().getUserId();
                             String avatar = "http://graph.facebook.com/" + userID + "/picture?type=large";
 
+                            UserLogin userFacebook = new UserLogin(userID, "", 1);
+                            loginChung(userFacebook);
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -137,8 +146,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            Xử lý sự kiện nút Đăng nhập Gmail
             case R.id.btnSigninGoogle:
                 signInGmail.startSignIn();
+//                ArrayList<String> arrayDataGoogle = new ArrayList<String>();
+//                arrayDataGoogle = signInGmail.startLayThongTinNguoiDung()
+//                UserLogin userGoogle = new UserLogin()
                 break;
             case R.id.buttonLogin:
+                UserLogin userThuong = new UserLogin(edtEmail.getText().toString(), edtPass.getText().toString(), 0);
+                loginChung(userThuong);
                 break;
             case R.id.textViewChuaCoTaiKhoan:
                 toiManHinhDangKy();
@@ -167,8 +181,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    //xử lí đăng nhập cho: Đăng nhập thường, facebook, google
+    public void loginChung(UserLogin userLogin){
+        taskLogin = new TaskLogin(userLogin, this);
+        taskLogin.execute(Constant.URL_DANG_NHAP);
+    }
+
+    //ket qua tra ve tu server sau khi dang nhap
     @Override
     public void ketqua(String kq) {
 
+        try {
+            JSONObject jsonObject = new JSONObject(kq);
+            if (jsonObject.getString("Description").equals(Constant.DESCRIPTION_LOGIN)){
+                toiManHinhChinh();
+            }else {
+                Toast.makeText(getApplicationContext(), jsonObject.getString("Description"), Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
