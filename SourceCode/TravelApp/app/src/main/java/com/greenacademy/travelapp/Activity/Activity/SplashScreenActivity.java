@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.greenacademy.travelapp.Activity.App.App;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
-import com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin;
+//import com.greenacademy.travelapp.Activity.LoginActivity.ActivityLogin;
 import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.R;
 
@@ -24,8 +24,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 try{
                     Thread.sleep(SPLASH_TIME_OUT);
                     if(((App)getApplication()).GioiThieuLanDau.getValue()){
-                        Intent intent = new Intent(SplashScreenActivity.this, ActivityLogin.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(SplashScreenActivity.this, ActivityLogin.class);
+                        //startActivity(intent);
                     }else{
                         ((App)getApplication()).GioiThieuLanDau.setValue(true);
                         Intent intent = new Intent(SplashScreenActivity.this, TutorialActivity.class);
