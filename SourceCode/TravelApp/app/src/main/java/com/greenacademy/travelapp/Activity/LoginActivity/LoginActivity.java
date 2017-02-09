@@ -26,6 +26,7 @@ import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.CustomDialog.DialogWaitingLogin;
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 import com.greenacademy.travelapp.Activity.MainActivity;
+import com.greenacademy.travelapp.Activity.Model.UserLogin;
 import com.greenacademy.travelapp.Activity.Utils.SignInGmail;
 import com.greenacademy.travelapp.R;
 

@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.LoginActivity;
+package com.greenacademy.travelapp.Activity.Model;
 
 /**
  * Created by User on 2/7/2017.
