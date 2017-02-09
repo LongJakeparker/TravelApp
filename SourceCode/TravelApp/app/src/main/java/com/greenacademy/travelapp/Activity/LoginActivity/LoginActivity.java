@@ -23,6 +23,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.greenacademy.travelapp.Activity.Connection.TaskLogin;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
+import com.greenacademy.travelapp.Activity.CustomDialog.DialogWaitingLogin;
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.Activity.Utils.SignInGmail;
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView txtChuaCoTaiKhoan;
     String LOGIN_ERROR;
     EditText edtEmail, edtPass;
+    DialogWaitingLogin waitingLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInGmail = new SignInGmail(this);
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
         LOGIN_ERROR = getResources().getString(R.string.login_error);
+        waitingLogin = new DialogWaitingLogin(LoginActivity.this, R.layout.custom_dialog_progressbar);
+        waitingLogin.createDialog();
 
         // phần Facebook
         if (Constant.INTERNET_CONNECTION){
@@ -68,6 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnlgnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                waitingLogin.showDialog();
                 layDuLieuFacebook(loginResult);
 //                toiManHinhChinh();
             }
@@ -80,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(FacebookException error) {
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
+                waitingLogin.closeDialog();
             }
         });
 
@@ -97,6 +103,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void toiManHinhChinh() {
         // MainActivity là màn hình chính sau khi login thành công
+        waitingLogin.closeDialog();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
