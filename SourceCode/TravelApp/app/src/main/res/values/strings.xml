@@ -5,4 +5,11 @@
     <string name="button_skip">Bỏ Qua</string>
     <string name="login_error">Đã có lỗi xảy ra!!! Vui lòng đăng nhập lại</string>
     <string name="button_start">Bắt Đầu</string>
+
+
+    <!-- TODO: Menu màn hình chính -->
+    <string name="diadiem">Địa điểm</string>
+    <string name="quanan">Quán ăn</string>
+    <string name="hanhtrinh">Hành trình</string>
+    <string name="nguoidung">Bản Thân</string>
 </resources>

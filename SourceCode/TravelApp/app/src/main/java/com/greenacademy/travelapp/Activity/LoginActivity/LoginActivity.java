@@ -20,6 +20,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.greenacademy.travelapp.Activity.Activity.ManHinhChinh.ManHinhChinhActivity;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 import com.greenacademy.travelapp.Activity.MainActivity;
@@ -92,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void toiManHinhChinh() {
         // MainActivity là màn hình chính sau khi login thành công
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ManHinhChinhActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
