@@ -92,17 +92,5 @@ public class SignInGmail {
         return arrInFo;
     }
 
-//    public GoogleSignInAccount googleSignInAccount(){
-//        GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(intent);
-//
-//        if (googleSignInResult.isSuccess()) {
-//            Log.d("Result", "Đăng nhập thành công");
-//            GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
-//            arrUserInfo = startLayThongTinNguoiDung(googleSignInAccount);
-//            Log.d("Account", googleSignInAccount.toString());
-//        } else {
-//            Log.d("Result", "Đăng nhập thất bại");
-//        }
-//    }
 
 }

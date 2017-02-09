@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +21,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.greenacademy.travelapp.Activity.Connection.TaskLogin;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
 import com.greenacademy.travelapp.Activity.MainActivity;
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // phần Facebook
         if (Constant.INTERNET_CONNECTION){
             if (AccessToken.getCurrentAccessToken() != null) {
-                toiManHinhChinh();
+//                toiManHinhChinh();
             }
         }
 
@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        startActivity(intent);
     }
 
+    //lấy thông tin facebook
     private void layDuLieuFacebook(final LoginResult loginResult)
     {
         GraphRequest request = GraphRequest.newMeRequest(
@@ -146,9 +147,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            Xử lý sự kiện nút Đăng nhập Gmail
             case R.id.btnSigninGoogle:
                 signInGmail.startSignIn();
-//                ArrayList<String> arrayDataGoogle = new ArrayList<String>();
-//                arrayDataGoogle = signInGmail.startLayThongTinNguoiDung()
-//                UserLogin userGoogle = new UserLogin()
                 break;
             case R.id.buttonLogin:
                 UserLogin userThuong = new UserLogin(edtEmail.getText().toString(), edtPass.getText().toString(), 0);
@@ -172,7 +170,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
             ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
             if (arrUserInfo != null){
-                toiManHinhChinh();
+
+                UserLogin userGoogle = new UserLogin(arrUserInfo.get(0), "", 2);
+                loginChung(userGoogle);
+//                toiManHinhChinh();
             }else {
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }

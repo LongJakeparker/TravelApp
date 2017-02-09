@@ -1,8 +1,9 @@
-package com.greenacademy.travelapp.Activity.LoginActivity;
+package com.greenacademy.travelapp.Activity.Connection;
 
 import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
+import com.greenacademy.travelapp.Activity.LoginActivity.UserLogin;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,16 +11,12 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-
-import static android.R.attr.data;
 
 /**
  * Created by User on 1/12/2017.
@@ -33,7 +30,7 @@ public class TaskLogin extends AsyncTask<String, String, String> {
         this.checkUser = checkUser;
     }
 
-    //post server
+    //post lên server
 
     /**
      *
@@ -43,7 +40,7 @@ public class TaskLogin extends AsyncTask<String, String, String> {
      *
      */
 
-    public String readURL(String link, String json){
+    public String readURLPost(String link, String json){
         StringBuilder stringBuilder = new StringBuilder();
 
         try {
@@ -87,7 +84,7 @@ public class TaskLogin extends AsyncTask<String, String, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return readURL(params[0], jsonObject.toString());
+        return readURLPost(params[0], jsonObject.toString());
     }
 
     @Override
