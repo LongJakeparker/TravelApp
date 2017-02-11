@@ -7,7 +7,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_mo_ta_map"
         android:id="@+id/map_fragment_scroll"
         android:layout_above="@+id/tv_like_map">
@@ -74,7 +74,8 @@
         android:layout_alignBottom="@+id/tv_danh_gia_map"
         android:layout_toRightOf="@+id/tv_danh_gia_map"
         android:layout_toEndOf="@+id/tv_danh_gia_map"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:textSize="12sp" />
 
     <TextView
         android:text="View: 2500"
@@ -86,7 +87,8 @@
         android:layout_alignBottom="@+id/tv_like_map"
         android:layout_toRightOf="@+id/tv_like_map"
         android:layout_toEndOf="@+id/tv_like_map"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:textSize="12sp" />
 
     <Button
         android:text="chi tiết"
@@ -107,6 +109,7 @@
         android:layout_above="@+id/chi_tiet_btn_map"
         android:layout_alignLeft="@+id/map_dialog_hinh_anh"
         android:layout_alignStart="@+id/map_dialog_hinh_anh"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:textSize="12sp" />
 
 </RelativeLayout>

@@ -20,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -266,10 +267,14 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
 
 
         // set the custom dialog components - text, image and button
+        TextView tvMoTa = (TextView) dialog.findViewById(R.id.tv_mo_ta_map);
+        if (diaDiemQuanAnTemp.getIdKhuVuc().contains("QuanAn")){
+            tvMoTa.setVisibility(View.INVISIBLE);
+        }
         TextView tendiadiem = (TextView) dialog.findViewById(R.id.tv_ten_dia_diem_map);
         tendiadiem.setText(diaDiemQuanAnTemp.getTenDiaDiem());
         TextView mota = (TextView) dialog.findViewById(R.id.tv_mo_ta_2_map);
-        mota.setText(diaDiemQuanAnTemp.getMoTa());
+        mota.setText(Html.fromHtml(diaDiemQuanAnTemp.getMoTa()));
         TextView like = (TextView) dialog.findViewById(R.id.tv_like_map);
         like.setText("Like: " + String.valueOf(diaDiemQuanAnTemp.getYeuThich()));
         TextView danhgia = (TextView) dialog.findViewById(R.id.tv_danh_gia_map);
