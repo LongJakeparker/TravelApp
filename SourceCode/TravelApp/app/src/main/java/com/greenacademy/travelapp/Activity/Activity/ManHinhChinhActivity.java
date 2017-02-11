@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.Activity.ManHinhChinh;
+package com.greenacademy.travelapp.Activity.Activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
