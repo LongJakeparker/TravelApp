@@ -59,8 +59,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.facebook.HttpMethod.GET;
-
 public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuyenDuLieu, GoogleMap.OnMarkerClickListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private GoogleMap mMap;
     private ArrayList<DiaDiemQuanAn> quanAnGanToiList = new ArrayList<>();
@@ -91,8 +89,9 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
 
         lm = (LocationManager) this.getContext().getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},0);
         }
+        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         //tao map Fragment
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         //nhan su kien map tra ve
@@ -117,8 +116,7 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         btnQuanAn.setOnClickListener(this);
         btnDiaDiem.setOnClickListener(this);
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            return;
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},0);
         } else {
             Log.e("permission", "xin quyen thanh cong!!!");
             mMap = googleMap;
@@ -201,7 +199,7 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
 
         while (location == null) {
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                //check quyen
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},0);
             }
             location = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
@@ -476,6 +474,7 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         protected Location doInBackground(Void... voids) {
             Location temp = null;
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},0);
             }
             while (temp==null) {
                 temp = LocationServices.FusedLocationApi.getLastLocation(

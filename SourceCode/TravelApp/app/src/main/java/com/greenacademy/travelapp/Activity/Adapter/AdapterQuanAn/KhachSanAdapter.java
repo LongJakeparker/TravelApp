@@ -16,7 +16,8 @@ import java.util.ArrayList;
  * Created by GIT on 2/11/2017.
  */
 
-public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHolder> {
+public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHolder> implements View.OnClickListener {
+    private static final int KHACH_SAN_ITEM_POSITION = 1;
     private ArrayList<KhachSanItem> khachSanItems;
 
     public KhachSanAdapter(ArrayList<KhachSanItem> khachSanItems) {
@@ -26,7 +27,7 @@ public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.khach_san_list_view_item,parent);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.khach_san_list_view_item,null);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -37,11 +38,20 @@ public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHo
         holder.tvDiaChiKhachSan.setText(khachSanItems.get(position).getDiaChi());
         holder.tvSoDanhGia.setText("Danh gia: "+khachSanItems.get(position).getSoDanhGia());
         holder.tvGia.setText(khachSanItems.get(position).getGiaTien() + " VND");
+        //holder.itemView.setTag(holder.itemView.getId(),position);
+        holder.itemView.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
         return khachSanItems.size();
+    }
+
+    @Override
+    public void onClick(View view) {
+        //int pos = (int) view.getTag(KHACH_SAN_ITEM_POSITION);
+        //do something with this event plz!!!
+
     }
 
 
@@ -51,6 +61,7 @@ public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHo
         TextView tvGia;
         TextView tvSoDanhGia;
         ImageView danhGiaImage;
+        View itemView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -59,6 +70,7 @@ public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHo
             tvGia = (TextView) itemView.findViewById(R.id.tv_khach_san_item_gia);
             tvSoDanhGia = (TextView) itemView.findViewById(R.id.tv_khach_san_item_danh_gia);
             danhGiaImage = (ImageView) itemView.findViewById(R.id.khach_san_item_hinh_anh);
+            this.itemView = itemView;
         }
     }
 }

@@ -7,17 +7,19 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import com.greenacademy.travelapp.Activity.Fragment.BanDoFragment;
+import com.greenacademy.travelapp.Activity.Fragment.KhachSanFragment;
 import com.greenacademy.travelapp.R;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BanDoFragment banDoFragment = new BanDoFragment();
         setContentView(R.layout.activity_main);
+        //BanDoFragment banDoFragment = new BanDoFragment();
+        KhachSanFragment khachSanFragment = new KhachSanFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment,banDoFragment);
+        fragmentTransaction.replace(R.id.fragment,khachSanFragment);
         fragmentTransaction.commit();
     }
 }
