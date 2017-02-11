@@ -1,47 +1,59 @@
 package com.greenacademy.travelapp.Activity.Connection;
 
-import android.app.Activity;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.greenacademy.travelapp.Activity.Constant.Constant;
+
+import static com.greenacademy.travelapp.Activity.Constant.Constant.INTERNET_CONNECTION;
 
 /**
  * Created by User on 1/14/2017.
  */
 
-public class CheckInternetConnection {
+public class CheckInternetConnection extends Thread {
     Context context;
-    BroadcastReceiver broadcastReceiver;
 
     public CheckInternetConnection(Context context){
         this.context = context;
     }
 
-    public void start(){
+    @Override
+    public void run() {
+        super.run();
+        Constant.INTERNET_CONNECTION = isNetworkAvailable(context);
+
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
 
-        broadcastReceiver = new BroadcastReceiver() {
+        BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Constant.INTERNET_CONNECTION = isNetworkAvailable(context);
-                Toast.makeText(context, Constant.INTERNET_CONNECTION + "", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, INTERNET_CONNECTION + "", Toast.LENGTH_SHORT).show();
             }
         };
 
-        context.registerReceiver(broadcastReceiver, intentFilter);
+        context.registerReceiver(receiver, intentFilter);
     }
 
-    public boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    private boolean isNetworkAvailable(final Context context) {
+        boolean result;
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null){
+            if (networkInfo.isConnected()){
+                result = true;
+            }else {
+                result = false;
+            }
+        }else {
+            result = false;
+        }
+        return result;
     }
-
 }

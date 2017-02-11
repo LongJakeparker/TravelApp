@@ -1,12 +1,13 @@
-package com.greenacademy.travelapp.Activity.Adapter;
+package com.greenacademy.travelapp.Activity.Adapter.Delete;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.greenacademy.travelapp.Activity.Model.LoaiQuanAn;
+import com.greenacademy.travelapp.Activity.Model.Delete.LoaiQuanAn;
 import com.greenacademy.travelapp.R;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 
 public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.LoaiQuanViewHolder> {
-    private ArrayList<LoaiQuanAn> listData = new ArrayList<>();
+    private ArrayList<LoaiQuanAn> listData = new ArrayList<LoaiQuanAn>();
     public LoaiQuanAnAdapter(ArrayList<LoaiQuanAn> listData) {
         this.listData = listData;
     }
@@ -30,20 +31,23 @@ public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.Lo
 
     @Override
     public void onBindViewHolder(LoaiQuanViewHolder holder, int position) {
-        holder.img.setImageResource(listData.get(position).imageLQA);
+        holder.imgHinhLoaiQuan.setImageResource(listData.get(position).Image);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listData.size();
     }
 
     public class LoaiQuanViewHolder extends RecyclerView.ViewHolder{
-        ImageView img;
+        ImageView imgHinhLoaiQuan;
+        TextView txtTenLoai, txtSoLuong;
 
         public LoaiQuanViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.imv);
+            imgHinhLoaiQuan = (ImageView) itemView.findViewById(R.id.imageViewHinhLoaiQuan);
+            txtTenLoai = (TextView) itemView.findViewById(R.id.textViewTenLoaiQuan);
+            txtSoLuong = (TextView) itemView.findViewById(R.id.textViewSoLuongLoaiQuan);
         }
     }
 }

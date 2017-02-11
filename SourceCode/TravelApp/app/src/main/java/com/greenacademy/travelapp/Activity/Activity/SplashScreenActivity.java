@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.greenacademy.travelapp.Activity.App.App;
-
 import com.greenacademy.travelapp.Activity.LoginActivity.LoginActivity;
 import com.greenacademy.travelapp.R;
 

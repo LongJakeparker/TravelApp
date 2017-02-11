@@ -6,10 +6,14 @@
     <string name="login_error">Đã có lỗi xảy ra!!! Vui lòng đăng nhập lại</string>
     <string name="button_start">Bắt Đầu</string>
 
-
     <!-- TODO: Menu màn hình chính -->
     <string name="diadiem">Địa điểm</string>
     <string name="quanan">Quán ăn</string>
     <string name="hanhtrinh">Hành trình</string>
     <string name="nguoidung">Bản Thân</string>
+
+    <string name="quan_an">Quán Ăn</string>
+    <string name="duyet_quanan">Duyệt theo khu vực</string>
+    <string name="xem_tat_ca">Xem tất cả</string>
+    <string name="quan_gan_toi">Quán gần tôi</string>
 </resources>
