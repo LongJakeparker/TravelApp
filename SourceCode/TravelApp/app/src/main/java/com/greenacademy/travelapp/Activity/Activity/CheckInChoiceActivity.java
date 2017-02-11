@@ -27,7 +27,7 @@ public class CheckInChoiceActivity extends AppCompatActivity {
 
         lvMap = (ListView) findViewById(R.id.lvMapNear);
         initivSearchMap();
-        initetSerchCheckin();
+//        initetSerchCheckin();
 
         ListMapItem listMapItem = new ListMapItem(R.drawable.icon_hotel, "Riverside Hotel", "dsadasdasdasdasdasd sdadasdasdas \n adsdadadad \n dsadsds \n adasdsdas","4.5km");
 
@@ -52,19 +52,19 @@ public class CheckInChoiceActivity extends AppCompatActivity {
 
     }
 
-    private void initetSerchCheckin(){
-        etSearchCheckin = (EditText) findViewById(R.id.etSearchChecInChoice);
-        etSearchCheckin.setFocusable(false);
-        etSearchCheckin.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.setFocusableInTouchMode(true);
-                v.setFocusable(true);
-                ivSearchMap.setVisibility(View.GONE);
-                return false;
-            }
-        });
-    }
+//    private void initetSerchCheckin(){
+//        etSearchCheckin = (EditText) findViewById(R.id.etSearchChecInChoice);
+//        etSearchCheckin.setFocusable(false);
+//        etSearchCheckin.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                v.setFocusableInTouchMode(true);
+//                v.setFocusable(true);
+//                ivSearchMap.setVisibility(View.GONE);
+//                return false;
+//            }
+//        });
+//    }
 
     private void initivSearchMap() {
         ivSearchMap = (ImageView) findViewById(R.id.ivMapSearchCheckIn);

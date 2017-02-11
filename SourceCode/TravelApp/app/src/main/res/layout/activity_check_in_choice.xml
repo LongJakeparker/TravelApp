@@ -5,6 +5,7 @@
     android:id="@+id/activity_check_in_choice"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.greenacademy.travelapp.Activity.Activity.CheckInChoiceActivity">
 
     <ImageView
@@ -23,22 +24,24 @@
         android:layout_margin="@dimen/margin_searchbar_checin_choice"
         android:background="@drawable/custom_searchbar">
 
-        <ImageView
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_search"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/layout_marginleft_ivsearchbar"
-            android:layout_marginRight="@dimen/layout_marginright_ivsearchbar"/>
+        <!--<ImageView-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:srcCompat="@android:drawable/ic_menu_search"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="@dimen/layout_marginleft_ivsearchbar"-->
+            <!--android:layout_marginRight="@dimen/layout_marginright_ivsearchbar"/>-->
 
-        <EditText
-            android:layout_height="wrap_content"
+        <SearchView
             android:layout_width="match_parent"
-            android:inputType="textPersonName"
-            android:id="@+id/etSearchChecInChoice"
-            android:hint="@string/hint_search_bar"
-            android:layout_weight="3" />
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:searchHintIcon="@null"
+            android:queryHint="@string/hint_search_bar" />
+            <!--android:searchIcon="@null"-->
+
+            <!--android:layout_weight="3" />-->
     </LinearLayout>
 
     <ListView
@@ -46,6 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layoutSearchBar"
-        android:background="@color/cardview_shadow_start_color"/>
+        android:background="@drawable/white_line"/>
+
+
 
 </RelativeLayout>

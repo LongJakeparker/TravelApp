@@ -20,7 +20,14 @@
         <activity android:name=".Activity.Activity.SplashScreenActivity">
 
         </activity>
-        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".Activity.LoginActivity.ActivityLogin" />
         <activity android:name=".Activity.Activity.TutorialActivity" />
 
@@ -30,11 +37,7 @@
 
         <activity android:name=".Activity.Activity.CreateMyTripCheckInActivity" />
         <activity android:name=".Activity.Activity.CheckInChoiceActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
