@@ -44,7 +44,7 @@ public class TopCheckinAdapter extends RecyclerView.Adapter<TopCheckinAdapter.Lo
 
     @Override
     public int getItemCount() {
-        return 5;
+        return listData.size();
     }
 
     public class LoaiQuanViewHolder extends RecyclerView.ViewHolder{

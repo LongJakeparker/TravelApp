@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.Adapter.Delete;
+package com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

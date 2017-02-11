@@ -14,11 +14,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.greenacademy.travelapp.Activity.Adapter.CustomLayoutManager;
-import com.greenacademy.travelapp.Activity.Adapter.Delete.LoaiQuanAnAdapter;
-import com.greenacademy.travelapp.Activity.Adapter.Delete.QuanGanToiAdapter;
+import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.LoaiQuanAnAdapter;
+import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.QuanGanToiAdapter;
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.TopCheckinAdapter;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetNearQuanAn;
 import com.greenacademy.travelapp.Activity.Connection.Interface.GetTopQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetTypeQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Task.TaskGetNearQuanAn;
 import com.greenacademy.travelapp.Activity.Connection.Task.TaskGetTopQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Task.TaskGetTypeQuanAn;
 import com.greenacademy.travelapp.Activity.Model.QuanAnChiTiet;
 import com.greenacademy.travelapp.R;
 
@@ -34,8 +38,11 @@ import static com.facebook.FacebookSdk.getApplicationContext;
  * Created by DAVIDSON on 2/7/2017.
  */
 
-public class QuanAnFragment extends Fragment implements GetTopQuanAn {
+public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQuanAn, GetNearQuanAn {
 
+    int id = 1;
+    double lat = 0;
+    double lng = 0;
     Toolbar toolbar;
     RecyclerView recyLoaiQuan, recyQuanGanToi, recyTopCheckin;
     LoaiQuanAnAdapter adapterLoaiQuan;
@@ -44,7 +51,10 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn {
     CustomLayoutManager customLayoutManager;
     ArrayList<QuanAnChiTiet> listTop, listNear, listType;
     SearchView searchView;
+
     TaskGetTopQuanAn taskGetTopQuanAn;
+    TaskGetTypeQuanAn taskGetTypeQuanAn;
+    TaskGetNearQuanAn taskGetNearQuanAn;
 
     @Nullable
     @Override
@@ -62,8 +72,15 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn {
         listNear = new ArrayList<QuanAnChiTiet>();
         listType = new ArrayList<QuanAnChiTiet>();
 
+        //lấy dữ liệu từ server
         taskGetTopQuanAn = new TaskGetTopQuanAn(this);
         taskGetTopQuanAn.execute("http://103.237.147.137:9045/QuanAn/QuanAnByTop");
+
+        taskGetTypeQuanAn = new TaskGetTypeQuanAn(this);
+        taskGetTypeQuanAn.execute("http://103.237.147.137:9045/QuanAn/QuanAnByType?idLoaiQuan=" + id);
+
+        taskGetNearQuanAn = new TaskGetNearQuanAn(this);
+        taskGetNearQuanAn.execute("http://103.237.147.137:9045/QuanAn/QuanAnByNear?lat=" + lat + "&lng=" + lng);
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,31 +89,39 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn {
         EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchEditText.setTextColor(getResources().getColor(R.color.colorWhite));
         searchEditText.setHintTextColor(getResources().getColor(R.color.colorWhite));
-
-
-//        LinearLayoutManager layoutManagerLoaiQuan = new LinearLayoutManager(getApplicationContext());
-//        layoutManagerLoaiQuan.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        recyLoaiQuan.setLayoutManager(layoutManagerLoaiQuan);
-//        recyLoaiQuan.setAdapter(adapterLoaiQuan);
-//
-//
-//        LinearLayoutManager layoutManagerQuanGanToi = new LinearLayoutManager(getApplicationContext());
-//        layoutManagerQuanGanToi.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        recyQuanGanToi.setLayoutManager(layoutManagerQuanGanToi);
-//        recyQuanGanToi.setAdapter(adapterQuanGanToi);
-
-//        layoutManager = new CustomLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-//        recyQuanGanToi.setLayoutManager(layoutManager);
-//        recyQuanGanToi.setAdapter(adapterQuanGanToi);
-        recyTopCheckin.setLayoutManager(customLayoutManager);
-        recyTopCheckin.setAdapter(adapterTopCheckin);
         return  view;
     }
 
     @Override
     public void ketquaTopQuanAn(String kq) {
+        adapterTopCheckin = new TopCheckinAdapter(addToList(listTop, kq), getContext());
+        recyTopCheckin.setLayoutManager(customLayoutManager);
+        recyTopCheckin.setAdapter(adapterTopCheckin);
+    }
+
+    @Override
+    public void ketquaType(String kq) {
+        adapterLoaiQuan = new LoaiQuanAnAdapter(addToList(listType, kq), getContext());
+        LinearLayoutManager layoutManagerLoaiQuan = new LinearLayoutManager(getApplicationContext());
+        layoutManagerLoaiQuan.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyLoaiQuan.setLayoutManager(layoutManagerLoaiQuan);
+        recyLoaiQuan.setAdapter(adapterLoaiQuan);
+    }
+
+    @Override
+    public void ketquaNearQuan(String kq) {
+        adapterQuanGanToi = new QuanGanToiAdapter(addToList(listNear, kq), getContext());
+        LinearLayoutManager layoutManagerQGT = new LinearLayoutManager(getApplicationContext());
+        layoutManagerQGT.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyQuanGanToi.setLayoutManager(layoutManagerQGT);
+        recyQuanGanToi.setAdapter(adapterQuanGanToi);
+    }
+
+    private ArrayList<QuanAnChiTiet> addToList(ArrayList<QuanAnChiTiet> arrayList, String s){
+        JSONObject jsonObject = null;
         try {
-            JSONObject jsonObject = new JSONObject(kq);
+            jsonObject = new JSONObject(s);
+
             JSONArray jsonArray = jsonObject.getJSONArray("QuanAns");
 
             for (int i = 0; i < jsonArray.length(); i++){
@@ -114,15 +139,11 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn {
                 quanAnChiTiet.setLinkAnh(jQuanAn.getString("LinkAnh"));
                 quanAnChiTiet.setLat(jQuanAn.getDouble("Lat"));
                 quanAnChiTiet.setLng(jQuanAn.getDouble("Lng"));
-
-                listTop.add(quanAnChiTiet);
-
-                adapterTopCheckin = new TopCheckinAdapter(listTop, getContext());
-                recyTopCheckin.setLayoutManager(customLayoutManager);
-                recyTopCheckin.setAdapter(adapterTopCheckin);
+                arrayList.add(quanAnChiTiet);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return arrayList;
     }
 }

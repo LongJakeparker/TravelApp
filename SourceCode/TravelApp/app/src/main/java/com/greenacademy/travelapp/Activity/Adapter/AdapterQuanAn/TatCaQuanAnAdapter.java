@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.greenacademy.travelapp.Activity.Model.ListQuanAnChung;
+import com.greenacademy.travelapp.Activity.Connection.Interface.ItemRecyclerClickListener;
 import com.greenacademy.travelapp.Activity.Model.QuanAnChung;
 import com.greenacademy.travelapp.R;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -24,6 +22,8 @@ import java.util.ArrayList;
 public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.TatCaQuanAnViewholder> {
     private ArrayList<QuanAnChung> listData = new ArrayList<QuanAnChung>();
     private Context context;
+    private ItemRecyclerClickListener itemRecyclerClickListener;
+
     public TatCaQuanAnAdapter(ArrayList<QuanAnChung> listData, Context context){
         this.listData = listData;
         this.context = context;
@@ -51,7 +51,11 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         return listData.size();
     }
 
-    public class TatCaQuanAnViewholder extends RecyclerView.ViewHolder{
+    public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){
+        this.itemRecyclerClickListener = itemRecyclerClickListener;
+    }
+
+    public class TatCaQuanAnViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imgDaiDien;
         TextView txtTenNhaHang, txtLuotDanhGia, txtMota, txtSoLuotXem, txtLuotYeuThich;
 
@@ -63,6 +67,14 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
             txtMota = (TextView) itemView.findViewById(R.id.textViewMota);
             txtSoLuotXem = (TextView) itemView.findViewById(R.id.textViewSoLuotXem);
             txtLuotYeuThich = (TextView) itemView.findViewById(R.id.textViewLuotYeuThich);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (itemRecyclerClickListener != null){
+                itemRecyclerClickListener.onClick(v, getAdapterPosition());
+            }
         }
     }
 }
