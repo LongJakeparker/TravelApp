@@ -50,7 +50,7 @@
         android:textAllCaps="false"
         android:textSize="18dp"
         android:textColor="#ffffff"
-        android:background="@drawable/custom_button_login"
+        android:background="@color/com_facebook_blue"
         android:id="@+id/buttonLogin"
         android:layout_weight="1"
         android:layout_width="150dp"
@@ -163,6 +163,5 @@
             android:text="Quên mật khẩu?"
             android:layout_gravity="right"/>
     </LinearLayout>
-
 
 </RelativeLayout>

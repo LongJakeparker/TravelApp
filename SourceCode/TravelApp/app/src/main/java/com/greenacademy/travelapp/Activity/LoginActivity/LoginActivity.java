@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +21,14 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
+import com.greenacademy.travelapp.Activity.Connection.TaskLogin;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
+import com.greenacademy.travelapp.Activity.CustomDialog.DialogWaitingLogin;
 import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
+
 import com.greenacademy.travelapp.Activity.MainActivity;
+import com.greenacademy.travelapp.Activity.Model.UserLogin;
 import com.greenacademy.travelapp.Activity.Utils.SignInGmail;
 import com.greenacademy.travelapp.R;
 
@@ -40,6 +46,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TaskLogin taskLogin;
     TextView txtChuaCoTaiKhoan;
     String LOGIN_ERROR;
+    EditText edtEmail, edtPass;
+    DialogWaitingLogin waitingLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,23 +56,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSigninGoogle = (SignInButton) findViewById(R.id.btnSigninGoogle);
         btnlgnFacebook = (LoginButton) findViewById(R.id.buttonLoginFacebook);
         btnDangNhap = (Button) findViewById(R.id.buttonLogin);
+        edtEmail = (EditText) findViewById(R.id.editTextEmailLogin);
+        edtPass = (EditText) findViewById(R.id.editTextPasswordLogin);
         callbackManager = CallbackManager.Factory.create();
         signInGmail = new SignInGmail(this);
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
         LOGIN_ERROR = getResources().getString(R.string.login_error);
+        waitingLogin = new DialogWaitingLogin(LoginActivity.this, R.layout.custom_dialog_progressbar);
+        waitingLogin.createDialog();
 
         // phần Facebook
         if (Constant.INTERNET_CONNECTION){
             if (AccessToken.getCurrentAccessToken() != null) {
-                toiManHinhChinh();
+//                toiManHinhChinh();
             }
         }
 
         btnlgnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                waitingLogin.showDialog();
                 layDuLieuFacebook(loginResult);
-                toiManHinhChinh();
+//                toiManHinhChinh();
             }
 
             @Override
@@ -75,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(FacebookException error) {
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
+                waitingLogin.closeDialog();
             }
         });
 
@@ -92,6 +106,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void toiManHinhChinh() {
         // MainActivity là màn hình chính sau khi login thành công
+
+        waitingLogin.closeDialog();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -105,6 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        startActivity(intent);
     }
 
+    //lấy thông tin facebook
     private void layDuLieuFacebook(final LoginResult loginResult)
     {
         GraphRequest request = GraphRequest.newMeRequest(
@@ -119,6 +136,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String lastName = response.getJSONObject().getString("last_name");
                             String userID = AccessToken.getCurrentAccessToken().getUserId();
                             String avatar = "http://graph.facebook.com/" + userID + "/picture?type=large";
+
+                            UserLogin userFacebook = new UserLogin(userID, "", 1);
+                            loginChung(userFacebook);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -139,6 +160,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signInGmail.startSignIn();
                 break;
             case R.id.buttonLogin:
+                UserLogin userThuong = new UserLogin(edtEmail.getText().toString(), edtPass.getText().toString(), 0);
+                loginChung(userThuong);
                 break;
             case R.id.textViewChuaCoTaiKhoan:
                 toiManHinhDangKy();
@@ -158,7 +181,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
             ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
             if (arrUserInfo != null){
-                toiManHinhChinh();
+
+                UserLogin userGoogle = new UserLogin(arrUserInfo.get(0), "", 2);
+                loginChung(userGoogle);
+//                toiManHinhChinh();
             }else {
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }
@@ -167,8 +193,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    //xử lí đăng nhập cho: Đăng nhập thường, facebook, google
+    public void loginChung(UserLogin userLogin){
+        taskLogin = new TaskLogin(userLogin, this);
+        taskLogin.execute(Constant.URL_DANG_NHAP);
+    }
+
+    //ket qua tra ve tu server sau khi dang nhap
     @Override
     public void ketqua(String kq) {
 
+        try {
+            JSONObject jsonObject = new JSONObject(kq);
+            if (jsonObject.getString("Description").equals(Constant.DESCRIPTION_LOGIN)){
+                toiManHinhChinh();
+            }else {
+                Toast.makeText(getApplicationContext(), jsonObject.getString("Description"), Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

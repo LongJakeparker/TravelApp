@@ -14,4 +14,14 @@ public class Constant extends Activity{
     public static String Status_Check_False = "False";
     public static int REQUEST_CODE_GOOGLE_SIGN_IN = 1564;
     public static boolean INTERNET_CONNECTION; //biến này thay đổi
+
+//    Constant cho các tag fragment màn hình chính
+    public static final String TAG_FRAGMENT_DIADIEM = "Fragment_DiaDiem";
+    public static final String TAG_FRAGMENT_QUANAN = "Fragment_QuanAn";
+    public static final String TAG_FRAGMENT_HANHTRINH = "Fragment_HanhTrinh";
+    public static final String TAG_FRAGMENT_BANTHAN= "Fragment_BanThan";
+
+    public static final String URL_DANG_NHAP = "http://103.237.147.137:9045/TaiKhoan/DangNhap";
+    public static final String DESCRIPTION_LOGIN = "OK";
+    public static final int STATUS_LOGIN = 1;
 }

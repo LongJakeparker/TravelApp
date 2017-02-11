@@ -1,10 +1,10 @@
 package com.greenacademy.travelapp.Activity.App;
 
 import android.app.Application;
-import android.support.annotation.BoolRes;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.greenacademy.travelapp.Activity.Connection.CheckInternetConnection;
 import com.greenacademy.travelapp.Activity.Utils.SharePreference.BooleanPrefs;
 import com.greenacademy.travelapp.Activity.Utils.SharePreference.StringPrefs;
 
@@ -22,5 +22,9 @@ public class App extends Application {
         super.onCreate();
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+        // kiểm tra có mạng hay không
+        CheckInternetConnection connection;
+        connection = new CheckInternetConnection(getApplicationContext());
+        connection.start();
     }
 }
