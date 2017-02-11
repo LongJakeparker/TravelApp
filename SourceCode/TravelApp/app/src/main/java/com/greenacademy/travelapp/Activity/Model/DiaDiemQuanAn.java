@@ -1,5 +1,7 @@
 package com.greenacademy.travelapp.Activity.Model;
 
+import com.greenacademy.travelapp.R;
+
 /**
  * Created by nguyenhuuanh on 21/01/2017.
  */
@@ -16,7 +18,7 @@ public class DiaDiemQuanAn {
     private int soLuotXem;
     private int yeuThich;
     private int checkIn;
-    private int idKhuVuc;
+    private String idKhuVuc;
     private String linkAnh;
 
     public String getTitle() {
@@ -28,9 +30,10 @@ public class DiaDiemQuanAn {
     }
 
     public DiaDiemQuanAn() {
+        this.bitMapId = R.drawable.ic_terrain_black_24px;
     }
 
-    public DiaDiemQuanAn(int bitMapId, float lat, float lng, String id, String title, String tenDiaDiem, String moTa, float danhGia, int soLuotXem, int yeuThich, int checkIn, int idKhuVuc, String linkAnh) {
+    public DiaDiemQuanAn(int bitMapId, float lat, float lng, String id, String title, String tenDiaDiem, String moTa, float danhGia, int soLuotXem, int yeuThich, int checkIn, String idKhuVuc, String linkAnh) {
         this.bitMapId = bitMapId;
         this.lat = lat;
         this.lng = lng;
@@ -94,11 +97,11 @@ public class DiaDiemQuanAn {
         this.checkIn = checkIn;
     }
 
-    public int getIdKhuVuc() {
+    public String getIdKhuVuc() {
         return idKhuVuc;
     }
 
-    public void setIdKhuVuc(int idKhuVuc) {
+    public void setIdKhuVuc(String idKhuVuc) {
         this.idKhuVuc = idKhuVuc;
     }
 
