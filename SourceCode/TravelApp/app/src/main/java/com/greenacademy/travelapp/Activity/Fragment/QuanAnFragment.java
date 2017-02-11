@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.greenacademy.travelapp.Activity.Adapter.CustomLayoutManager;
-import com.greenacademy.travelapp.Activity.Adapter.LoaiQuanAnAdapter;
-import com.greenacademy.travelapp.Activity.Adapter.QuanGanToiAdapter;
-import com.greenacademy.travelapp.Activity.Adapter.TopCheckinAdapter;
-import com.greenacademy.travelapp.Activity.Model.LoaiQuanAn;
-import com.greenacademy.travelapp.Activity.Model.QuanGanToi;
+import com.greenacademy.travelapp.Activity.Adapter.Delete.LoaiQuanAnAdapter;
+import com.greenacademy.travelapp.Activity.Adapter.Delete.QuanGanToiAdapter;
+import com.greenacademy.travelapp.Activity.Adapter.Delete.TopCheckinAdapter;
+import com.greenacademy.travelapp.Activity.Model.Delete.LoaiQuanAn;
+import com.greenacademy.travelapp.Activity.Model.Delete.QuanGanToi;
 import com.greenacademy.travelapp.R;
 
 import java.util.ArrayList;

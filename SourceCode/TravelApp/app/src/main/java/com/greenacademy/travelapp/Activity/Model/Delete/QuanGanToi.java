@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.Model;
+package com.greenacademy.travelapp.Activity.Model.Delete;
 
 /**
  * Created by User on 1/19/2017.
