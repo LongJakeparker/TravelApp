@@ -24,21 +24,21 @@
             <TextView
                 android:textSize="10dp"
                 android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
-                android:text="TextView"
+                android:text="Lượt xem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewSoLuongLoaiQuan"
+                android:id="@+id/textViewLuotXemLoaiQuan"
                 android:layout_alignParentBottom="true"/>
 
             <TextView
                 android:layout_marginTop="@dimen/margin_text_dong_loaiquan"
                 android:textSize="10dp"
                 android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
-                android:text="TextView"
+                android:text="Tên loại quán"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewTenLoaiQuan"
-                android:layout_above="@+id/textViewSoLuongLoaiQuan"/>
+                android:layout_above="@+id/textViewLuotXemLoaiQuan"/>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

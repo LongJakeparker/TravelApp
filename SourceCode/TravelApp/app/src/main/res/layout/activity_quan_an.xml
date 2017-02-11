@@ -11,4 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout="@layout/quanan_fragment" />
+
+    <!--<fragment-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:name="com.greenacademy.travelapp.Activity.Fragment.TatCaQuanAnFragment"-->
+        <!--tools:layout="@layout/tatca_quanan_fragment" />-->
 </RelativeLayout>

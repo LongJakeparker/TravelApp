@@ -21,11 +21,10 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
-import com.greenacademy.travelapp.Activity.Connection.TaskLogin;
+import com.greenacademy.travelapp.Activity.Connection.Task.TaskLogin;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.CustomDialog.DialogWaitingLogin;
-import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
+import com.greenacademy.travelapp.Activity.Connection.Interface.CheckUser;
 
 import com.greenacademy.travelapp.Activity.MainActivity;
 import com.greenacademy.travelapp.Activity.Model.UserLogin;

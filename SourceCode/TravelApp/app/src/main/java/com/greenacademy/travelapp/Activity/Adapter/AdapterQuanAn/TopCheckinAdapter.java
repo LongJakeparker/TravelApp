@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.Adapter.Delete;
+package com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +18,10 @@ import java.util.ArrayList;
  * Created by User on 1/17/2017.
  */
 
-public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.LoaiQuanViewHolder> {
+public class TopCheckinAdapter extends RecyclerView.Adapter<TopCheckinAdapter.LoaiQuanViewHolder> {
     private ArrayList<QuanAnChiTiet> listData = new ArrayList<QuanAnChiTiet>();
     private Context context;
-
-    public LoaiQuanAnAdapter(ArrayList<QuanAnChiTiet> listData, Context context) {
+    public TopCheckinAdapter(ArrayList<QuanAnChiTiet> listData, Context context) {
         this.listData = listData;
         this.context = context;
     }
@@ -30,15 +29,17 @@ public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.Lo
     @Override
     public LoaiQuanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.dong_quanan_loaiquan, parent, false);
+        View view = inflater.inflate(R.layout.dong_top_checkin, parent, false);
         return new LoaiQuanViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(LoaiQuanViewHolder holder, int position) {
         Picasso.with(context).load(listData.get(position).getLinkAnh()).into(holder.imgHinhLoaiQuan);
-        holder.txtTenLoai.setText(listData.get(position).getTenQuanAn());
-        holder.txtLuotXem.setText("Số lượt xem: " + listData.get(position).getSoLuotXem());
+        holder.txtTenNhanHangTop.setText(listData.get(position).getTenQuanAn());
+        holder.txtLuotDanhGiaTop.setText("Lượt đánh giá: " + listData.get(position).getDanhGia());
+        holder.txtMotaTop.setText(listData.get(position).getMoTa());
+        holder.txtLuotCheckinTop.setText("Lượt check in: " + listData.get(position).getCheckIn());
     }
 
     @Override
@@ -48,13 +49,15 @@ public class LoaiQuanAnAdapter extends RecyclerView.Adapter<LoaiQuanAnAdapter.Lo
 
     public class LoaiQuanViewHolder extends RecyclerView.ViewHolder{
         ImageView imgHinhLoaiQuan;
-        TextView txtTenLoai, txtLuotXem;
+        TextView txtTenNhanHangTop, txtLuotDanhGiaTop, txtMotaTop, txtLuotCheckinTop;
 
         public LoaiQuanViewHolder(View itemView) {
             super(itemView);
-            imgHinhLoaiQuan = (ImageView) itemView.findViewById(R.id.imageViewHinhLoaiQuan);
-            txtTenLoai = (TextView) itemView.findViewById(R.id.textViewTenLoaiQuan);
-            txtLuotXem = (TextView) itemView.findViewById(R.id.textViewLuotXemLoaiQuan);
+            imgHinhLoaiQuan = (ImageView) itemView.findViewById(R.id.imageViewTatca);
+            txtTenNhanHangTop = (TextView) itemView.findViewById(R.id.textViewTenNhaHangTop);
+            txtLuotDanhGiaTop = (TextView) itemView.findViewById(R.id.textViewLuotDanhGiaTop);
+            txtMotaTop = (TextView) itemView.findViewById(R.id.textViewMotaTop);
+            txtLuotCheckinTop = (TextView) itemView.findViewById(R.id.textViewLuotCheckinTop);
         }
     }
 }
