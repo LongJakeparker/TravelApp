@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_KhuVuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:padding="5dp"
+                android:src="@drawable/image_khuvuc1_default" />
+
+            <TextView
+                android:id="@+id/tvTitle_KhuVuc"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_alignBottom="@+id/image_KhuVuc"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/background_title_khuvuc"
+                android:paddingLeft="10dp"
+                android:text="TextView"
+                android:textColor="@color/colorWhite"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/tvDescription_KhuVuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/image_KhuVuc"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:lines="2"
+                android:maxLines="2"
+                android:paddingBottom="2dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="TextViewddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                android:textColor="@color/colorWhite" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_below="@+id/image_KhuVuc"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/like" />
+
+                <TextView
+                    android:id="@+id/tvLike_KhuVuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/imageView4"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:paddingRight="10dp"
+                    android:textColor="#272727" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_toRightOf="@id/tvLike_KhuVuc"
+                    app:srcCompat="@drawable/view" />
+
+                <TextView
+                    android:id="@+id/tvView_KhuVuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@id/imageView5"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#272727" />
+
+                <TextView
+                    android:id="@+id/tvStar_KhuVuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/imageView6"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#272727" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    app:srcCompat="@drawable/star" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
