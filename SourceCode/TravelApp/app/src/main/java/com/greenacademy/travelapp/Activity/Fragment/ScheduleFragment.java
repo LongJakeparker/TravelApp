@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,13 +29,16 @@ import java.util.List;
 
 public class ScheduleFragment extends Fragment {
     View v;
+    Toolbar toolbar;
     ExpandableListView scheduleList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_schedule, null);
         scheduleList = (ExpandableListView) v.findViewById(R.id.schedule_list);
-        
+        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        //((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         List<ChildModel> childModels = new ArrayList<>();
         childModels.add(new ChildModel("9:45","Chợ Hoa Đà Lạt","asdacascacac \nsadasdacasc","55", "10", R.drawable.common_google_signin_btn_icon_light));
@@ -51,11 +56,5 @@ public class ScheduleFragment extends Fragment {
         scheduleList.setAdapter(myExpandListAdapter);
 
         return v;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_schedule, menu);
-        super.onCreateOptionsMenu(menu, inflater);
     }
 }
