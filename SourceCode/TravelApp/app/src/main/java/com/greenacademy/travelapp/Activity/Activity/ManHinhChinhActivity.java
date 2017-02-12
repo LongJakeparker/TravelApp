@@ -6,25 +6,33 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.greenacademy.travelapp.Activity.Fragment.DiaDiemFragment;
+import com.greenacademy.travelapp.Activity.Fragment.QuanAnFragment;
+import com.greenacademy.travelapp.Activity.Utils.FragmentUtils;
 import com.greenacademy.travelapp.R;
 
+import java.util.ArrayList;
+
 public class ManHinhChinhActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ArrayList<Fragment> arrFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_chinh);
         initBottomMenu();
+        FragmentUtils.replaceFragment(this, arrFragment.get(0), R.id.framelayout_container, null);
     }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Menu_DiaDiem:
-                Log.d("0", "0");
+                FragmentUtils.replaceFragment(this, arrFragment.get(0), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_QuanAn:
+                FragmentUtils.replaceFragment(this, arrFragment.get(1), R.id.framelayout_container, null);
                 Log.d("0", "1");
                 break;
             case R.id.Menu_HanhTrinh:
@@ -36,18 +44,14 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void transactionFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framlayout_container, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
-
-
     private void initBottomMenu() {
         findViewById(R.id.Menu_DiaDiem).setOnClickListener(this);
         findViewById(R.id.Menu_QuanAn).setOnClickListener(this);
         findViewById(R.id.Menu_HanhTrinh).setOnClickListener(this);
         findViewById(R.id.Menu_BanThan).setOnClickListener(this);
+
+        arrFragment = new ArrayList<>();
+        arrFragment.add(0, new DiaDiemFragment());
+        arrFragment.add(1, new QuanAnFragment());
     }
 }
