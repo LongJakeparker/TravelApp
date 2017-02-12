@@ -4,22 +4,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.greenacademy.travelapp.Activity.Fragment.BanDoFragment;
-import com.greenacademy.travelapp.Activity.Fragment.KhachSanFragment;
+import com.greenacademy.travelapp.Activity.Fragment.ScheduleFragment;
 import com.greenacademy.travelapp.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //BanDoFragment banDoFragment = new BanDoFragment();
-        KhachSanFragment khachSanFragment = new KhachSanFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment,khachSanFragment);
-        fragmentTransaction.commit();
+
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main,new ScheduleFragment(),"Fragment Home").commit();
+        }
     }
 }

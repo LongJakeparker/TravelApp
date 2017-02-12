@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.greenacademy.travelapp.Activity.Fragment.DiaDiemFragment;
 import com.greenacademy.travelapp.Activity.Fragment.QuanAnFragment;
+import com.greenacademy.travelapp.Activity.Fragment.ScheduleFragment;
 import com.greenacademy.travelapp.Activity.Utils.FragmentUtils;
 import com.greenacademy.travelapp.R;
 
@@ -20,6 +21,12 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState == null){
+            arrFragment = new ArrayList<>();
+            arrFragment.add(0, new DiaDiemFragment());
+            arrFragment.add(1, new QuanAnFragment());
+            arrFragment.add(2, new ScheduleFragment());
+        }
         setContentView(R.layout.activity_man_hinh_chinh);
         initBottomMenu();
         FragmentUtils.replaceFragment(this, arrFragment.get(0), R.id.framelayout_container, null);
@@ -29,14 +36,13 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Menu_DiaDiem:
-                FragmentUtils.replaceFragment(this, arrFragment.get(0), R.id.framelayout_container, null);
+                FragmentUtils.replaceFragmentWithouBackStack(this, arrFragment.get(0), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_QuanAn:
-                FragmentUtils.replaceFragment(this, arrFragment.get(1), R.id.framelayout_container, null);
-                Log.d("0", "1");
+                FragmentUtils.replaceFragmentWithouBackStack(this, arrFragment.get(1), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_HanhTrinh:
-                Log.d("0", "2");
+                FragmentUtils.replaceFragmentWithouBackStack(this, arrFragment.get(2), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_BanThan:
                 Log.d("0", "3");
@@ -50,8 +56,5 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
         findViewById(R.id.Menu_HanhTrinh).setOnClickListener(this);
         findViewById(R.id.Menu_BanThan).setOnClickListener(this);
 
-        arrFragment = new ArrayList<>();
-        arrFragment.add(0, new DiaDiemFragment());
-        arrFragment.add(1, new QuanAnFragment());
     }
 }

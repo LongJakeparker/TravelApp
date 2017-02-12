@@ -17,6 +17,5 @@
     <string name="xem_tat_ca">Xem tất cả</string>
     <string name="quan_gan_toi">Quán gần tôi</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_search_bar">Tìm kiếm khu vực lân cận</string>
 </resources>

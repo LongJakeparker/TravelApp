@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_in_choice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.greenacademy.travelapp.Activity.Activity.CheckInChoiceActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/com_facebook_button_background"
+        android:id="@+id/ivMapSearchCheckIn"
+        android:layout_height="@dimen/ivsize_checkin_choice"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:id="@+id/layoutSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ivMapSearchCheckIn"
+        android:layout_margin="@dimen/margin_searchbar_checin_choice"
+        android:background="@drawable/custom_searchbar">
+
+        <!--<ImageView-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:srcCompat="@android:drawable/ic_menu_search"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="@dimen/layout_marginleft_ivsearchbar"-->
+            <!--android:layout_marginRight="@dimen/layout_marginright_ivsearchbar"/>-->
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:searchHintIcon="@null"
+            android:queryHint="@string/hint_search_bar" />
+            <!--android:searchIcon="@null"-->
+
+            <!--android:layout_weight="3" />-->
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvMapNear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutSearchBar"
+        android:background="@drawable/white_line"/>
+
+
+
+</RelativeLayout>
