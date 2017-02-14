@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.greenacademy.travelapp.Activity.Fragment.KhachSanFragment;
 import com.greenacademy.travelapp.Activity.Fragment.ScheduleFragment;
 import com.greenacademy.travelapp.R;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main,new ScheduleFragment(),"Fragment Home").commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main,new KhachSanFragment(),"Fragment Home").commit();
         }
     }
 }

@@ -65,7 +65,7 @@
                 android:padding="2dp">
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/khach_san_item_fav_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_alignParentLeft="true"
@@ -75,7 +75,7 @@
                     android:id="@+id/tvLike_KhuVuc"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/imageView4"
+                    android:layout_toRightOf="@id/khach_san_item_fav_icon"
                     android:gravity="center_vertical"
                     android:text="TextView"
                     android:paddingRight="10dp"
