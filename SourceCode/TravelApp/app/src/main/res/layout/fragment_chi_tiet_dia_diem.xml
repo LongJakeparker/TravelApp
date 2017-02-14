@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/image_ChiTietDiaDiem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -54,7 +54,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_alignBottom="@+id/imageView3"
+            android:layout_alignBottom="@+id/image_ChiTietDiaDiem"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="@drawable/background_title_khuvuc"
@@ -66,7 +66,7 @@
             android:layout_height="48dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/imageView3"
+            android:layout_below="@+id/image_ChiTietDiaDiem"
             android:background="@color/colorWhite"
             android:orientation="horizontal"
             android:id="@+id/linearReview">
