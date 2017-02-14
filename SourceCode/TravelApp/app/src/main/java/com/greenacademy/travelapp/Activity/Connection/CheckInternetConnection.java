@@ -34,7 +34,7 @@ public class CheckInternetConnection extends Thread {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Constant.INTERNET_CONNECTION = isNetworkAvailable(context);
-                Toast.makeText(context, INTERNET_CONNECTION + "", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, INTERNET_CONNECTION + "", Toast.LENGTH_SHORT).show();
             }
         };
 

@@ -31,6 +31,7 @@ public class DialogWaitingLogin {
         dialog.setContentView(resource);
         dialog.setTitle("Waiting...");
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setCancelable(false);
     }
 
     public void showDialog(){

@@ -43,6 +43,7 @@ public class TatCaQuanAnFragment extends Fragment implements GetAllQuanAn, ItemR
     Toolbar toolbar;
     FrameLayout frameLayout;
     QuanAnFragment quanAnFragment;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,10 +95,13 @@ public class TatCaQuanAnFragment extends Fragment implements GetAllQuanAn, ItemR
 
     @Override
     public void onClick(View view, int position) {
-        Toast.makeText(getContext(), position + "", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), position + "", Toast.LENGTH_SHORT).show();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutTest, quanAnFragment, "quananFragment");
         fragmentTransaction.commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", listQuanAnChung.get(position).getId());
+        quanAnFragment.setArguments(bundle);
     }
 }

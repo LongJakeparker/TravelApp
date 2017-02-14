@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -42,6 +43,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Permission;
 import java.util.ArrayList;
 
 import static com.facebook.HttpMethod.GET;
@@ -66,8 +68,6 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         //thay fragment vao view chua
         this.getChildFragmentManager().beginTransaction().replace(R.id.ban_do, mapFragment).commit();
         return inflater.inflate(R.layout.ban_do_fragment, container, false);
-
-
     }
 
     @Override
@@ -75,13 +75,13 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             return;
-        }else{
-            Log.e("permission","xin quyen thanh cong!!!");
+        } else {
+            Log.e("permission", "xin quyen thanh cong!!!");
             mMap = googleMap;
-            Log.i("Ban do fragment Log","Khoi tao thanh cong map");
+            Log.i("Ban do fragment Log", "Khoi tao thanh cong map");
             mMap.setMyLocationEnabled(true);
-            Log.i("Ban do fragment Log","Tao nut truy cap vi tri hien tai");
-            Log.i("Ban do fragment Log","nhan dia diem cac quan an");
+            Log.i("Ban do fragment Log", "Tao nut truy cap vi tri hien tai");
+            Log.i("Ban do fragment Log", "nhan dia diem cac quan an");
             layDiaDiemGanToi();
             addMarker();
         }
@@ -89,14 +89,14 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
     }
 
     private void addMarker() {
-        for (DiaDiemQuanAn ddqa: quanAnGanToiList
-             ) {
-             Marker marker = mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(ddqa.getLat(),ddqa.getLng()))
+        for (DiaDiemQuanAn ddqa : quanAnGanToiList
+                ) {
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(ddqa.getLat(), ddqa.getLng()))
                     .title(ddqa.getTitle())
                     .icon(BitmapDescriptorFactory.fromResource(ddqa.getBitMapId())));
-            Log.i("Ban do fragment Log","Add marker quan an vao ban do");
-            Log.i("Ban do fragment Log",marker.toString());
+            Log.i("Ban do fragment Log", "Add marker quan an vao ban do");
+            Log.i("Ban do fragment Log", marker.toString());
         }
     }
 
@@ -105,17 +105,17 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         //ham Api xu ly lay du lieu quan gan toi
         layListQuanAn(LaydiaDiemhientai());
 
-        if (quanAnGanToiList.size()!=0) {
+        if (quanAnGanToiList.size() != 0) {
             Log.i("Ban do fragment Log", "Nhan dia diem cac quan an thanh cong");
 
-        }else{
+        } else {
             Log.i("Ban do fragment Log", "So luong quan an nhan duoc" + quanAnGanToiList.size());
         }
     }
 
     private void layListQuanAn(LatLng latLng) {
         ArrayList<DiaDiemQuanAn> result = new ArrayList<>();
-        String diaChi = "http://103.237.147.137:9045/DiaDiem/DiaDiemByToaDo?lat="+ latLng.latitude + "&lng="+ latLng.longitude;
+        String diaChi = "http://103.237.147.137:9045/DiaDiem/DiaDiemByToaDo?lat=" + latLng.latitude + "&lng=" + latLng.longitude;
         layListQuanAn mlaylist = new layListQuanAn(this);
         mlaylist.execute(diaChi);
     }
@@ -125,19 +125,19 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         Log.i("Stream In", "readStream: " + in);
     }
 
-    private LatLng LaydiaDiemhientai(){
+    private LatLng LaydiaDiemhientai() {
         LatLng result;
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-        }else{
+        } else {
             location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Log.i("location", "LaydiaDiemhientai: "+location);
+            Log.i("location", "LaydiaDiemhientai: " + location);
         }
 
-        if (location!=null) {
-             result = new LatLng(location.getLatitude(), location.getLongitude());
-        }else {
-             result = new LatLng(0,0);
+        if (location != null) {
+            result = new LatLng(location.getLatitude(), location.getLongitude());
+        } else {
+            result = new LatLng(0, 0);
         }
         return result;
     }
@@ -147,7 +147,7 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
         try {
             JSONObject jsonObj = new JSONObject(data);
             JSONArray list = jsonObj.getJSONArray("DiaDiems");
-            for (int i = 0; i < list.length();i++){
+            for (int i = 0; i < list.length(); i++) {
                 JSONObject temp = list.getJSONObject(i);
                 DiaDiemQuanAn tempQuanAn = new DiaDiemQuanAn();
                 tempQuanAn.setId(String.valueOf(temp.getInt("Id")));
@@ -228,6 +228,9 @@ public class BanDoFragment extends Fragment implements OnMapReadyCallback, chuye
 
 }
 
+
 interface chuyenDuLieu{
     public void chuyendulieu(String data);
 }
+
+

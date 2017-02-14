@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // phần Facebook
         if (Constant.INTERNET_CONNECTION){
             if (AccessToken.getCurrentAccessToken() != null) {
-//                toiManHinhChinh();
+                toiManHinhChinh();
             }
         }
 
@@ -161,6 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.buttonLogin:
                 UserLogin userThuong = new UserLogin(edtEmail.getText().toString(), edtPass.getText().toString(), 0);
                 loginChung(userThuong);
+                waitingLogin.showDialog();
                 break;
             case R.id.textViewChuaCoTaiKhoan:
                 toiManHinhDangKy();
@@ -179,11 +180,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Trả về kết quả đăng nhập
         if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
             ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
-            if (arrUserInfo != null){
+            if (arrUserInfo.size() != 0){
 
                 UserLogin userGoogle = new UserLogin(arrUserInfo.get(0), "", 2);
                 loginChung(userGoogle);
-//                toiManHinhChinh();
+
             }else {
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }

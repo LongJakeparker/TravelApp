@@ -3,12 +3,15 @@ package com.greenacademy.travelapp.Activity.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -45,9 +48,11 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
     double lng = 0;
     Toolbar toolbar;
     RecyclerView recyLoaiQuan, recyQuanGanToi, recyTopCheckin;
+
     LoaiQuanAnAdapter adapterLoaiQuan;
     QuanGanToiAdapter adapterQuanGanToi;
     TopCheckinAdapter adapterTopCheckin;
+
     CustomLayoutManager customLayoutManager;
     ArrayList<QuanAnChiTiet> listTop, listNear, listType;
     SearchView searchView;
@@ -55,6 +60,8 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
     TaskGetTopQuanAn taskGetTopQuanAn;
     TaskGetTypeQuanAn taskGetTypeQuanAn;
     TaskGetNearQuanAn taskGetNearQuanAn;
+
+    TatCaQuanAnFragment tatCaQuanAnFragment;
 
     @Nullable
     @Override
@@ -67,10 +74,21 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
         recyTopCheckin = (RecyclerView) view.findViewById(R.id.recyclerViewTopCheckin);
         searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
         customLayoutManager = new CustomLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        tatCaQuanAnFragment = new TatCaQuanAnFragment();
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
+        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.colorWhite));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.colorWhite));
 
         listTop = new ArrayList<QuanAnChiTiet>();
         listNear = new ArrayList<QuanAnChiTiet>();
         listType = new ArrayList<QuanAnChiTiet>();
+
+        id = this.getArguments().getInt("ID");
 
         //lấy dữ liệu từ server
         taskGetTopQuanAn = new TaskGetTopQuanAn(this);
@@ -81,14 +99,6 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
 
         taskGetNearQuanAn = new TaskGetNearQuanAn(this);
         taskGetNearQuanAn.execute("http://103.237.147.137:9045/QuanAn/QuanAnByNear?lat=" + lat + "&lng=" + lng);
-
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
-        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchEditText.setTextColor(getResources().getColor(R.color.colorWhite));
-        searchEditText.setHintTextColor(getResources().getColor(R.color.colorWhite));
         return  view;
     }
 
@@ -145,5 +155,19 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
             e.printStackTrace();
         }
         return arrayList;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayoutTest, tatCaQuanAnFragment, "tatcaquanan");
+                fragmentTransaction.commit();
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+
     }
 }

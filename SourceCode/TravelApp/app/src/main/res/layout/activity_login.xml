@@ -112,7 +112,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/linearLayoutDangNhapKhac"
-        android:layout_alignStart="@+id/linearLayoutDangNhapKhac">
+        android:layout_alignStart="@+id/linearLayoutDangNhapKhac"
+        android:layout_alignRight="@+id/linearLayoutDangNhapKhac"
+        android:layout_alignEnd="@+id/linearLayoutDangNhapKhac">
 
         <FrameLayout
             android:layout_width="match_parent"

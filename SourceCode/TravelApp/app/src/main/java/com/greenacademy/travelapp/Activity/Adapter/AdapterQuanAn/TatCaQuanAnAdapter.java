@@ -74,6 +74,7 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         public void onClick(View v) {
             if (itemRecyclerClickListener != null){
                 itemRecyclerClickListener.onClick(v, getAdapterPosition());
+
             }
         }
     }
