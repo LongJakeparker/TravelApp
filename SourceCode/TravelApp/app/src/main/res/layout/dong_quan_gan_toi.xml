@@ -27,7 +27,7 @@
                 android:layout_marginTop="@dimen/margin_text_dong_loaiquan"
                 android:textSize="15dp"
                 android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
-                android:text="TextView"
+                android:text="Tên quán"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewTenQGT"
@@ -36,7 +36,7 @@
             <TextView
                 android:textSize="10dp"
                 android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
-                android:text="TextView"
+                android:text="Đánh giá"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewLuotDanhGiaQGT"
@@ -51,10 +51,10 @@
                 android:textSize="10dp"
                 android:layout_alignParentBottom="true"/>
             <TextView
-                android:id="@+id/textViewKhoangCachQGT"
+                android:id="@+id/textViewYeuThichQGT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Khoảng cách"
+                android:text="Yêu thích"
                 android:textSize="10dp"
                 android:layout_marginRight="@dimen/margin_text_dong_loaiquan"
                 android:layout_alignTop="@+id/textViewLuotDanhGiaQGT"

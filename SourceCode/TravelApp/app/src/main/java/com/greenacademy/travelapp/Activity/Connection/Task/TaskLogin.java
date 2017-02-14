@@ -1,8 +1,9 @@
-package com.greenacademy.travelapp.Activity.Connection;
+package com.greenacademy.travelapp.Activity.Connection.Task;
 
 import android.os.AsyncTask;
 
-import com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin.CheckUser;
+import com.greenacademy.travelapp.Activity.Connection.CommunicateSever;
+import com.greenacademy.travelapp.Activity.Connection.Interface.CheckUser;
 import com.greenacademy.travelapp.Activity.Model.UserLogin;
 
 import org.json.JSONException;

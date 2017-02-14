@@ -1,4 +1,4 @@
-package com.greenacademy.travelapp.Activity.LoginActivity.InterfaceLogin;
+package com.greenacademy.travelapp.Activity.Connection.Interface;
 
 /**
  * Created by User on 1/12/2017.

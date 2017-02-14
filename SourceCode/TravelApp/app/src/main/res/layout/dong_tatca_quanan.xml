@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="107dp">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -23,26 +22,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:id="@+id/textViewTenNhaHangTop"
+                    android:id="@+id/textViewTenNhaHang"
                     android:text="Tên nhà hàng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:id="@+id/textViewLuotDanhGiaTop"
+                    android:id="@+id/textViewLuotDanhGia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lượt đánh giá"/>
                 <TextView
                     android:maxLines="1"
-                    android:id="@+id/textViewMotaTop"
+                    android:id="@+id/textViewMota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mô tả"/>
                 <TextView
-                    android:id="@+id/textViewLuotCheckinTop"
+                    android:id="@+id/textViewSoLuotXem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lượt check in"/>
+                    android:text="Số lượt xem"/>
+                <TextView
+                    android:id="@+id/textViewLuotYeuThich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lượt yêu thích"/>
             </LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
