@@ -3,12 +3,15 @@ package com.greenacademy.travelapp.Activity.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -56,6 +59,8 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
     TaskGetTypeQuanAn taskGetTypeQuanAn;
     TaskGetNearQuanAn taskGetNearQuanAn;
 
+    TatCaQuanAnFragment tatCaQuanAnFragment;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,6 +72,26 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
         recyTopCheckin = (RecyclerView) view.findViewById(R.id.recyclerViewTopCheckin);
         searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
         customLayoutManager = new CustomLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        tatCaQuanAnFragment = new TatCaQuanAnFragment();
+
+        try {
+            id = getArguments().getInt("ID");
+        }catch (Exception e){
+
+        }
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout_container, tatCaQuanAnFragment, "tatcaquanan");
+                fragmentTransaction.commit();
+            }
+        });
 
         listTop = new ArrayList<QuanAnChiTiet>();
         listNear = new ArrayList<QuanAnChiTiet>();
@@ -81,9 +106,6 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
 
         taskGetNearQuanAn = new TaskGetNearQuanAn(this);
         taskGetNearQuanAn.execute("http://103.237.147.137:9045/QuanAn/QuanAnByNear?lat=" + lat + "&lng=" + lng);
-
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
         EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
@@ -145,5 +167,16 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
             e.printStackTrace();
         }
         return arrayList;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+
     }
 }

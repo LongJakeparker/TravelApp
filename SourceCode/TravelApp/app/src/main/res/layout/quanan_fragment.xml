@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_quanan">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/duyet_quanan"
                 android:textSize="20dp"
-                android:textColor="@color/colorBrown" />
+                android:textColor="@color/colorWhite" />
 
             <android.support.v7.widget.RecyclerView
                 android:layout_margin="@dimen/margin_quanan_text_recyclerview"
@@ -90,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/quan_gan_toi"
                 android:textSize="20dp"
-                android:textColor="@color/colorBrown"
+                android:textColor="@color/colorWhite"
                 android:layout_below="@+id/recyclerViewLoaiQuan"/>
             <TextView
                 android:layout_marginRight="@dimen/margin_quanan_text_recyclerview"
@@ -124,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:text="Top check in"
                 android:textSize="20dp"
-                android:textColor="@color/colorBrown"
+                android:textColor="@color/colorWhite"
                 android:layout_below="@+id/recyclerViewQuanGanToi"/>
 
             <TextView

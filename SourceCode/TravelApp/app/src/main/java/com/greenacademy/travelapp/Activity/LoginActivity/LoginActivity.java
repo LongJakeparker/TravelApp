@@ -21,6 +21,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
 import com.greenacademy.travelapp.Activity.Connection.Task.TaskLogin;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.CustomDialog.DialogWaitingLogin;
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // phần Facebook
         if (Constant.INTERNET_CONNECTION){
             if (AccessToken.getCurrentAccessToken() != null) {
-//                toiManHinhChinh();
+                toiManHinhChinh();
             }
         }
 
@@ -76,12 +77,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(LoginResult loginResult) {
                 waitingLogin.showDialog();
                 layDuLieuFacebook(loginResult);
-//                toiManHinhChinh();
+                toiManHinhChinh();
             }
 
             @Override
             public void onCancel() {
-//                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -179,11 +180,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Trả về kết quả đăng nhập
         if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
             ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
-            if (arrUserInfo != null){
-
+            if (arrUserInfo.size() != 0){
                 UserLogin userGoogle = new UserLogin(arrUserInfo.get(0), "", 2);
                 loginChung(userGoogle);
-//                toiManHinhChinh();
             }else {
                 Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
             }

@@ -97,7 +97,10 @@ public class TatCaQuanAnFragment extends Fragment implements GetAllQuanAn, ItemR
         Toast.makeText(getContext(), position + "", Toast.LENGTH_SHORT).show();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayoutTest, quanAnFragment, "quananFragment");
+        fragmentTransaction.replace(R.id.framelayout_container, quanAnFragment, "quananFragment");
         fragmentTransaction.commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", listQuanAnChung.get(position).getId());
+        quanAnFragment.setArguments(bundle);
     }
 }
