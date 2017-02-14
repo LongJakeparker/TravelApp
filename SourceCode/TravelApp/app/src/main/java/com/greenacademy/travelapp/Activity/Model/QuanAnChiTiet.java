@@ -93,7 +93,7 @@ public class QuanAnChiTiet {
         return Lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(double lat) {
         Lat = lat;
     }
 
@@ -101,7 +101,7 @@ public class QuanAnChiTiet {
         return Lng;
     }
 
-    public void setLng(int lng) {
+    public void setLng(double lng) {
         Lng = lng;
     }
 }

@@ -75,7 +75,6 @@ public class CommunicateSever {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.addRequestProperty("Accept", "application/json");
             connection.setRequestMethod("GET");
-
             connection.connect();
             InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
