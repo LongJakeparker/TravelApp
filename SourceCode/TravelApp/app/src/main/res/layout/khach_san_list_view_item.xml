@@ -1,96 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark_disabled"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/khach_san_item_hinh_anh" />
-
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/khach_san_item_hinh_anh"
-        android:layout_toEndOf="@+id/khach_san_item_hinh_anh"
-        android:layout_alignBottom="@+id/khach_san_item_hinh_anh"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="10dp">
+        android:id="@+id/rl_layout"
+        android:paddingTop="5dp"
+        android:background="@drawable/khach_san_item_back_ground"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
-        <TextView
-            android:text="Khach san"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark_disabled"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/khach_san_item_hinh_anh" />
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/khach_san_item_hinh_anh"
             android:layout_toEndOf="@+id/khach_san_item_hinh_anh"
-            android:id="@+id/khach_san_item_ten"
-            android:textSize="18sp"
-            android:textColor="@color/cardview_dark_background"
-            android:layout_marginBottom="3dp"
-            android:layout_marginTop="3dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/com_facebook_button_icon_blue"
-                android:id="@+id/khach_san_item_fav_icon"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
+            android:layout_alignBottom="@+id/khach_san_item_hinh_anh"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="10dp">
 
             <TextView
+                android:text="Khach san"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_khach_san_item_danh_gia"
-                android:textColor="@android:color/holo_green_dark"
-                android:layout_toEndOf="@+id/khach_san_item_fav_icon"
-                android:layout_toRightOf="@+id/khach_san_item_fav_icon"
-                android:text="Đánh giá"
-                android:layout_margin="5dp" />
-        </RelativeLayout>
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/khach_san_item_hinh_anh"
+                android:layout_toEndOf="@+id/khach_san_item_hinh_anh"
+                android:id="@+id/khach_san_item_ten"
+                android:textSize="18sp"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:paddingRight="5dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/com_facebook_button_icon_blue"
+                    android:id="@+id/khach_san_item_fav_icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_khach_san_item_danh_gia"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:layout_toEndOf="@+id/khach_san_item_fav_icon"
+                    android:layout_toRightOf="@+id/khach_san_item_fav_icon"
+                    android:text="Đánh giá"
+                    android:layout_margin="3dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:text="Dia Chi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_khach_san_item_danh_gia"
+                android:layout_toRightOf="@+id/khach_san_item_hinh_anh"
+                android:layout_toEndOf="@+id/khach_san_item_hinh_anh"
+                android:id="@+id/tv_khach_san_item_dia_chi"
+                android:textColor="@android:color/holo_green_dark" />
+
+        </LinearLayout>
 
         <TextView
-            android:text="Dia Chi"
+            android:text="2.400.000 d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_khach_san_item_danh_gia"
+            android:id="@+id/tv_khach_san_item_gia"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="24sp"
+            android:layout_below="@+id/khach_san_item_hinh_anh"
             android:layout_toRightOf="@+id/khach_san_item_hinh_anh"
             android:layout_toEndOf="@+id/khach_san_item_hinh_anh"
-            android:id="@+id/tv_khach_san_item_dia_chi"
-            android:textColor="@android:color/holo_green_dark" />
-
-    </LinearLayout>
-
-    <TextView
-        android:text="2.400.000 d"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_khach_san_item_gia"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="24sp"
-        android:layout_below="@+id/khach_san_item_hinh_anh"
-        android:layout_toRightOf="@+id/khach_san_item_hinh_anh"
-        android:layout_toEndOf="@+id/khach_san_item_hinh_anh"
-        android:layout_marginLeft="10dp" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/tv_khach_san_item_gia"
-        android:background="@android:drawable/divider_horizontal_textfield"
-        android:layout_margin="5dp">
-
-    </FrameLayout>
+            android:textAlignment="gravity"
+            android:gravity="right"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp" />
+    </RelativeLayout>
 
 </RelativeLayout>

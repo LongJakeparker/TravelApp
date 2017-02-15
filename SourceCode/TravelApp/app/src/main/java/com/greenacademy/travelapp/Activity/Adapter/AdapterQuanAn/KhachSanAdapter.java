@@ -2,13 +2,17 @@ package com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.greenacademy.travelapp.Activity.Model.KhachSanItem;
 import com.greenacademy.travelapp.R;
@@ -77,6 +81,7 @@ public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHo
         downLoadImage downLoadImage = new downLoadImage(this,position,holder);
         downLoadImage.execute(khachSanItems.get(position).getLinkAnh());
         //holder.itemView.setTag(holder.itemView.getId(),position);
+        holder.itemView.setTag(holder.itemView.getId(),position);
         holder.itemView.setOnClickListener(this);
     }
 
@@ -89,6 +94,7 @@ public class KhachSanAdapter extends RecyclerView.Adapter<KhachSanAdapter.ViewHo
     public void onClick(View view) {
         //int pos = (int) view.getTag(KHACH_SAN_ITEM_POSITION);
         //do something with this event plz!!!
+        Toast.makeText(view.getContext(),"This pos" + view.getTag(view.getId()), Toast.LENGTH_SHORT).show();
     }
 
     @Override
