@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.Connection.Interface.ItemRecyclerClickListener;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.Model.QuanAnChung;
 import com.greenacademy.travelapp.R;
 import com.squareup.picasso.Picasso;
@@ -42,8 +43,8 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         holder.txtTenNhaHang.setText(listData.get(position).getTenLoaiQuanAn());
         holder.txtLuotDanhGia.setText("Lượt đánh giá: " + listData.get(position).getDanhGia());
         holder.txtMota.setText(listData.get(position).getMoTa());
-        holder.txtSoLuotXem.setText("Số lượt xem: " + listData.get(position).getSoLuotXem());
-        holder.txtLuotYeuThich.setText("Số lượt thích: " + listData.get(position).getYeuThich());
+        holder.txtSoLuotXem.setText("" + listData.get(position).getSoLuotXem());
+        holder.txtLuotYeuThich.setText("" + listData.get(position).getYeuThich());
     }
 
     @Override
@@ -73,7 +74,7 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         @Override
         public void onClick(View v) {
             if (itemRecyclerClickListener != null){
-                itemRecyclerClickListener.onClick(v, getAdapterPosition());
+                itemRecyclerClickListener.onClick(v, getAdapterPosition(), Constant.TATCAQUANAN_ADAPTER);
             }
         }
     }

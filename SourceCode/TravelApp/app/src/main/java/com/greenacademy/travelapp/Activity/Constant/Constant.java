@@ -2,8 +2,6 @@ package com.greenacademy.travelapp.Activity.Constant;
 
 import android.app.Activity;
 
-import com.greenacademy.travelapp.R;
-
 /**
  * Created by Administrator on 10/01/2017.
  */
@@ -26,4 +24,14 @@ public class Constant extends Activity{
     public static final int STATUS_LOGIN = 1;
 
     public static int ID_LOAIQUAN = 1;
+
+//    Constant cho setItemClickRecyclerView Quán ăn
+    public static final int TATCAQUANAN_ADAPTER = 7859;
+    public static final int LOAIQUANAN_ADAPTER = 9856;
+    public static final int QUANGANTOI_ADAPTER = 8561;
+    public static final int TOPCHECKIN_ADAPTER = 6231;
+    public static final int FULLLIST_ADAPTER = 6020;
+    public static final String FULLLIST_QUANAN = "FULLLIST";
+    public static final String CHITIET_QUANAN = "CTQA";
+
 }

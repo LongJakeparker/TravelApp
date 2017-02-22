@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="107dp"
-    android:background="@null">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@null"
+    android:padding="5dp"
+    android:layout_height="110dp">
+
     <android.support.v7.widget.CardView
+        app:cardElevation="5dp"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <RelativeLayout
-            android:background="@null"
+            android:paddingLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/imageViewTatca"
-                android:layout_width="@dimen/width_image_top_checkin"
-                android:layout_height="@dimen/heigh_image_top_checkin" />
+
             <LinearLayout
                 android:background="@null"
                 android:layout_marginLeft="@dimen/margin_text_top_checkin"
@@ -26,37 +31,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:textColor="@color/colorWhite"
+                    android:textColor="#181818"
+                    android:textStyle="bold"
                     android:id="@+id/textViewTenNhaHang"
                     android:text="Tên nhà hàng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/text_quanan_small"
                     android:id="@+id/textViewLuotDanhGia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lượt đánh giá"/>
                 <TextView
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/text_quanan_small"
                     android:maxLines="1"
                     android:id="@+id/textViewMota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mô tả"/>
-                <TextView
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/textViewSoLuotXem"
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Số lượt xem"/>
-                <TextView
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/textViewLuotYeuThich"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginLeft="18dp"
+                        android:textColor="@color/text_quanan_small"
+                        android:id="@+id/textViewSoLuotXem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số lượt xem"/>
+                    <ImageView
+                        android:src="@drawable/heart_red"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp" />
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lượt yêu thích"/>
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginLeft="18dp"
+                        android:textColor="@color/text_quanan_small"
+                        android:id="@+id/textViewLuotYeuThich"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lượt yêu thích"/>
+
+                    <ImageView
+                        android:src="@drawable/ic_seen"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp" />
+                </FrameLayout>
+
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageViewTatca"
+                android:layout_width="@dimen/width_image_top_checkin"
+                android:layout_height="@dimen/heigh_image_top_checkin"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

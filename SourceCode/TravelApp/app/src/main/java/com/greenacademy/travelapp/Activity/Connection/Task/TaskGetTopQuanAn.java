@@ -3,7 +3,8 @@ package com.greenacademy.travelapp.Activity.Connection.Task;
 import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.Connection.CommunicateSever;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetTopQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetQuanAn;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 
 /**
  * Created by GIT on 2/11/2017.
@@ -11,10 +12,10 @@ import com.greenacademy.travelapp.Activity.Connection.Interface.GetTopQuanAn;
 
 public class TaskGetTopQuanAn extends AsyncTask<String, String, String> {
     CommunicateSever communicateSever;
-    GetTopQuanAn getTopQuanAn;
+    GetQuanAn getQuanAn;
 
-    public TaskGetTopQuanAn(GetTopQuanAn getTopQuanAn) {
-        this.getTopQuanAn = getTopQuanAn;
+    public TaskGetTopQuanAn(GetQuanAn getQuanAn) {
+        this.getQuanAn = getQuanAn;
         communicateSever = new CommunicateSever();
     }
 
@@ -26,6 +27,6 @@ public class TaskGetTopQuanAn extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        getTopQuanAn.ketquaTopQuanAn(s);
+        getQuanAn.ketquaQuanAn(s, Constant.TOPCHECKIN_ADAPTER);
     }
 }

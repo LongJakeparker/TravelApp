@@ -8,24 +8,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
-import com.greenacademy.travelapp.Activity.Adapter.CustomLayoutManager;
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.LoaiQuanAnAdapter;
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.QuanGanToiAdapter;
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.TopCheckinAdapter;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetNearQuanAn;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetTopQuanAn;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetTypeQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Interface.ItemRecyclerClickListener;
 import com.greenacademy.travelapp.Activity.Connection.Task.TaskGetNearQuanAn;
 import com.greenacademy.travelapp.Activity.Connection.Task.TaskGetTopQuanAn;
 import com.greenacademy.travelapp.Activity.Connection.Task.TaskGetTypeQuanAn;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.Model.QuanAnChiTiet;
 import com.greenacademy.travelapp.R;
 
@@ -41,7 +38,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
  * Created by DAVIDSON on 2/7/2017.
  */
 
-public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQuanAn, GetNearQuanAn {
+public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerClickListener, View.OnClickListener {
 
     int id = 1;
     double lat = 0;
@@ -51,15 +48,16 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
     LoaiQuanAnAdapter adapterLoaiQuan;
     QuanGanToiAdapter adapterQuanGanToi;
     TopCheckinAdapter adapterTopCheckin;
-    CustomLayoutManager customLayoutManager;
     ArrayList<QuanAnChiTiet> listTop, listNear, listType;
-    SearchView searchView;
+    TextView txtXemAllTop, txtXemAllNear, txtXemAllType;
 
     TaskGetTopQuanAn taskGetTopQuanAn;
     TaskGetTypeQuanAn taskGetTypeQuanAn;
     TaskGetNearQuanAn taskGetNearQuanAn;
 
     TatCaQuanAnFragment tatCaQuanAnFragment;
+    ChiTietQuanAnFragment chiTietQuanAnFragment;
+    FullListQuananFragment fullListQuananFragment;
 
     @Nullable
     @Override
@@ -70,9 +68,17 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
         recyLoaiQuan = (RecyclerView) view.findViewById(R.id.recyclerViewLoaiQuan);
         recyQuanGanToi = (RecyclerView) view.findViewById(R.id.recyclerViewQuanGanToi);
         recyTopCheckin = (RecyclerView) view.findViewById(R.id.recyclerViewTopCheckin);
-        searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
-        customLayoutManager = new CustomLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        txtXemAllNear = (TextView) view.findViewById(R.id.textViewXemTatCaQGT);
+        txtXemAllTop = (TextView) view.findViewById(R.id.textViewXemTatCaTCI);
+        txtXemAllType = (TextView) view.findViewById(R.id.textViewXemTatCaLQ);
+
         tatCaQuanAnFragment = new TatCaQuanAnFragment();
+        chiTietQuanAnFragment = new ChiTietQuanAnFragment();
+        fullListQuananFragment = new FullListQuananFragment();
+
+        txtXemAllType.setOnClickListener(this);
+        txtXemAllNear.setOnClickListener(this);
+        txtXemAllTop.setOnClickListener(this);
 
         try {
             id = getArguments().getInt("ID");
@@ -86,10 +92,7 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout_container, tatCaQuanAnFragment, "tatcaquanan");
-                fragmentTransaction.commit();
+                setFragment(tatCaQuanAnFragment, false, "tatcaquanan");
             }
         });
 
@@ -107,36 +110,56 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
         taskGetNearQuanAn = new TaskGetNearQuanAn(this);
         taskGetNearQuanAn.execute("http://103.237.147.137:9045/QuanAn/QuanAnByNear?lat=" + lat + "&lng=" + lng);
 
-        searchView = (SearchView) view.findViewById(R.id.searchViewQuanAn);
-        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchEditText.setTextColor(getResources().getColor(R.color.colorWhite));
-        searchEditText.setHintTextColor(getResources().getColor(R.color.colorWhite));
         return  view;
     }
 
     @Override
-    public void ketquaTopQuanAn(String kq) {
-        adapterTopCheckin = new TopCheckinAdapter(addToList(listTop, kq), getContext());
-        recyTopCheckin.setLayoutManager(customLayoutManager);
-        recyTopCheckin.setAdapter(adapterTopCheckin);
+    public void ketquaQuanAn(String kq, int adapterID) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        switch (adapterID){
+            case Constant.LOAIQUANAN_ADAPTER:
+                adapterLoaiQuan = new LoaiQuanAnAdapter(addToList(listType, kq), getContext());
+                adapterLoaiQuan.onItemRecyclerClickListener(this);
+                recyLoaiQuan.setLayoutManager(layoutManager);
+                recyLoaiQuan.setAdapter(adapterLoaiQuan);
+                break;
+            case Constant.QUANGANTOI_ADAPTER:
+                adapterQuanGanToi = new QuanGanToiAdapter(addToList(listNear, kq), getContext());
+                adapterQuanGanToi.onItemRecyclerClickListener(this);
+                recyQuanGanToi.setLayoutManager(layoutManager);
+                recyQuanGanToi.setAdapter(adapterQuanGanToi);
+                break;
+            case Constant.TOPCHECKIN_ADAPTER:
+                adapterTopCheckin = new TopCheckinAdapter(addToList(listTop, kq), getContext());
+                adapterTopCheckin.onItemRecyclerClickListener(this);
+                LinearLayoutManager layoutManagerTop = new LinearLayoutManager(getApplicationContext());
+                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recyTopCheckin.setLayoutManager(layoutManagerTop);
+                recyTopCheckin.setAdapter(adapterTopCheckin);
+                break;
+        }
     }
 
     @Override
-    public void ketquaType(String kq) {
-        adapterLoaiQuan = new LoaiQuanAnAdapter(addToList(listType, kq), getContext());
-        LinearLayoutManager layoutManagerLoaiQuan = new LinearLayoutManager(getApplicationContext());
-        layoutManagerLoaiQuan.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyLoaiQuan.setLayoutManager(layoutManagerLoaiQuan);
-        recyLoaiQuan.setAdapter(adapterLoaiQuan);
-    }
+    public void onClick(View view, int position, int adapterID) {
+        setFragment(chiTietQuanAnFragment, true, "quananChitietFragment");
+        Bundle bundle = new Bundle();
 
-    @Override
-    public void ketquaNearQuan(String kq) {
-        adapterQuanGanToi = new QuanGanToiAdapter(addToList(listNear, kq), getContext());
-        LinearLayoutManager layoutManagerQGT = new LinearLayoutManager(getApplicationContext());
-        layoutManagerQGT.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyQuanGanToi.setLayoutManager(layoutManagerQGT);
-        recyQuanGanToi.setAdapter(adapterQuanGanToi);
+        switch (adapterID){
+            case Constant.LOAIQUANAN_ADAPTER:
+                bundle.putSerializable(Constant.CHITIET_QUANAN, listType.get(position));
+                break;
+            case Constant.QUANGANTOI_ADAPTER:
+                bundle.putSerializable(Constant.CHITIET_QUANAN, listNear.get(position));
+                break;
+            case Constant.TOPCHECKIN_ADAPTER:
+                bundle.putSerializable(Constant.CHITIET_QUANAN, listTop.get(position));
+                break;
+        }
+
+        chiTietQuanAnFragment.setArguments(bundle);
     }
 
     private ArrayList<QuanAnChiTiet> addToList(ArrayList<QuanAnChiTiet> arrayList, String s){
@@ -170,13 +193,35 @@ public class QuanAnFragment extends Fragment implements GetTopQuanAn, GetTypeQua
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-
-                return true;
-            default: return super.onOptionsItemSelected(item);
+    public void onClick(View view) {
+        Bundle bundle = new Bundle();
+        switch (view.getId()){
+            case R.id.textViewXemTatCaQGT:
+                bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, listNear);
+                fullListQuananFragment.setArguments(bundle);
+                break;
+            case R.id.textViewXemTatCaTCI:
+                bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, listTop);
+                fullListQuananFragment.setArguments(bundle);
+                break;
+            case R.id.textViewXemTatCaLQ:
+                bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, listType);
+                fullListQuananFragment.setArguments(bundle);
+                break;
         }
 
+        setFragment(fullListQuananFragment, true, "FulllistFrag");
+    }
+
+    public void setFragment(Fragment fragment, boolean option, String fragName){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (option){
+            fragmentTransaction.add(R.id.framelayout_container, fragment, fragName);
+        }else {
+            fragmentTransaction.replace(R.id.framelayout_container, fragment, fragName);
+        }
+
+        fragmentTransaction.commit();
     }
 }

@@ -24,7 +24,7 @@
     <dimen name="height_recyclerview_quanan">130dp</dimen>
     <dimen name="margin_quanan_text_recyclerview">3dp</dimen>
     <dimen name="width_dong_loaiquan">130dp</dimen>
-    <dimen name="margin_text_dong_loaiquan">10dp</dimen>
+    <dimen name="margin_text_dong_loaiquan">5dp</dimen>
     <dimen name="width_dong_quna_gan_toi">230dp</dimen>
     <dimen name="height_recyclerview_quan_gan_toi">182dp</dimen>
     <dimen name="margin_text_top_checkin">10dp</dimen>
@@ -38,5 +38,6 @@
     <dimen name="text_size_title_list_map">18dp</dimen>
     <dimen name="layout_margin_item_list_map">3dp</dimen>
     <dimen name="layout_height_ivitem_list_map">50dp</dimen>
+    <dimen name="textsize_chitiet_quanan">20dp</dimen>
 
 </resources>

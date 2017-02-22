@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_quanan">
+    android:background="@color/background">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -25,13 +25,6 @@
                 android:layout_height="@dimen/size_image_login"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentRight="true"/>
-            <android.support.v7.widget.SearchView
-                android:id="@+id/searchViewQuanAn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/imageViewMapIcon"
-                android:layout_toStartOf="@+id/imageViewMapIcon">
-            </android.support.v7.widget.SearchView>
             <TextView
                 android:textSize="25dp"
                 android:textColor="@color/colorWhite"
@@ -39,13 +32,17 @@
                 android:text="@string/quan_an"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/searchViewQuanAn"/>
+                android:layout_toLeftOf="@+id/imageViewMapIcon"
+                android:layout_toStartOf="@+id/imageViewMapIcon" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/toolbar">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/duyet_quanan"
                 android:textSize="20dp"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorBrown" />
 
             <android.support.v7.widget.RecyclerView
                 android:layout_margin="@dimen/margin_quanan_text_recyclerview"
@@ -91,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/quan_gan_toi"
                 android:textSize="20dp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBrown"
                 android:layout_below="@+id/recyclerViewLoaiQuan"/>
             <TextView
                 android:layout_marginRight="@dimen/margin_quanan_text_recyclerview"
@@ -125,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:text="Top check in"
                 android:textSize="20dp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBrown"
                 android:layout_below="@+id/recyclerViewQuanGanToi"/>
 
             <TextView
@@ -146,14 +143,14 @@
                 android:layout_margin="@dimen/margin_quanan_text_recyclerview"
                 android:id="@+id/recyclerViewTopCheckin"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 android:layout_below="@+id/textViewTopCheckin"
                 android:layout_alignLeft="@+id/textViewCacQuanAn"
                 android:layout_alignStart="@+id/textViewCacQuanAn" />
             <android.support.v7.widget.CardView
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="@dimen/margin_quanan_text_recyclerview"
                 android:layout_marginLeft="@dimen/margin_quanan_text_recyclerview"
                 android:layout_marginRight="@dimen/margin_quanan_text_recyclerview"

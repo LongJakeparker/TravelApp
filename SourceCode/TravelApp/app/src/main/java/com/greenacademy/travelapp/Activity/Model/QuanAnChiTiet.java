@@ -1,10 +1,15 @@
 package com.greenacademy.travelapp.Activity.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by GIT on 2/9/2017.
  */
 // model cho 3 cái còn lại
-public class QuanAnChiTiet {
+public class QuanAnChiTiet implements Serializable, Parcelable {
     public int Id;
     public String TenQuanAn;
     public String MoTa;
@@ -103,5 +108,25 @@ public class QuanAnChiTiet {
 
     public void setLng(double lng) {
         Lng = lng;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(Id);
+        parcel.writeString(TenQuanAn);
+        parcel.writeString(MoTa);
+        parcel.writeInt(DanhGia);
+        parcel.writeInt(SoLuotXem);
+        parcel.writeInt(YeuThich);
+        parcel.writeInt(CheckIn);
+        parcel.writeInt(LoaiQuanId);
+        parcel.writeString(LinkAnh);
+        parcel.writeDouble(Lat);
+        parcel.writeDouble(Lng);
     }
 }

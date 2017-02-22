@@ -3,7 +3,8 @@ package com.greenacademy.travelapp.Activity.Connection.Task;
 import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.Connection.CommunicateSever;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetNearQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetQuanAn;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 
 /**
  * Created by GIT on 2/11/2017.
@@ -11,10 +12,10 @@ import com.greenacademy.travelapp.Activity.Connection.Interface.GetNearQuanAn;
 
 public class TaskGetNearQuanAn extends AsyncTask<String, String, String> {
     CommunicateSever communicateSever;
-    GetNearQuanAn getNearQuanAn;
+    GetQuanAn getQuanAn;
 
-    public TaskGetNearQuanAn(GetNearQuanAn getNearQuanAn) {
-        this.getNearQuanAn = getNearQuanAn;
+    public TaskGetNearQuanAn(GetQuanAn getQuanAn) {
+        this.getQuanAn = getQuanAn;
         communicateSever = new CommunicateSever();
     }
 
@@ -26,6 +27,6 @@ public class TaskGetNearQuanAn extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        getNearQuanAn.ketquaNearQuan(s);
+        getQuanAn.ketquaQuanAn(s, Constant.QUANGANTOI_ADAPTER);
     }
 }

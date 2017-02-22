@@ -6,11 +6,14 @@
     <color name="colorEdittextLogin">#FF3C5A99</color>
     <color name="colorWhite">#ffffff</color>
 
-    <color name="colorBrown">#362e2a</color>
-    <color name="text_green">#14f204</color>
+    <color name="colorBrown">#085ff5</color>
+    <color name="text_green">#04ed08</color>
 
     <color name="colorGrey">#EEEEEE</color>
     <color name="colorPink">#F50057</color>
     <color name="colorBlue">#5E35B1</color>
     <color name="colorGreyDef">#607D8B</color>
+    <color name="background">#dfdfdf</color>
+    <color name="text_quanan">#181818</color>
+    <color name="text_quanan_small">#505050</color>
 </resources>

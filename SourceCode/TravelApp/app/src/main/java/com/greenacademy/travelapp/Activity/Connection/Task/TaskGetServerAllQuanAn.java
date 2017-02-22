@@ -3,7 +3,8 @@ package com.greenacademy.travelapp.Activity.Connection.Task;
 import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.Connection.CommunicateSever;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetAllQuanAn;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetQuanAn;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 
 /**
  * Created by GIT on 2/9/2017.
@@ -12,11 +13,11 @@ import com.greenacademy.travelapp.Activity.Connection.Interface.GetAllQuanAn;
 public class TaskGetServerAllQuanAn extends AsyncTask<String, String, String> {
 
     CommunicateSever communicateSever;
-    GetAllQuanAn getAllQuanAn;
+    GetQuanAn getQuanAn;
 
-    public TaskGetServerAllQuanAn(GetAllQuanAn getAllQuanAn) {
+    public TaskGetServerAllQuanAn(GetQuanAn getQuanAn) {
         communicateSever = new CommunicateSever();
-        this.getAllQuanAn = getAllQuanAn;
+        this.getQuanAn = getQuanAn;
     }
 
     @Override
@@ -28,6 +29,6 @@ public class TaskGetServerAllQuanAn extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        getAllQuanAn.ketquaAllQuanAn(s);
+        getQuanAn.ketquaQuanAn(s, Constant.TATCAQUANAN_ADAPTER);
     }
 }

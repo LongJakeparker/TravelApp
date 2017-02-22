@@ -1,13 +1,10 @@
 package com.greenacademy.travelapp.Activity.Connection.Task;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.Connection.CommunicateSever;
-import com.greenacademy.travelapp.Activity.Connection.Interface.GetTypeQuanAn;
-import com.greenacademy.travelapp.Activity.Model.QuanAnChiTiet;
-
-import java.util.ArrayList;
+import com.greenacademy.travelapp.Activity.Connection.Interface.GetQuanAn;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 
 /**
  * Created by GIT on 2/11/2017.
@@ -15,10 +12,10 @@ import java.util.ArrayList;
 
 public class TaskGetTypeQuanAn extends AsyncTask<String, String, String> {
     CommunicateSever communicateSever;
-    GetTypeQuanAn getTypeQuanAn;
+    GetQuanAn getQuanAn;
 
-    public TaskGetTypeQuanAn(GetTypeQuanAn getTypeQuanAn) {
-        this.getTypeQuanAn = getTypeQuanAn;
+    public TaskGetTypeQuanAn(GetQuanAn getQuanAn) {
+        this.getQuanAn = getQuanAn;
         communicateSever = new CommunicateSever();
     }
 
@@ -30,6 +27,6 @@ public class TaskGetTypeQuanAn extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        getTypeQuanAn.ketquaType(s);
+        getQuanAn.ketquaQuanAn(s, Constant.LOAIQUANAN_ADAPTER);
     }
 }
