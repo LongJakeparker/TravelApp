@@ -26,7 +26,7 @@ public class CheckInChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_check_in_choice);
 
         lvMap = (ListView) findViewById(R.id.lvMapNear);
-        initivSearchMap();
+
 //        initetSerchCheckin();
 
         ListMapItem listMapItem = new ListMapItem(R.drawable.icon_hotel, "Riverside Hotel", "dsadasdasdasdasdasd sdadasdasdas \n adsdadadad \n dsadsds \n adasdsdas","4.5km");
@@ -65,11 +65,6 @@ public class CheckInChoiceActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
-
-    private void initivSearchMap() {
-        ivSearchMap = (ImageView) findViewById(R.id.ivMapSearchCheckIn);
-        ivSearchMap.setImageResource(R.drawable.sample_map);
-    }
 
     @Override
     public void onBackPressed() {

@@ -8,19 +8,11 @@
     android:background="@color/colorPrimary"
     tools:context="com.greenacademy.travelapp.Activity.Activity.CheckInChoiceActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        app:srcCompat="@drawable/com_facebook_button_background"
-        android:id="@+id/ivMapSearchCheckIn"
-        android:layout_height="@dimen/ivsize_checkin_choice"
-        android:scaleType="fitXY"/>
-
     <LinearLayout
         android:id="@+id/layoutSearchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/ivMapSearchCheckIn"
         android:layout_margin="@dimen/margin_searchbar_checin_choice"
         android:background="@drawable/custom_searchbar">
 
@@ -49,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layoutSearchBar"
-        android:background="@drawable/white_line"/>
+        android:background="@color/colorWhite"/>
 
 
 
