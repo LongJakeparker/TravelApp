@@ -18,11 +18,12 @@
     <item name="scale_radio_button" format="float" type="dimen">0.6</item>
     <dimen name="text_size_button_skip_start">18dp</dimen>
     <dimen name="ivsize_checkin_choice">130dp</dimen>
-    <dimen name="margin_searchbar_checin_choice">5dp</dimen>
+    <dimen name="margin_searchbar_checin_choice">8dp</dimen>
     <dimen name="layout_marginleft_ivsearchbar">10dp</dimen>
     <dimen name="layout_marginright_ivsearchbar">5dp</dimen>
     <dimen name="text_size_title_list_map">18dp</dimen>
     <dimen name="layout_margin_item_list_map">3dp</dimen>
     <dimen name="layout_height_ivitem_list_map">50dp</dimen>
+    <dimen name="text_size_header_list">15dp</dimen>
 
 </resources>

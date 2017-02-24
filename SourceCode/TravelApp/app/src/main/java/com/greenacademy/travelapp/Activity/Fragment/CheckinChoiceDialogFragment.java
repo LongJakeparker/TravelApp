@@ -1,13 +1,17 @@
 package com.greenacademy.travelapp.Activity.Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.widget.SearchView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.greenacademy.travelapp.Activity.Adapter.ListMapAdapter;
@@ -21,7 +25,7 @@ import java.util.List;
  * Created by Jake on 2/18/2017.
  */
 
-public class ChecinChoiceDialogFragment extends DialogFragment {
+public class CheckinChoiceDialogFragment extends DialogFragment {
     View v;
     private ListView lvMap;
     @Nullable
@@ -30,7 +34,7 @@ public class ChecinChoiceDialogFragment extends DialogFragment {
         v = inflater.inflate(R.layout.activity_check_in_choice, null);
         getDialog().setCanceledOnTouchOutside(true);
 
-
+        SearchView();
 
         lvMap = (ListView) v.findViewById(R.id.lvMapNear);
 
@@ -55,6 +59,20 @@ public class ChecinChoiceDialogFragment extends DialogFragment {
         ListMapAdapter adapter = new ListMapAdapter(getContext(), R.layout.item_listmap_near, listMapItems );
         lvMap.setAdapter(adapter);
         return v;
+    }
+
+    private void SearchView() {
+        SearchView searchView = (SearchView) v.findViewById(R.id.SearchView);
+        int searchSrcTextId = getResources().getIdentifier("android:id/search_src_text", null, null);
+        EditText searchEditText = (EditText) searchView.findViewById(searchSrcTextId);
+        searchEditText.setTextSize(15);
+
+        //Removing underline
+        int searchPlateId = searchView.getContext().getResources().getIdentifier("android:id/search_plate", null, null);
+        View searchPlate = searchView.findViewById(searchPlateId);
+        if (searchPlate!=null) {
+            searchPlate.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     @Override

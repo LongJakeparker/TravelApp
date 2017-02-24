@@ -145,7 +145,8 @@
                     android:id="@+id/ivDescribeSchedule"
                     android:src="@drawable/icon_hotel"
                     android:scaleType="fitXY"
-                    android:layout_margin="5dp"/>
+                    android:layout_margin="5dp"
+                    android:elevation="3dp"/>
             </LinearLayout>
 
         </LinearLayout>

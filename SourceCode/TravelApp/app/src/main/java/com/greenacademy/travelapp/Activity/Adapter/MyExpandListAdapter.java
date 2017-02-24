@@ -77,42 +77,62 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        final groupViewHolder viewHolder;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_header_timeline, null);
+
+            viewHolder = new groupViewHolder();
+
+            viewHolder.Title = (TextView) convertView.findViewById(R.id.tvTitleHeaderSchedule);
+            viewHolder.CountChild = (TextView) convertView.findViewById(R.id.tvCountChildSchedule);
+            viewHolder.SumPics = (TextView) convertView.findViewById(R.id.tvSumPicSchedule);
+            viewHolder.SumLikes = (TextView) convertView.findViewById(R.id.tvSumLikeSchedule);
+
+            convertView.setTag(viewHolder);
+        }else {
+            viewHolder = (groupViewHolder) convertView.getTag();
         }
-        TextView Title = (TextView) convertView.findViewById(R.id.tvTitleHeaderSchedule);
-        TextView CountChild = (TextView) convertView.findViewById(R.id.tvCountChildSchedule);
+
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
         expandableListView.expandGroup(groupPosition);
 
-        Title.setText(headerModelList.get(groupPosition).getTitle());
-        CountChild.setText(String.valueOf(headerModelList.get(groupPosition).getChild().size()));
+        viewHolder.Title.setText(headerModelList.get(groupPosition).getTitle());
+        viewHolder.CountChild.setText(String.valueOf(headerModelList.get(groupPosition).getChild().size()));
+        viewHolder.SumPics.setText(String.valueOf(headerModelList.get(groupPosition).getSumPic()));
+        viewHolder.SumLikes.setText(String.valueOf(headerModelList.get(groupPosition).getSumLike()));
 
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        final childViewHolder viewHolder;
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_child_timeline, null);
-        }
-        TextView Time = (TextView) convertView.findViewById(R.id.tvTimeSchedule);
-        TextView Name = (TextView) convertView.findViewById(R.id.tvNameChildSchedule);
-        TextView Des = (TextView) convertView.findViewById(R.id.tvDescribeChildSchedule);
-        TextView Likes = (TextView) convertView.findViewById(R.id.tvNumLikesSchedule);
-        TextView Pics = (TextView) convertView.findViewById(R.id.tvNumPicSchedule);
-        ImageView IconDes = (ImageView) convertView.findViewById(R.id.ivDescribeSchedule);
+            viewHolder = new childViewHolder();
 
-        Time.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getTime());
-        Name.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getName());
-        Des.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getDescribe());
-        Likes.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getLikes()));
-        Pics.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getPics()));
+            viewHolder.Time = (TextView) convertView.findViewById(R.id.tvTimeSchedule);
+            viewHolder.Name = (TextView) convertView.findViewById(R.id.tvNameChildSchedule);
+            viewHolder.Des = (TextView) convertView.findViewById(R.id.tvDescribeChildSchedule);
+            viewHolder.Likes = (TextView) convertView.findViewById(R.id.tvNumLikesSchedule);
+            viewHolder.Pics = (TextView) convertView.findViewById(R.id.tvNumPicSchedule);
+            viewHolder.IconDes = (ImageView) convertView.findViewById(R.id.ivDescribeSchedule);
+            convertView.setTag(viewHolder);
+        }else {
+            viewHolder = (childViewHolder) convertView.getTag();
+        }
+
+
+        viewHolder.Time.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getTime());
+        viewHolder.Name.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getName());
+        viewHolder.Des.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getDescribe());
+        viewHolder.Likes.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getLikes()));
+        viewHolder.Pics.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getPics()));
         new DownloadImageTask(headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes(), this).execute();
-        IconDes.setImageBitmap(this.bitmap);
+        viewHolder.IconDes.setImageBitmap(this.bitmap);
         return convertView;
     }
 
@@ -124,5 +144,21 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
     @Override
     public void CallBackData(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public static class groupViewHolder{
+        TextView Title;
+        TextView CountChild;
+        TextView SumPics;
+        TextView SumLikes;
+    }
+
+    public static class childViewHolder{
+        TextView Time;
+        TextView Name;
+        TextView Des;
+        TextView Likes;
+        TextView Pics;
+        ImageView IconDes;
     }
 }

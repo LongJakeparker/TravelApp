@@ -6,7 +6,12 @@ import android.os.AsyncTask;
 
 import com.greenacademy.travelapp.Activity.Interface.DownloadImageInterface;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -28,7 +33,11 @@ public class DownloadImageTask extends AsyncTask<String, String, Bitmap> {
         Bitmap result = null;
         try{
             URL url = new URL(stringUrl);
-            Bitmap btm = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream is = new BufferedInputStream(connection.getInputStream());
+            Bitmap btm = BitmapFactory.decodeStream(is);
             result = btm;
         } catch (MalformedURLException e) {
             e.printStackTrace();

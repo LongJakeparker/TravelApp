@@ -26,11 +26,15 @@
             <!--android:layout_marginRight="@dimen/layout_marginright_ivsearchbar"/>-->
 
         <SearchView
+            android:id="@+id/SearchView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:iconifiedByDefault="false"
             android:searchHintIcon="@null"
-            android:queryHint="@string/hint_search_bar" />
+            android:queryHint="@string/hint_search_bar"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="bottom"/>
             <!--android:searchIcon="@null"-->
 
             <!--android:layout_weight="3" />-->

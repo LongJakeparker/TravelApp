@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_header_list"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:textColor="@color/colorWhite"/>
@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_header_list"
             android:layout_marginRight="10dp"
             android:textStyle="bold"
             android:textColor="@color/colorWhite"/>
@@ -52,8 +52,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvSumPicSchedule"
             android:layout_centerVertical="true"
-            android:textSize="20dp"
-            android:layout_marginRight="10dp"
+            android:textSize="@dimen/text_size_header_list"
+            android:layout_marginRight="6dp"
             android:textStyle="bold"
             android:textColor="@color/colorWhite"
             android:layout_toLeftOf="@+id/ivCountChildSchedule" />
@@ -61,7 +61,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/icon_see"
+            android:src="@drawable/icon_camera_white"
             android:id="@+id/ivSumPicSchedule"
             android:scaleType="fitCenter"
             android:layout_centerVertical="true"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvSumLikeSchedule"
             android:layout_centerVertical="true"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_header_list"
             android:layout_marginRight="10dp"
             android:textStyle="bold"
             android:textColor="@color/colorWhite"
