@@ -33,8 +33,6 @@
             android:value="AIzaSyAgNFnjWqBtfweopgTJbIPwzBCaf_mZRn8" />
 
         <activity android:name=".Activity.Activity.CreateMyTripCheckInActivity" />
-        <activity android:name=".Activity.Activity.CheckInChoiceActivity"></activity>
-        <activity android:name=".Activity.Activity.DetailMyTravelActivity"></activity>
     </application>
 
 </manifest>

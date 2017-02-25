@@ -34,6 +34,7 @@ public class DownloadImageTask extends AsyncTask<String, String, Bitmap> {
         try{
             URL url = new URL(stringUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.connect();
             InputStream is = new BufferedInputStream(connection.getInputStream());

@@ -93,6 +93,7 @@ public class ScheduleTask extends AsyncTask<String, String, List<HeaderModel>> {
                 childModel.setIdNgayChuyenDi(childJSONObject.getInt("IdNgayChuyenDi"));
                 childModel.setIdDiaDiem(childJSONObject.getInt("IdDiaDiem"));
                 childModel.setLoaiDiaDiem(childJSONObject.getInt("LoaiDiaDiem"));
+                childModel.setName(childJSONObject.getString("TenDiaDiem"));
                 childModel.setDescribe(childJSONObject.getString("NoiDungCheckIn"));
                 childModel.setTime(childJSONObject.getString("NgayCheckIn"));
                 childModel.setLikes(childJSONObject.getInt("SoLuotLike"));
