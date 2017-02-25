@@ -27,6 +27,7 @@ import com.greenacademy.travelapp.Activity.Connection.Task.TaskLogin;
 import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.CustomDialog.DialogWaitingLogin;
 import com.greenacademy.travelapp.Activity.Model.UserLogin;
+import com.greenacademy.travelapp.Activity.Utils.LuuThongTinDangNhap;
 import com.greenacademy.travelapp.Activity.Utils.SignInGmail;
 import com.greenacademy.travelapp.R;
 
@@ -45,7 +46,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView txtChuaCoTaiKhoan;
     String LOGIN_ERROR;
     EditText edtEmail, edtPass;
+    String EMAIL_LOGIN, PASS_LOGIN;
     DialogWaitingLogin waitingLogin;
+    LuuThongTinDangNhap saveData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +60,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtEmail = (EditText) findViewById(R.id.editTextEmailLogin);
         edtPass = (EditText) findViewById(R.id.editTextPasswordLogin);
         callbackManager = CallbackManager.Factory.create();
+        EMAIL_LOGIN = edtEmail.getText().toString();
+        PASS_LOGIN = edtPass.getText().toString();
         signInGmail = new SignInGmail(this);
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
         LOGIN_ERROR = getResources().getString(R.string.login_error);
         waitingLogin = new DialogWaitingLogin(LoginActivity.this, R.layout.custom_dialog_progressbar);
         waitingLogin.createDialog();
 
+        saveData = new LuuThongTinDangNhap(this, "0", "", EMAIL_LOGIN, "");
+
+        //phần tự đăng nhập bình thường
+        if (saveData != null){
+            if (saveData.startLayEmail() != null){
+                toiManHinhChinh();
+            }
+        }
+
         // phần Facebook
+
+        //phần tự đăng nhập
         if (Constant.INTERNET_CONNECTION){
             if (AccessToken.getCurrentAccessToken() != null) {
                 toiManHinhChinh();
             }
         }
 
+        //phần đăng nhập
         btnlgnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -160,6 +177,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.buttonLogin:
                 UserLogin userThuong = new UserLogin(edtEmail.getText().toString(), edtPass.getText().toString(), 0);
                 loginChung(userThuong);
+                EMAIL_LOGIN = edtEmail.getText().toString();
+                PASS_LOGIN = edtPass.getText().toString();
                 break;
             case R.id.textViewChuaCoTaiKhoan:
                 toiManHinhDangKy();
@@ -201,7 +220,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         try {
             JSONObject jsonObject = new JSONObject(kq);
-            if (jsonObject.getString("Description").equals(Constant.DESCRIPTION_LOGIN)){
+            if (jsonObject.getInt("Status") == Constant.STATUS_LOGIN){
+                saveData.startLuuThongTinNguoiDung();
                 toiManHinhChinh();
             }else {
                 Toast.makeText(getApplicationContext(), jsonObject.getString("Description"), Toast.LENGTH_LONG).show();

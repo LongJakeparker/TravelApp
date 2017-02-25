@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.TatCaQuanAnAdapter;
 import com.greenacademy.travelapp.Activity.Connection.Interface.GetQuanAn;
@@ -49,11 +50,29 @@ public class TatCaQuanAnFragment extends Fragment implements GetQuanAn, ItemRecy
         recyclerTatCaQuanAn = (RecyclerView) view.findViewById(R.id.recyclerViewTatCaQuanAn);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         searchView = (SearchView) view.findViewById(R.id.searchViewTatCaQuanAn);
+        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.colorWhite));
         listQuanAnChung = new ArrayList<QuanAnChung>();
         quanAnFragment = new QuanAnFragment();
 
+        tatcaAdapter = new TatCaQuanAnAdapter(listQuanAnChung, getContext());
+
         getAllQuanAn = new TaskGetServerAllQuanAn(this);
         getAllQuanAn.execute("http://103.237.147.137:9045/QuanAn/AllLoaiQuanAn");
+
+        //phần search
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                tatcaAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
 
         return view;
     }

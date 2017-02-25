@@ -159,6 +159,7 @@
                 android:elevation="50dp"
                 android:layout_below="@+id/recyclerViewTopCheckin">
                 <TextView
+                    android:id="@+id/textViewXemTatCa"
                     android:textSize="15dp"
                     android:textColor="@color/text_green"
                     android:layout_gravity="center"

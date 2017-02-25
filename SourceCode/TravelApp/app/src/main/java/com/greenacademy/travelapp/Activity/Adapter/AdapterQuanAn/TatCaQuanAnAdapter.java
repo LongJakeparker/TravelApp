@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,15 +17,17 @@ import com.greenacademy.travelapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by DAVIDSON on 2/11/2017.
  */
 
-public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.TatCaQuanAnViewholder> {
+public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.TatCaQuanAnViewholder> implements Filterable{
     private ArrayList<QuanAnChung> listData = new ArrayList<QuanAnChung>();
     private Context context;
     private ItemRecyclerClickListener itemRecyclerClickListener;
+    private QuanAnFilter quanAnFilter;
 
     public TatCaQuanAnAdapter(ArrayList<QuanAnChung> listData, Context context){
         this.listData = listData;
@@ -54,6 +58,55 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
 
     public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){
         this.itemRecyclerClickListener = itemRecyclerClickListener;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (quanAnFilter == null){
+            quanAnFilter = new QuanAnFilter(this, listData);
+        }
+        return quanAnFilter;
+    }
+
+    public static class QuanAnFilter extends Filter{
+        private TatCaQuanAnAdapter adapter;
+        private ArrayList<QuanAnChung> initialList;
+        private ArrayList<QuanAnChung> filterList;
+
+        private QuanAnFilter(TatCaQuanAnAdapter adapter, ArrayList<QuanAnChung> initialList){
+            super();
+            this.adapter = adapter;
+            this.initialList = new ArrayList<>(initialList);
+            this.filterList = new ArrayList<QuanAnChung>();
+        }
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            filterList.clear();
+            FilterResults results = new FilterResults();
+            if (charSequence.length() == 0){
+                filterList.addAll(initialList);
+            }else {
+                String filter = charSequence.toString().toLowerCase();
+
+                for (QuanAnChung quan: initialList){
+                    if (quan.getTenLoaiQuanAn().toLowerCase().contains(filter)){
+                        filterList.add(quan);
+                    }
+                }
+            }
+
+            results.values = filterList;
+            results.count = filterList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            adapter.listData.clear();
+            adapter.listData.addAll((Collection<? extends QuanAnChung>) filterResults.values);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public class TatCaQuanAnViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{

@@ -38,6 +38,6 @@
     <dimen name="text_size_title_list_map">18dp</dimen>
     <dimen name="layout_margin_item_list_map">3dp</dimen>
     <dimen name="layout_height_ivitem_list_map">50dp</dimen>
-    <dimen name="textsize_chitiet_quanan">20dp</dimen>
+    <dimen name="textsize_chitiet_quanan">18dp</dimen>
 
 </resources>

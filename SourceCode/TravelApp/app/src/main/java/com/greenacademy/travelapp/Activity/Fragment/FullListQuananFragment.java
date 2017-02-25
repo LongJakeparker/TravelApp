@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.FullListQuanAnAdapter;
 import com.greenacademy.travelapp.Activity.Connection.Interface.ItemRecyclerClickListener;
@@ -30,7 +31,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class FullListQuananFragment extends Fragment implements ItemRecyclerClickListener {
     RecyclerView recyclerFullListQuanan;
-    ArrayList<QuanAnChiTiet> listQuanAn;
+    ArrayList<QuanAnChiTiet> listQuanAn, listSearch;
     FullListQuanAnAdapter fullListAdapter;
     Toolbar toolbar;
 
@@ -42,13 +43,17 @@ public class FullListQuananFragment extends Fragment implements ItemRecyclerClic
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.full_list_quanan_fragment, container, false);
+        listSearch = new ArrayList<QuanAnChiTiet>();
         listQuanAn = getArguments().getParcelableArrayList(Constant.FULLLIST_QUANAN);
+        listSearch.addAll(listQuanAn);
         recyclerFullListQuanan = (RecyclerView) view.findViewById(R.id.recyclerViewfulllistQuanan);
         fullListAdapter = new FullListQuanAnAdapter(listQuanAn, getContext());
         toolbar = (Toolbar) view.findViewById(R.id.toolbarFullListQuanan);
         quanAnFragment = new QuanAnFragment();
         chiTietQuanAnFragment = new ChiTietQuanAnFragment();
         searchView = (SearchView) view.findViewById(R.id.searchViewFullListQuanan);
+        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.colorWhite));
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,8 +72,21 @@ public class FullListQuananFragment extends Fragment implements ItemRecyclerClic
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerFullListQuanan.setLayoutManager(layoutManager);
         recyclerFullListQuanan.setAdapter(fullListAdapter);
-
         fullListAdapter.onItemRecyclerClickListener(this);
+
+        //search
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                fullListAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
 
         return view;
     }

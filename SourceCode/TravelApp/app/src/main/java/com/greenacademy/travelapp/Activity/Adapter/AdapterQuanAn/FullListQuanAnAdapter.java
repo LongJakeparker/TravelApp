@@ -6,6 +6,8 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +18,17 @@ import com.greenacademy.travelapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by DAVIDSON on 2/19/2017.
  */
 
-public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAdapter.FullListViewHolder>{
+public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAdapter.FullListViewHolder> implements Filterable{
     private ArrayList<QuanAnChiTiet> listData = new ArrayList<QuanAnChiTiet>();
     private Context context;
     private ItemRecyclerClickListener itemRecyclerClickListener;
+    private QuanAnFilter quanAnFilter;
 
     public FullListQuanAnAdapter(ArrayList<QuanAnChiTiet> listData, Context context) {
         this.listData = listData;
@@ -51,6 +55,55 @@ public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAd
     @Override
     public int getItemCount() {
         return listData.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (quanAnFilter == null){
+            quanAnFilter = new QuanAnFilter(this, listData);
+        }
+        return quanAnFilter;
+    }
+
+    public static class QuanAnFilter extends Filter {
+        private FullListQuanAnAdapter adapter;
+        private ArrayList<QuanAnChiTiet> initialList;
+        private ArrayList<QuanAnChiTiet> filterList;
+
+        private QuanAnFilter(FullListQuanAnAdapter adapter, ArrayList<QuanAnChiTiet> initialList){
+            super();
+            this.adapter = adapter;
+            this.initialList = new ArrayList<>(initialList);
+            this.filterList = new ArrayList<QuanAnChiTiet>();
+        }
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            filterList.clear();
+            FilterResults results = new FilterResults();
+            if (charSequence.length() == 0){
+                filterList.addAll(initialList);
+            }else {
+                String filter = charSequence.toString().toLowerCase();
+
+                for (QuanAnChiTiet quan: initialList){
+                    if (quan.getTenQuanAn().toLowerCase().contains(filter)){
+                        filterList.add(quan);
+                    }
+                }
+            }
+
+            results.values = filterList;
+            results.count = filterList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            adapter.listData.clear();
+            adapter.listData.addAll((Collection<? extends QuanAnChiTiet>) filterResults.values);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){

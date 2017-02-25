@@ -49,7 +49,7 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
     QuanGanToiAdapter adapterQuanGanToi;
     TopCheckinAdapter adapterTopCheckin;
     ArrayList<QuanAnChiTiet> listTop, listNear, listType;
-    TextView txtXemAllTop, txtXemAllNear, txtXemAllType;
+    TextView txtXemAllTop, txtXemAllNear, txtXemAllType, txtXemTatCa;
 
     TaskGetTopQuanAn taskGetTopQuanAn;
     TaskGetTypeQuanAn taskGetTypeQuanAn;
@@ -71,6 +71,7 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
         txtXemAllNear = (TextView) view.findViewById(R.id.textViewXemTatCaQGT);
         txtXemAllTop = (TextView) view.findViewById(R.id.textViewXemTatCaTCI);
         txtXemAllType = (TextView) view.findViewById(R.id.textViewXemTatCaLQ);
+        txtXemTatCa = (TextView) view.findViewById(R.id.textViewXemTatCa);
 
         tatCaQuanAnFragment = new TatCaQuanAnFragment();
         chiTietQuanAnFragment = new ChiTietQuanAnFragment();
@@ -79,6 +80,8 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
         txtXemAllType.setOnClickListener(this);
         txtXemAllNear.setOnClickListener(this);
         txtXemAllTop.setOnClickListener(this);
+        txtXemTatCa.setOnClickListener(this);
+
 
         try {
             id = getArguments().getInt("ID");
@@ -198,18 +201,23 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
         switch (view.getId()){
             case R.id.textViewXemTatCaQGT:
                 bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, listNear);
-                fullListQuananFragment.setArguments(bundle);
                 break;
             case R.id.textViewXemTatCaTCI:
                 bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, listTop);
-                fullListQuananFragment.setArguments(bundle);
                 break;
             case R.id.textViewXemTatCaLQ:
                 bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, listType);
-                fullListQuananFragment.setArguments(bundle);
+                break;
+            case R.id.textViewXemTatCa:
+                ArrayList<QuanAnChiTiet> list = new ArrayList<QuanAnChiTiet>();
+                list.addAll(listNear);
+                list.addAll(listTop);
+                list.addAll(listType);
+                bundle.putParcelableArrayList(Constant.FULLLIST_QUANAN, list);
                 break;
         }
 
+        fullListQuananFragment.setArguments(bundle);
         setFragment(fullListQuananFragment, true, "FulllistFrag");
     }
 
