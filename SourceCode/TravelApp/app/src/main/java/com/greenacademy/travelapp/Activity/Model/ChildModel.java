@@ -1,24 +1,66 @@
 package com.greenacademy.travelapp.Activity.Model;
 
+import android.graphics.Bitmap;
+
+import java.util.BitSet;
+
 /**
  * Created by Jake on 2/11/2017.
  */
 
 public class ChildModel {
+    private int Id;
+    private int IdDiaDiem;
+    private int IdNgayChuyenDi;
+    private int LoaiDiaDiem;
     private String Time;
     private String Name;
     private String Describe;
-    private String Likes;
-    private String Pics;
-    private int IconDes;
+    private int Likes;
+    private int Pics;
+    private String IconDes;
 
-    public ChildModel(String time, String name, String describe, String likes, String pics, int iconDes) {
+    public ChildModel(){}
+
+    public ChildModel(String time, String name, String describe, int likes, int pics, String iconDes) {
         Time = time;
         Name = name;
         Describe = describe;
         Likes = likes;
         Pics = pics;
         IconDes = iconDes;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getIdDiaDiem() {
+        return IdDiaDiem;
+    }
+
+    public void setIdDiaDiem(int idDiaDiem) {
+        IdDiaDiem = idDiaDiem;
+    }
+
+    public int getIdNgayChuyenDi() {
+        return IdNgayChuyenDi;
+    }
+
+    public void setIdNgayChuyenDi(int idNgayChuyenDi) {
+        IdNgayChuyenDi = idNgayChuyenDi;
+    }
+
+    public int getLoaiDiaDiem() {
+        return LoaiDiaDiem;
+    }
+
+    public void setLoaiDiaDiem(int loaiDiaDiem) {
+        LoaiDiaDiem = loaiDiaDiem;
     }
 
     public String getTime() {
@@ -45,27 +87,27 @@ public class ChildModel {
         Describe = describe;
     }
 
-    public String getLikes() {
+    public int getLikes() {
         return Likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(int likes) {
         Likes = likes;
     }
 
-    public String getPics() {
+    public int getPics() {
         return Pics;
     }
 
-    public void setPics(String pics) {
+    public void setPics(int pics) {
         Pics = pics;
     }
 
-    public int getIconDes() {
+    public String getIconDes() {
         return IconDes;
     }
 
-    public void setIconDes(int iconDes) {
+    public void setIconDes(String iconDes) {
         IconDes = iconDes;
     }
 }
