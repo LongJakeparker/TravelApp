@@ -13,9 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.KhachSanAdapter;
 import com.greenacademy.travelapp.Activity.Model.KhachSanItem;
 import com.greenacademy.travelapp.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -35,6 +40,8 @@ public class KhachSanFragment extends Fragment implements ChuyenDuLieuKhachSan {
     RecyclerView khachSanRecyclerView;
     ArrayList<KhachSanItem> khachSanItems = new ArrayList<>();
     RecyclerView.LayoutManager recyclerViewMn;
+    private LatLng viTriCuaToi = null;
+    private long idKhuVuc = -1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,8 +73,31 @@ public class KhachSanFragment extends Fragment implements ChuyenDuLieuKhachSan {
         if (listKhachSanString.equals("")){
             result = LayDataMacDinh();
         }else{
-            //xu ly parse json o day
             Log.i("data json",listKhachSanString);
+            try {
+                JSONObject jsonObject = new JSONObject(listKhachSanString);
+                JSONArray jsonArrayKhachSan = jsonObject.getJSONArray("KhachSans");
+                for (int i = 0; i < jsonArrayKhachSan.length(); i++) {
+                    JSONObject temp = jsonArrayKhachSan.getJSONObject(i);
+                    KhachSanItem kSanTemp = new KhachSanItem();
+                    kSanTemp.setTenKhachSan(temp.getString("Ten"));
+                    Long l = Math.round(temp.getDouble("DanhGia")/2);
+                    kSanTemp.setDanhGia(Integer.valueOf(l.intValue()));
+                    kSanTemp.setGiaTien(String.valueOf(temp.getInt("Gia")));
+                    kSanTemp.setDiaChi(temp.getString("Address"));
+                    kSanTemp.setSoDanhGia(temp.getInt("YeuThich"));
+                    kSanTemp.setId(temp.getInt("Id"));
+                    kSanTemp.setMoTa(temp.getString("MoTa"));
+                    kSanTemp.setCheckIn(temp.getInt("CheckIn"));
+                    kSanTemp.setKhuVucId(temp.getInt("KhuVucId"));
+                    kSanTemp.setLinkAnh(temp.getString("LinkAnh"));
+                    kSanTemp.setLatLng(new LatLng(temp.getDouble("Lat"),temp.getDouble("Lng")));
+                    result.add(kSanTemp);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return result;
     }
@@ -81,6 +111,7 @@ public class KhachSanFragment extends Fragment implements ChuyenDuLieuKhachSan {
             temp.setDiaChi("Ngay ngã tư quẹo phải");
             temp.setSoDanhGia(1000);
             temp.setGiaTien("5.000.000");
+            temp.setDanhGia(5);
             result.add(temp);
         }
         return result;
@@ -97,6 +128,15 @@ public class KhachSanFragment extends Fragment implements ChuyenDuLieuKhachSan {
         protected String doInBackground(Void... voids) {
             String duLieuListKhachSan = "";
             String urlString = "";
+            if (viTriCuaToi!=null){
+                double lat = viTriCuaToi.latitude;
+                double lng = viTriCuaToi.longitude;
+                urlString = "http://103.237.147.137:9045/KhachSan/KhachSangByNear?lat="+String.valueOf(lat)+"&lng="+String.valueOf(lng);
+            }else if (idKhuVuc!=-1){
+                urlString = "http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc="+ idKhuVuc;
+            }else{
+                urlString = "http://103.237.147.137:9045/KhachSan/AllKhachSan";
+            }
             URL url;
             HttpURLConnection httpURLConnection = null;
             InputStream inputStream = null;
@@ -151,6 +191,13 @@ public class KhachSanFragment extends Fragment implements ChuyenDuLieuKhachSan {
         }
     }
 
+    public void setViTriCuaToi(LatLng viTriCuaToi) {
+        this.viTriCuaToi = viTriCuaToi;
+    }
+
+    public void setIdKhuVuc(long idKhuVuc) {
+        this.idKhuVuc = idKhuVuc;
+    }
 }
 
 interface ChuyenDuLieuKhachSan{
