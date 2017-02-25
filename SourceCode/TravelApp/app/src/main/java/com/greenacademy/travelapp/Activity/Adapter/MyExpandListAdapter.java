@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.greenacademy.travelapp.Activity.AsyncTask.DownloadImageTask;
 import com.greenacademy.travelapp.Activity.Model.HeaderModel;
 import com.greenacademy.travelapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -121,8 +122,9 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
         viewHolder.Des.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getDescribe());
         viewHolder.Likes.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getLikes()));
         viewHolder.Pics.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getPics()));
-        viewHolder.IconDes.setImageResource(R.drawable.com_facebook_auth_dialog_background);
-        new DownloadImageTask(viewHolder.IconDes ,headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes()).execute();
+        if (!(headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes().isEmpty())){
+            Picasso.with(context).load(headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes()).into(viewHolder.IconDes);
+        }
         return convertView;
     }
 
@@ -146,6 +148,5 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
         TextView Likes;
         TextView Pics;
         ImageView IconDes;
-        Bitmap bitmap;
     }
 }
