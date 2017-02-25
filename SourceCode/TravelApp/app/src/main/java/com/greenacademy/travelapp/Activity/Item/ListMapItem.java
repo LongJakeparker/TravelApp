@@ -7,34 +7,36 @@ import android.graphics.Bitmap;
  */
 
 public class ListMapItem {
-    private int classifyLocation;
+    private int Id;
+    private int IdLoaiDiaDiem;
+    private String classifyLocation;
     private String nameLocation;
-    private String describeLocation;
-    private String distanceLocation;
+    private String addressLocation;
+    private int rateLocation;
 
     public  ListMapItem(){}
 
-    public ListMapItem(int classifyLocation, String nameLocation, String describeLocation, String distanceLocation) {
+    public ListMapItem(String classifyLocation, String nameLocation, String addressLocation, int rateLocation) {
         this.classifyLocation = classifyLocation;
-        this.distanceLocation = distanceLocation;
+        this.rateLocation = rateLocation;
         this.nameLocation = nameLocation;
-        this.describeLocation = describeLocation;
+        this.addressLocation = addressLocation;
     }
 
-    public int getClassifyLocation() {
+    public String getClassifyLocation() {
         return classifyLocation;
     }
 
-    public void setClassifyLocation(int classifyLocation) {
+    public void setClassifyLocation(String classifyLocation) {
         this.classifyLocation = classifyLocation;
     }
 
-    public String getDistanceLocation() {
-        return distanceLocation;
+    public int getRateLocation() {
+        return rateLocation;
     }
 
-    public void setDistanceLocation(String distanceLocation) {
-        this.distanceLocation = distanceLocation;
+    public void setRateLocation(int rateLocation) {
+        this.rateLocation = rateLocation;
     }
 
     public String getNameLocation() {
@@ -45,11 +47,27 @@ public class ListMapItem {
         this.nameLocation = nameLocation;
     }
 
-    public String getDescribeLocation() {
-        return describeLocation;
+    public String getAddressLocation() {
+        return addressLocation;
     }
 
-    public void setDescribeLocation(String describeLocation) {
-        this.describeLocation = describeLocation;
+    public void setAddressLocation(String describeLocation) {
+        this.addressLocation = describeLocation;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getIdLoaiDiaDiem() {
+        return IdLoaiDiaDiem;
+    }
+
+    public void setIdLoaiDiaDiem(int idLoaiDiaDiem) {
+        IdLoaiDiaDiem = idLoaiDiaDiem;
     }
 }
