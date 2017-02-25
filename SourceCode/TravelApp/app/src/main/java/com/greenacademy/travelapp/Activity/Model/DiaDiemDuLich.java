@@ -4,7 +4,7 @@ package com.greenacademy.travelapp.Activity.Model;
  * Created by PhamNhuVu on 2/11/2017.
  */
 
-public class DiaDiemKhuVuc {
+public class DiaDiemDuLich {
 
     private int intId;
     private String strTenKhuVuc;
@@ -14,10 +14,10 @@ public class DiaDiemKhuVuc {
     private int intSoLuotXem;
     private int intYeuThich;
 
-    public DiaDiemKhuVuc() {
+    public DiaDiemDuLich() {
     }
 
-    public DiaDiemKhuVuc(int intId, String strTenKhuVuc, String strLinkAnh, String strMota, float flDanhGia, int intSoLuotXem, int intYeuThich) {
+    public DiaDiemDuLich(int intId, String strTenKhuVuc, String strLinkAnh, String strMota, float flDanhGia, int intSoLuotXem, int intYeuThich) {
         this.intId = intId;
         this.strTenKhuVuc = strTenKhuVuc;
         this.strLinkAnh = strLinkAnh;

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.greenacademy.travelapp.Activity.Model.KhuVuc;
+import com.greenacademy.travelapp.Activity.Model.KhuVucDuLich;
 import com.greenacademy.travelapp.R;
 
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> {
 
-    ArrayList<KhuVuc> arrKhuVuc;
+    ArrayList<KhuVucDuLich> arrKhuVuc;
 
-    public KhuVucAdapter(ArrayList<KhuVuc> arrKhuVuc) {
+    public KhuVucAdapter(ArrayList<KhuVucDuLich> arrKhuVuc) {
         this.arrKhuVuc = arrKhuVuc;
     }
 
@@ -31,7 +31,7 @@ public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> 
 
     @Override
     public void onBindViewHolder(KhuVucVH holder, int position) {
-        KhuVuc khuvuc = arrKhuVuc.get(position);
+        KhuVucDuLich khuvuc = arrKhuVuc.get(position);
         holder.tvTitleKhuVuc.setText(khuvuc.getTitle());
         holder.imageKhuVuc.setImageResource(khuvuc.getImage());
         holder.tvDescription.setText(khuvuc.getDescription());
@@ -48,20 +48,16 @@ public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> 
     class KhuVucVH extends RecyclerView.ViewHolder{
 
         ImageView imageKhuVuc;
-        TextView tvTitleKhuVuc;
-        TextView tvDescription;
-        TextView tvLike;
-        TextView tvView;
-        TextView tvStar;
+        TextView tvTitleKhuVuc, tvDescription, tvLike, tvView, tvStar;
 
         public KhuVucVH(View itemView) {
             super(itemView);
-            imageKhuVuc = (ImageView) itemView.findViewById(R.id.image_KhuVuc);
-            tvTitleKhuVuc = (TextView) itemView.findViewById(R.id.tvTitle_KhuVuc);
-            tvDescription = (TextView) itemView.findViewById(R.id.tvDescription_KhuVuc);
-            tvLike = (TextView) itemView.findViewById(R.id.tvLike_KhuVuc);
-            tvView = (TextView) itemView.findViewById(R.id.tvView_KhuVuc);
-            tvStar = (TextView) itemView.findViewById(R.id.tvStar_KhuVuc);
+            imageKhuVuc     = (ImageView) itemView.findViewById(R.id.image_KhuVuc);
+            tvTitleKhuVuc   = (TextView) itemView.findViewById(R.id.tvTitle_KhuVuc);
+            tvDescription   = (TextView) itemView.findViewById(R.id.tvDescription_KhuVuc);
+            tvLike          = (TextView) itemView.findViewById(R.id.tvLike_KhuVuc);
+            tvView          = (TextView) itemView.findViewById(R.id.tvView_KhuVuc);
+            tvStar          = (TextView) itemView.findViewById(R.id.tvStar_KhuVuc);
         }
     }
 }
