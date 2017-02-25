@@ -54,6 +54,7 @@ public class CheckinChoiceDialogFragment extends DialogFragment implements Searc
         if (searchPlate!=null) {
             searchPlate.setBackgroundColor(Color.TRANSPARENT);
         }
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

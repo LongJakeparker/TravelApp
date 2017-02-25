@@ -27,7 +27,7 @@
         <SearchView
             android:id="@+id/SearchView"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
             android:searchHintIcon="@null"
             android:queryHint="@string/hint_search_bar"
