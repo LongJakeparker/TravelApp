@@ -2,35 +2,25 @@ package com.greenacademy.travelapp.Activity.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.AsyncTask.DownloadImageTask;
-import com.greenacademy.travelapp.Activity.Interface.DownloadImageInterface;
 import com.greenacademy.travelapp.Activity.Model.HeaderModel;
 import com.greenacademy.travelapp.R;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by Jake on 2/11/2017.
  */
 
-public class MyExpandListAdapter extends BaseExpandableListAdapter implements DownloadImageInterface{
+public class MyExpandListAdapter extends BaseExpandableListAdapter{
     Bitmap bitmap;
     private Context context;
     private List<HeaderModel> headerModelList;
@@ -77,7 +67,7 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        final groupViewHolder viewHolder;
+         groupViewHolder viewHolder;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_header_timeline, null);
@@ -90,9 +80,9 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
             viewHolder.SumLikes = (TextView) convertView.findViewById(R.id.tvSumLikeSchedule);
 
             convertView.setTag(viewHolder);
-        }else {
-            viewHolder = (groupViewHolder) convertView.getTag();
         }
+            viewHolder = (groupViewHolder) convertView.getTag();
+
 
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
@@ -108,7 +98,7 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final childViewHolder viewHolder;
+        childViewHolder viewHolder;
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_child_timeline, null);
@@ -121,9 +111,9 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
             viewHolder.Pics = (TextView) convertView.findViewById(R.id.tvNumPicSchedule);
             viewHolder.IconDes = (ImageView) convertView.findViewById(R.id.ivDescribeSchedule);
             convertView.setTag(viewHolder);
-        }else {
-            viewHolder = (childViewHolder) convertView.getTag();
         }
+        viewHolder = (childViewHolder) convertView.getTag();
+
 
 
         viewHolder.Time.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getTime());
@@ -131,8 +121,8 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
         viewHolder.Des.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getDescribe());
         viewHolder.Likes.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getLikes()));
         viewHolder.Pics.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getPics()));
-        new DownloadImageTask(headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes(), this).execute();
-        viewHolder.IconDes.setImageBitmap(this.bitmap);
+        viewHolder.IconDes.setImageResource(R.drawable.com_facebook_auth_dialog_background);
+        new DownloadImageTask(viewHolder.IconDes ,headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes()).execute();
         return convertView;
     }
 
@@ -141,10 +131,6 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
         return false;
     }
 
-    @Override
-    public void CallBackData(Bitmap bitmap) {
-        this.bitmap = bitmap;
-    }
 
     public static class groupViewHolder{
         TextView Title;
@@ -160,5 +146,6 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter implements Do
         TextView Likes;
         TextView Pics;
         ImageView IconDes;
+        Bitmap bitmap;
     }
 }
