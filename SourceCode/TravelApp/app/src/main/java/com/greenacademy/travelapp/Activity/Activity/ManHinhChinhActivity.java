@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.greenacademy.travelapp.Activity.Fragment.DiaDiemFragment;
+import com.greenacademy.travelapp.Activity.Fragment.DuLichFragment;
 import com.greenacademy.travelapp.Activity.Fragment.QuanAnFragment;
 import com.greenacademy.travelapp.Activity.Fragment.ScheduleFragment;
 import com.greenacademy.travelapp.Activity.Utils.FragmentUtils;
@@ -23,7 +24,7 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null){
             arrFragment = new ArrayList<>();
-            arrFragment.add(0, new DiaDiemFragment());
+            arrFragment.add(0, new DuLichFragment());
             arrFragment.add(1, new QuanAnFragment());
             arrFragment.add(2, new ScheduleFragment());
         }
