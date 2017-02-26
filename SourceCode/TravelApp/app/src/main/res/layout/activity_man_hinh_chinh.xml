@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:design="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_man_hinh_chinh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Địa điểm"
+        android:textColor="@color/colorWhite"
+        android:textSize="24dp" />
+
+    <ImageView
+        android:id="@+id/imageSearch"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_search_white"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/tvTitle"
+        android:layout_above="@+id/framelayout_container" />
 
     <LinearLayout
         android:id="@+id/menu"
@@ -41,7 +59,8 @@
         android:id="@+id/framelayout_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/menu"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/menu" />
+        android:layout_below="@+id/tvTitle" />
+
 </RelativeLayout>

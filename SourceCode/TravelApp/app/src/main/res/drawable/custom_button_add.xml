@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--&lt;!&ndash;<item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<shape android:shape="oval">&ndash;&gt;-->
+            <!--&lt;!&ndash;<gradient android:angle="270" android:endColor="@color/colorGrey"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:centerColor="@color/colorGreyDef"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:startColor="@color/colorGreyDef" />&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<corners android:radius="10dp"/>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<solid android:color="@color/colorGreyDef"/>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<size android:height="50dp"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:width="50dp"/>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;</shape>&ndash;&gt;-->
+    <!--&lt;!&ndash;</item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<item android:right="1dp"  android:bottom="3dp" >&ndash;&gt;-->
+        <!--<shape android:shape="oval">-->
+            <!--<corners android:radius="10dp"/>-->
+            <!--<solid android:color="@color/colorBlue"/>-->
+            <!--<size android:height="50dp"-->
+                <!--android:width="50dp"/>-->
+        <!--</shape>-->
+    <!--&lt;!&ndash;</item>&ndash;&gt;-->
+<!--</layer-list>-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval">
+    <corners android:radius="10dp"/>
+    <solid android:color="@color/colorBlue"/>
+    <size android:height="55dp"
+        android:width="55dp"/>
+</shape>

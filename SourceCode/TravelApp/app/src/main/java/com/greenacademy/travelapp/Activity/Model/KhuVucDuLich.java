@@ -4,7 +4,8 @@ package com.greenacademy.travelapp.Activity.Model;
  * Created by PhamNhuVu on 2/11/2017.
  */
 
-public class KhuVuc {
+public class KhuVucDuLich {
+    int id;
     String title;
     int image;
     String description;
@@ -12,13 +13,31 @@ public class KhuVuc {
     int like;
     double star;
 
-    public KhuVuc(String title, int image, String description, int view, int like, double star) {
+    public KhuVucDuLich(int id, String title, int image, String description, int view, int like, double star) {
+        this.id = id;
         this.title = title;
         this.image = image;
         this.description = description;
         this.view = view;
         this.like = like;
         this.star = star;
+    }
+
+    public KhuVucDuLich(String title, int image, String description, int view, int like, double star) {
+        this.title = title;
+        this.image = image;
+        this.description = description;
+        this.view = view;
+        this.like = like;
+        this.star = star;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.greenacademy.travelapp.Activity.Model.KhuVuc;
+import com.greenacademy.travelapp.Activity.Model.KhuVucDuLich;
 import com.greenacademy.travelapp.R;
 
 import java.util.ArrayList;
@@ -18,10 +18,12 @@ import java.util.ArrayList;
 
 public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> {
 
-    ArrayList<KhuVuc> arrKhuVuc;
+    ArrayList<KhuVucDuLich> arrKhuVuc;
+    KhuVucVH.InterfaceKhuVuc interfaceKhuVuc;
 
-    public KhuVucAdapter(ArrayList<KhuVuc> arrKhuVuc) {
+    public KhuVucAdapter(ArrayList<KhuVucDuLich> arrKhuVuc, KhuVucVH.InterfaceKhuVuc interfaceKhuVuc) {
         this.arrKhuVuc = arrKhuVuc;
+        this.interfaceKhuVuc = interfaceKhuVuc;
     }
 
     @Override
@@ -31,13 +33,14 @@ public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> 
 
     @Override
     public void onBindViewHolder(KhuVucVH holder, int position) {
-        KhuVuc khuvuc = arrKhuVuc.get(position);
-        holder.tvTitleKhuVuc.setText(khuvuc.getTitle());
-        holder.imageKhuVuc.setImageResource(khuvuc.getImage());
-        holder.tvDescription.setText(khuvuc.getDescription());
-        holder.tvLike.setText(String.valueOf(khuvuc.getLike()));
-        holder.tvView.setText(String.valueOf(khuvuc.getView()));
-        holder.tvStar.setText(String.valueOf(khuvuc.getStar()));
+        final KhuVucDuLich khuvuc = arrKhuVuc.get(position);
+        holder.initView(khuvuc);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                interfaceKhuVuc.callbackKhuVucFragment(khuvuc.getId());
+            }
+        });
     }
 
     @Override
@@ -45,23 +48,34 @@ public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> 
         return arrKhuVuc.size();
     }
 
-    class KhuVucVH extends RecyclerView.ViewHolder{
-
+    public static class KhuVucVH extends RecyclerView.ViewHolder {
+        View itemView;
         ImageView imageKhuVuc;
-        TextView tvTitleKhuVuc;
-        TextView tvDescription;
-        TextView tvLike;
-        TextView tvView;
-        TextView tvStar;
+        TextView tvTitleKhuVuc, tvDescription, tvLike, tvView, tvStar;
 
         public KhuVucVH(View itemView) {
             super(itemView);
-            imageKhuVuc = (ImageView) itemView.findViewById(R.id.image_KhuVuc);
-            tvTitleKhuVuc = (TextView) itemView.findViewById(R.id.tvTitle_KhuVuc);
-            tvDescription = (TextView) itemView.findViewById(R.id.tvDescription_KhuVuc);
-            tvLike = (TextView) itemView.findViewById(R.id.tvLike_KhuVuc);
-            tvView = (TextView) itemView.findViewById(R.id.tvView_KhuVuc);
-            tvStar = (TextView) itemView.findViewById(R.id.tvStar_KhuVuc);
+            this.itemView = itemView;
+            imageKhuVuc     = (ImageView) itemView.findViewById(R.id.image_KhuVuc);
+            tvTitleKhuVuc   = (TextView) itemView.findViewById(R.id.tvTitle_KhuVuc);
+            tvDescription   = (TextView) itemView.findViewById(R.id.tvDescription_KhuVuc);
+            tvLike          = (TextView) itemView.findViewById(R.id.tvLike_KhuVuc);
+            tvView          = (TextView) itemView.findViewById(R.id.tvView_KhuVuc);
+            tvStar          = (TextView) itemView.findViewById(R.id.tvStar_KhuVuc);
+
+        }
+
+        public void initView(KhuVucDuLich khuvuc){
+            tvTitleKhuVuc.setText(khuvuc.getTitle());
+            imageKhuVuc.setImageResource(khuvuc.getImage());
+            tvDescription.setText(khuvuc.getDescription());
+            tvLike.setText(String.valueOf(khuvuc.getLike()));
+            tvView.setText(String.valueOf(khuvuc.getView()));
+            tvStar.setText(String.valueOf(khuvuc.getStar()));
+        }
+
+        public interface InterfaceKhuVuc{
+            void callbackKhuVucFragment(int id);
         }
     }
 }

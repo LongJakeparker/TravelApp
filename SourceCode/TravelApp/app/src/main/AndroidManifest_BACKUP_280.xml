@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.greenacademy.travelapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".Activity.App.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+<<<<<<< HEAD
+        <activity android:name=".Activity.MainActivity">
+
+        </activity>
+        <activity android:name=".Activity.Activity.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+=======
+        <activity android:name=".Activity.Activity.SplashScreenActivity"></activity>
+        <activity android:name=".Activity.MainActivity">
+>>>>>>> HanhTrinhChuyenDi_Long
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+<<<<<<< HEAD
+        <activity android:name=".Activity.LoginActivity.LoginActivity" />
+        <activity android:name=".Activity.Activity.QuanAnActivity" />
+=======
+        <activity android:name=".Activity.LoginActivity.ActivityLogin" />
+>>>>>>> HanhTrinhChuyenDi_Long
+        <activity android:name=".Activity.Activity.TutorialActivity" />
+        <activity android:name=".Activity.Activity.ManHinhChinhActivity"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCRcPFf0u6dSl5KQv-jld4zZEC88e68Fok"/>
+
+        <activity android:name=".Activity.Activity.CreateMyTripCheckInActivity" />
+    </application>
+</manifest>

@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
-import com.greenacademy.travelapp.Activity.Fragment.DiaDiemFragment;
-import com.greenacademy.travelapp.Activity.Fragment.DuLichFragment;
+
+import com.greenacademy.travelapp.Activity.Fragment.KhuVucFragment;
 import com.greenacademy.travelapp.Activity.Fragment.QuanAnFragment;
 import com.greenacademy.travelapp.Activity.Fragment.ScheduleFragment;
 import com.greenacademy.travelapp.Activity.Utils.FragmentUtils;
@@ -18,18 +19,26 @@ import java.util.ArrayList;
 public class ManHinhChinhActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<Fragment> arrFragment;
+    int width;
+    int height;
 
+    public TextView tvTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        width = getResources().getConfiguration().screenWidthDp;
+        height = width*2/3;
+
         if (savedInstanceState == null){
             arrFragment = new ArrayList<>();
-            arrFragment.add(0, new DuLichFragment());
+            arrFragment.add(0, new KhuVucFragment());
             arrFragment.add(1, new QuanAnFragment());
             arrFragment.add(2, new ScheduleFragment());
         }
         setContentView(R.layout.activity_man_hinh_chinh);
-        initBottomMenu();
+        initView();
+        tvTitle.setText("Khu Vực");
         FragmentUtils.replaceFragment(this, arrFragment.get(0), R.id.framelayout_container, null);
     }
 
@@ -37,12 +46,15 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Menu_DiaDiem:
+                tvTitle.setText("Khu Vực");
                 FragmentUtils.replaceFragmentWithouBackStack(this, arrFragment.get(0), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_QuanAn:
+                tvTitle.setText("Quán Ăn");
                 FragmentUtils.replaceFragmentWithouBackStack(this, arrFragment.get(1), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_HanhTrinh:
+                tvTitle.setText("Hành Trình");
                 FragmentUtils.replaceFragmentWithouBackStack(this, arrFragment.get(2), R.id.framelayout_container, null);
                 break;
             case R.id.Menu_BanThan:
@@ -51,7 +63,9 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void initBottomMenu() {
+    private void initView() {
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
+
         findViewById(R.id.Menu_DiaDiem).setOnClickListener(this);
         findViewById(R.id.Menu_QuanAn).setOnClickListener(this);
         findViewById(R.id.Menu_HanhTrinh).setOnClickListener(this);
