@@ -8,14 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.Model.DiaDiemDuLich;
 import com.greenacademy.travelapp.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by PhamNhuVu on 2/26/2017.
@@ -49,7 +47,7 @@ public class TopDiaDiemAdapter extends ArrayAdapter<DiaDiemDuLich> {
         tvDescription.setText(diadiem.getStrMoTa());
         tvLike.setText(String.valueOf(diadiem.getIntYeuThich()));
         tvView.setText(String.valueOf(diadiem.getIntSoLuotXem()));
-        tvStar.setText(String.valueOf(diadiem.getFlDanhGia()));
+        tvStar.setText(String.valueOf(diadiem.getDbDanhGia()));
         convertView.setLayoutParams(new RecyclerView.LayoutParams(width, (width*2)/3));
         return convertView;
     }

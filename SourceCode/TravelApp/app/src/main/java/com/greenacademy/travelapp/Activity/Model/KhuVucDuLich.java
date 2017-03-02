@@ -7,11 +7,15 @@ package com.greenacademy.travelapp.Activity.Model;
 public class KhuVucDuLich {
     int id;
     String title;
+    String link;
     int image;
     String description;
     int view;
     int like;
     double star;
+
+    public KhuVucDuLich() {
+    }
 
     public KhuVucDuLich(int id, String title, int image, String description, int view, int like, double star) {
         this.id = id;
@@ -72,10 +76,6 @@ public class KhuVucDuLich {
         return star;
     }
 
-    public void setStar(int star) {
-        this.star = star;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -90,5 +90,13 @@ public class KhuVucDuLich {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

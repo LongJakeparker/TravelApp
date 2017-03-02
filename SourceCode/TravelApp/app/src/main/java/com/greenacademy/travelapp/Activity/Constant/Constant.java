@@ -25,6 +25,10 @@ public class Constant extends Activity{
     public static final String URL_DANG_NHAP = "http://103.237.147.137:9045/TaiKhoan/DangNhap";
     public static final String DESCRIPTION_LOGIN = "OK";
     public static final int STATUS_LOGIN = 1;
-
     public static int ID_LOAIQUAN = 1;
+
+    // TYPE GET DATA
+    public static final String TYPE_DATA_KHU_VUC = "khuvuc";
+    public static final String TYPE_DATA_DIA_DIEM = "diadiem";
+    public static final String TYPE_DATA_DIA_DIEM_CHI_TIET = "chitiet_diadiem";
 }

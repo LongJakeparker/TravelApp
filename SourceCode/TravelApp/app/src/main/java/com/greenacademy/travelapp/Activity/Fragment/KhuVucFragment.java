@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
 import com.greenacademy.travelapp.Activity.Adapter.KhuVucAdapter;
+import com.greenacademy.travelapp.Activity.AsyncTask.GetKhuVucDiaDiemAsyncTask;
 import com.greenacademy.travelapp.Activity.Model.KhuVucDuLich;
 import com.greenacademy.travelapp.R;
 
@@ -35,6 +36,8 @@ public class KhuVucFragment extends Fragment implements KhuVucAdapter.KhuVucVH.I
     }
 
     private void initView(){
+        new GetKhuVucDiaDiemAsyncTask().execute("http://103.237.147.137:9045/KhuVuc/AllKhuVuc");
+
         manHinhChinhActivity = (ManHinhChinhActivity) getActivity();
         manHinhChinhActivity.tvTitle.setText("Khu Vực");
 

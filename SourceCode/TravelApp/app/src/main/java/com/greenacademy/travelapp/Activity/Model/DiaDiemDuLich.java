@@ -9,37 +9,40 @@ public class DiaDiemDuLich {
     private int intId;
     private String strTenDiaDiem;
     private String strMoTa;
-    private double flDanhGia;
+    private double dbDanhGia;
     private int intSoLuotXem;
     private int intYeuThich;
     private int intCheckIn;
     private int intIdKhuVuc;
     private String strLinkAnh;
-    private double flLat;
-    private double flLng;
+    private double dbLat;
+    private double dbLng;
     private String strDiaChi;
 
-    public DiaDiemDuLich(String strTenDiaDiem, String strMoTa, double flDanhGia, int intSoLuotXem, int intYeuThich) {
+    public DiaDiemDuLich() {
+    }
+
+    public DiaDiemDuLich(String strTenDiaDiem, String strMoTa, double dbDanhGia, int intSoLuotXem, int intYeuThich) {
         this.strTenDiaDiem = strTenDiaDiem;
         this.strMoTa = strMoTa;
-        this.flDanhGia = flDanhGia;
+        this.dbDanhGia = dbDanhGia;
         this.intSoLuotXem = intSoLuotXem;
         this.intYeuThich = intYeuThich;
     }
 
-    public DiaDiemDuLich(int intId, String strTenDiaDiem, String strMoTa, double flDanhGia, int intSoLuotXem, int intYeuThich,
-                         int intCheckIn, int intIdKhuVuc, String strLinkAnh, double flLat, double flLng, String strDiaChi) {
+    public DiaDiemDuLich(int intId, String strTenDiaDiem, String strMoTa, double dbDanhGia, int intSoLuotXem, int intYeuThich,
+                         int intCheckIn, int intIdKhuVuc, String strLinkAnh, double dbLat, double dbLng, String strDiaChi) {
         this.intId = intId;
         this.strTenDiaDiem = strTenDiaDiem;
         this.strMoTa = strMoTa;
-        this.flDanhGia = flDanhGia;
+        this.dbDanhGia = dbDanhGia;
         this.intSoLuotXem = intSoLuotXem;
         this.intYeuThich = intYeuThich;
         this.intCheckIn = intCheckIn;
         this.intIdKhuVuc = intIdKhuVuc;
         this.strLinkAnh = strLinkAnh;
-        this.flLat = flLat;
-        this.flLng = flLng;
+        this.dbLat = dbLat;
+        this.dbLng = dbLng;
         this.strDiaChi = strDiaChi;
     }
 
@@ -67,12 +70,12 @@ public class DiaDiemDuLich {
         this.strMoTa = strMoTa;
     }
 
-    public double getFlDanhGia() {
-        return flDanhGia;
+    public double getDbDanhGia() {
+        return dbDanhGia;
     }
 
-    public void setFlDanhGia(double flDanhGia) {
-        this.flDanhGia = flDanhGia;
+    public void setDbDanhGia(double dbDanhGia) {
+        this.dbDanhGia = dbDanhGia;
     }
 
     public int getIntSoLuotXem() {
@@ -115,20 +118,20 @@ public class DiaDiemDuLich {
         this.strLinkAnh = strLinkAnh;
     }
 
-    public double getFlLat() {
-        return flLat;
+    public double getDbLat() {
+        return dbLat;
     }
 
-    public void setFlLat(double flLat) {
-        this.flLat = flLat;
+    public void setDbLat(double dbLat) {
+        this.dbLat = dbLat;
     }
 
-    public double getFlLng() {
-        return flLng;
+    public double getDbLng() {
+        return dbLng;
     }
 
-    public void setFlLng(double flLng) {
-        this.flLng = flLng;
+    public void setDbLng(double dbLng) {
+        this.dbLng = dbLng;
     }
 
     public String getStrDiaChi() {

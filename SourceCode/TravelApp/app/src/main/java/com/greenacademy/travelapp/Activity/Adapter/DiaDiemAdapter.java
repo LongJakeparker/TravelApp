@@ -70,7 +70,7 @@ public class DiaDiemAdapter extends RecyclerView.Adapter<DiaDiemAdapter.DiaDiemV
             tvDescription.setText(diadiem.getStrMoTa());
             tvLike.setText(String.valueOf(diadiem.getIntYeuThich()));
             tvView.setText(String.valueOf(diadiem.getIntSoLuotXem()));
-            tvStar.setText(String.valueOf(diadiem.getFlDanhGia()));
+            tvStar.setText(String.valueOf(diadiem.getDbDanhGia()));
         }
 
         public interface InterfaceDiaDiemDuLich{
