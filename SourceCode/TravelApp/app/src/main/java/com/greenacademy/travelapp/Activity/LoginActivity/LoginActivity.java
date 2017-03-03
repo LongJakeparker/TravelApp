@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInGmail = new SignInGmail(this);
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
         LOGIN_ERROR = getResources().getString(R.string.login_error);
-        waitingLogin = new DialogWaitingLogin(LoginActivity.this, R.layout.custom_dialog_progressbar);
+        waitingLogin = new DialogWaitingLogin(LoginActivity.this, R.layout.custom_dialog_progressbar, Constant.TITLE_DIALOG_WAITTING);
         waitingLogin.createDialog();
 
         // phần Facebook

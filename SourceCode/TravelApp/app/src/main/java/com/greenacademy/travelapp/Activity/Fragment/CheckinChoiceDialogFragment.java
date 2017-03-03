@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.greenacademy.travelapp.Activity.Adapter.ListMapAdapter;
 import com.greenacademy.travelapp.Activity.AsyncTask.SearchTask;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.Interface.SearchInterface;
 import com.greenacademy.travelapp.Activity.Item.ListMapItem;
 import com.greenacademy.travelapp.R;
@@ -89,18 +90,30 @@ public class CheckinChoiceDialogFragment extends DialogFragment implements Searc
     }
 
     @Override
-    public void CallBackData(final List<ListMapItem> listMapItems) {
-        lvMap = (ListView) v.findViewById(R.id.lvMapNear);
-        ListMapAdapter adapter = new ListMapAdapter(getContext(), R.layout.item_listmap_near, listMapItems );
-        lvMap.setAdapter(adapter);
-        lvMap.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ListMapItem item = listMapItems.get(position);
+    public void dismiss() {
+        super.dismiss();
+    }
 
-                DescriptionDialogFragment dialogFragment = new DescriptionDialogFragment();
-                dialogFragment.show(getFragmentManager(),"Mô tả");
-            }
-        });
+    @Override
+    public void CallBackData(final List<ListMapItem> listMapItems) {
+        if (getActivity() != null){
+            lvMap = (ListView) v.findViewById(R.id.lvMapNear);
+            ListMapAdapter adapter = new ListMapAdapter(getContext(), R.layout.item_listmap_near, listMapItems );
+            lvMap.setAdapter(adapter);
+            lvMap.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ListMapItem item = listMapItems.get(position);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(Constant.KEY_ID_DIADIEM,item.getId());
+                    bundle.putInt(Constant.KEY_ID_LOAIDIADIEM,item.getIdLoaiDiaDiem());
+                    bundle.putString(Constant.KEY_NAME_LOCATION, item.getNameLocation());
+                    DescriptionDialogFragment dialogFragment = new DescriptionDialogFragment();
+                    dialogFragment.setArguments(bundle);
+                    dialogFragment.show(getFragmentManager(),"Mô tả");
+                    dismiss();
+                }
+            });
+        }
     }
 }

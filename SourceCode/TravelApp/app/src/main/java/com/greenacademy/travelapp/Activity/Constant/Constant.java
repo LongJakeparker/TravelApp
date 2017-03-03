@@ -26,4 +26,13 @@ public class Constant extends Activity{
     public static final int STATUS_LOGIN = 1;
 
     public static int ID_LOAIQUAN = 1;
+
+    //Constant Bundle key for Schedule
+    public static final String KEY_ID_DIADIEM ="IdDiaDiem";
+    public static final String KEY_ID_LOAIDIADIEM ="IdLoaiDiaDiem";
+    public static final String KEY_NAME_LOCATION ="NameLocation";
+
+    public static final String TITLE_DIALOG_WAITTING = "Waiting...";
+    public static final String TITLE_DIALOG_WAITTING_PROCESS = "Đang xử lí...";
+
 }

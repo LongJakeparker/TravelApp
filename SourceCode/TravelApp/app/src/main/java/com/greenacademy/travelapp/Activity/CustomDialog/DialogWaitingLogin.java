@@ -8,6 +8,7 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.greenacademy.travelapp.R;
 
@@ -19,18 +20,21 @@ public class DialogWaitingLogin {
     Context context;
     int resource;
     Dialog dialog;
+    String title;
 
-    public DialogWaitingLogin(Context context, int resource) {
+    public DialogWaitingLogin(Context context, int resource, String title) {
         this.context = context;
         this.resource = resource;
-
+        this.title = title;
     }
 
     public void createDialog(){
         dialog = new Dialog(context);
         dialog.setContentView(resource);
-        dialog.setTitle("Waiting...");
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        TextView tvTitle = (TextView) dialog.findViewById(R.id.tvWaittingBarStyle);
+        tvTitle.setText(title);
+//        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setCanceledOnTouchOutside(false);
     }
 
     public void showDialog(){
