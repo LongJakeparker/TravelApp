@@ -7,12 +7,13 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height_ivitem_list_map"
-            app:srcCompat="@drawable/com_facebook_button_send_icon_blue"
             android:id="@+id/ivItemListMapNear"
             android:layout_weight="1.7"
             android:layout_margin="@dimen/layout_margin_item_list_map"
@@ -46,15 +47,17 @@
         </LinearLayout>
 
         <TextView
-            android:text="TextView"
+            android:text="0"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
             android:id="@+id/tvRateItemListMapNear"
-            android:layout_weight="1.6"
+            android:layout_weight="1.7"
             android:layout_gravity="center_vertical"
-            android:gravity="right"
+            android:gravity="center"
             android:layout_marginRight="@dimen/layout_marginright_ivsearchbar"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/star" />
     </LinearLayout>
 </LinearLayout>

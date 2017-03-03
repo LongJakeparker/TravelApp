@@ -26,12 +26,10 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
 
     private Context context;
     private List<HeaderModel> headerModelList;
-    private CallBackContextMenu callBackData;
 
-    public MyExpandListAdapter(Context context, List<HeaderModel> headerModelList, CallBackContextMenu callBackData) {
+    public MyExpandListAdapter(Context context, List<HeaderModel> headerModelList) {
         this.context = context;
         this.headerModelList = headerModelList;
-        this.callBackData = callBackData;
     }
 
     @Override
@@ -110,15 +108,6 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
             convertView = inflater.inflate(R.layout.item_child_timeline, null);
             viewHolder = new childViewHolder();
 
-            View view = new View(context);
-
-            view.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    callBackData.CallBackData(headerModelList.get(groupPosition).getChild().get(childPosition).getId());
-                    return true;
-                }
-            });
 
             viewHolder.Time = (TextView) convertView.findViewById(R.id.tvTimeSchedule);
             viewHolder.Name = (TextView) convertView.findViewById(R.id.tvNameChildSchedule);

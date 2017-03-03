@@ -22,5 +22,9 @@
     <style name="ToolbarColoredBackArrow" parent="AppTheme">
         <item name="android:textColorSecondary">#ffffff</item>
     </style>
+    
+    <style name="AppBaseTheme" parent="AppTheme.NoActionBar">
+        <item name="android:listPreferredItemHeightSmall">10dp</item>
+    </style>
 
 </resources>
