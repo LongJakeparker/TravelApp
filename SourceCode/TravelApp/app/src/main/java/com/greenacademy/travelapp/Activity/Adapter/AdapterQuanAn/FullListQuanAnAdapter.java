@@ -57,6 +57,7 @@ public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAd
         return listData.size();
     }
 
+    //phần filter adapter
     @Override
     public Filter getFilter() {
         if (quanAnFilter == null){
@@ -65,7 +66,7 @@ public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAd
         return quanAnFilter;
     }
 
-    public static class QuanAnFilter extends Filter {
+    public class QuanAnFilter extends Filter {
         private FullListQuanAnAdapter adapter;
         private ArrayList<QuanAnChiTiet> initialList;
         private ArrayList<QuanAnChiTiet> filterList;
@@ -106,10 +107,7 @@ public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAd
         }
     }
 
-    public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){
-        this.itemRecyclerClickListener = itemRecyclerClickListener;
-    }
-
+    //phần viewHolder
     public class FullListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgHinh;
         TextView txtTen, txtLuotDanhGia, txtMota, txtCheckin, txtLike;
@@ -131,5 +129,10 @@ public class FullListQuanAnAdapter extends RecyclerView.Adapter<FullListQuanAnAd
                 itemRecyclerClickListener.onClick(view, getAdapterPosition(), Constant.FULLLIST_ADAPTER);
             }
         }
+    }
+
+    //phần click item
+    public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){
+        this.itemRecyclerClickListener = itemRecyclerClickListener;
     }
 }

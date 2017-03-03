@@ -31,7 +31,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class FullListQuananFragment extends Fragment implements ItemRecyclerClickListener {
     RecyclerView recyclerFullListQuanan;
-    ArrayList<QuanAnChiTiet> listQuanAn, listSearch;
+    ArrayList<QuanAnChiTiet> listQuanAn;
     FullListQuanAnAdapter fullListAdapter;
     Toolbar toolbar;
 
@@ -43,9 +43,9 @@ public class FullListQuananFragment extends Fragment implements ItemRecyclerClic
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.full_list_quanan_fragment, container, false);
-        listSearch = new ArrayList<QuanAnChiTiet>();
+//        listSearch = new ArrayList<QuanAnChiTiet>();
         listQuanAn = getArguments().getParcelableArrayList(Constant.FULLLIST_QUANAN);
-        listSearch.addAll(listQuanAn);
+//        listSearch.addAll(listQuanAn);
         recyclerFullListQuanan = (RecyclerView) view.findViewById(R.id.recyclerViewfulllistQuanan);
         fullListAdapter = new FullListQuanAnAdapter(listQuanAn, getContext());
         toolbar = (Toolbar) view.findViewById(R.id.toolbarFullListQuanan);

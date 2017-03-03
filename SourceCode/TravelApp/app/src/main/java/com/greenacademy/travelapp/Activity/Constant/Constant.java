@@ -34,4 +34,7 @@ public class Constant extends Activity{
     public static final String FULLLIST_QUANAN = "FULLLIST";
     public static final String CHITIET_QUANAN = "CTQA";
 
+    public static final int TYPE_LOGIN_NORMAL = 0;
+    public static final int TYPE_LOGIN_FACEBOOK = 1;
+    public static final int TYPE_LOGIN_GOOGLE = 2;
 }

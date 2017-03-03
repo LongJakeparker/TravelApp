@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,7 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText edtEmail, edtPass;
     String EMAIL_LOGIN, PASS_LOGIN;
     DialogWaitingLogin waitingLogin;
-    LuuThongTinDangNhap saveData;
+    public static LuuThongTinDangNhap saveData;
+    AppCompatActivity appCompatActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +68,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         txtChuaCoTaiKhoan = (TextView) findViewById(R.id.textViewChuaCoTaiKhoan);
         LOGIN_ERROR = getResources().getString(R.string.login_error);
         waitingLogin = new DialogWaitingLogin(LoginActivity.this, R.layout.custom_dialog_progressbar);
-        waitingLogin.createDialog();
+        waitingLogin.createDialog("Waiting...");
 
-        saveData = new LuuThongTinDangNhap(this, "0", "", EMAIL_LOGIN, "");
+        saveData = new LuuThongTinDangNhap(appCompatActivity, -1, "", "", "");
 
         //phần tự đăng nhập bình thường
-        if (saveData != null){
-            if (saveData.startLayEmail() != null){
-                toiManHinhChinh();
+        if (Constant.INTERNET_CONNECTION){
+            if (saveData.startLayTypeLogin() == Constant.TYPE_LOGIN_NORMAL){
+                if (!saveData.startLayEmail().equals("")){
+                    toiManHinhChinh();
+                }
             }
         }
 
@@ -92,17 +96,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(LoginResult loginResult) {
                 waitingLogin.showDialog();
                 layDuLieuFacebook(loginResult);
-                toiManHinhChinh();
             }
 
             @Override
             public void onCancel() {
-                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_LONG).show();
+                thongBao("Cancel");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
+                thongBao(LOGIN_ERROR);
                 waitingLogin.closeDialog();
             }
         });
@@ -121,7 +124,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void toiManHinhChinh() {
         // MainActivity là màn hình chính sau khi login thành công
-
         waitingLogin.closeDialog();
         Intent intent = new Intent(getApplicationContext(), ManHinhChinhActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -150,11 +152,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String firstName = response.getJSONObject().getString("first_name");
                             String lastName = response.getJSONObject().getString("last_name");
                             String userID = AccessToken.getCurrentAccessToken().getUserId();
-                            String avatar = "http://graph.facebook.com/" + userID + "/picture?type=large";
+                            String email = "";
+                            if (object.has("email")){
+                                email = object.getString("email");
+                                Log.d("EMAIL", "has");
+                            }else {
+                                email = "Thông tin ở dạng riêng tư";
+                                Log.d("EMAIL", "no");
+                            }
+
+                            saveData = new LuuThongTinDangNhap(appCompatActivity, Constant.TYPE_LOGIN_FACEBOOK, userID, firstName + " " + lastName, email, "");
 
                             UserLogin userFacebook = new UserLogin(userID, "", 1);
                             loginChung(userFacebook);
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -175,10 +185,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signInGmail.startSignIn();
                 break;
             case R.id.buttonLogin:
-                UserLogin userThuong = new UserLogin(edtEmail.getText().toString(), edtPass.getText().toString(), 0);
-                loginChung(userThuong);
                 EMAIL_LOGIN = edtEmail.getText().toString();
                 PASS_LOGIN = edtPass.getText().toString();
+                saveData = new LuuThongTinDangNhap(appCompatActivity, Constant.TYPE_LOGIN_NORMAL, "", "", EMAIL_LOGIN, "");
+                UserLogin userThuong = new UserLogin(EMAIL_LOGIN, PASS_LOGIN, 0);
+                loginChung(userThuong);
+
                 break;
             case R.id.textViewChuaCoTaiKhoan:
                 toiManHinhDangKy();
@@ -198,10 +210,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == Constant.REQUEST_CODE_GOOGLE_SIGN_IN) {
             ArrayList<String> arrUserInfo = signInGmail.startXuLyKetQuaTraVe(data);
             if (arrUserInfo.size() != 0){
+                saveData = new LuuThongTinDangNhap(appCompatActivity, Constant.TYPE_LOGIN_GOOGLE, arrUserInfo.get(0), arrUserInfo.get(1), arrUserInfo.get(2), arrUserInfo.get(3));
+
                 UserLogin userGoogle = new UserLogin(arrUserInfo.get(0), "", 2);
                 loginChung(userGoogle);
             }else {
-                Toast.makeText(getApplicationContext(), LOGIN_ERROR, Toast.LENGTH_LONG).show();
+                thongBao(LOGIN_ERROR);
             }
         }
         //kết quả Facebook
@@ -224,10 +238,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 saveData.startLuuThongTinNguoiDung();
                 toiManHinhChinh();
             }else {
-                Toast.makeText(getApplicationContext(), jsonObject.getString("Description"), Toast.LENGTH_LONG).show();
+                thongBao(jsonObject.getString("Description"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void thongBao(String text){
+        Toast.makeText(LoginActivity.this, text, Toast.LENGTH_SHORT);
     }
 }

@@ -56,10 +56,7 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         return listData.size();
     }
 
-    public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){
-        this.itemRecyclerClickListener = itemRecyclerClickListener;
-    }
-
+    //phần filter chon adapter
     @Override
     public Filter getFilter() {
         if (quanAnFilter == null){
@@ -68,7 +65,7 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         return quanAnFilter;
     }
 
-    public static class QuanAnFilter extends Filter{
+    public class QuanAnFilter extends Filter{
         private TatCaQuanAnAdapter adapter;
         private ArrayList<QuanAnChung> initialList;
         private ArrayList<QuanAnChung> filterList;
@@ -109,6 +106,7 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
         }
     }
 
+    //phần viewHolder
     public class TatCaQuanAnViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imgDaiDien;
         TextView txtTenNhaHang, txtLuotDanhGia, txtMota, txtSoLuotXem, txtLuotYeuThich;
@@ -124,11 +122,16 @@ public class TatCaQuanAnAdapter extends RecyclerView.Adapter<TatCaQuanAnAdapter.
             itemView.setOnClickListener(this);
         }
 
+        // phần click item
         @Override
         public void onClick(View v) {
             if (itemRecyclerClickListener != null){
                 itemRecyclerClickListener.onClick(v, getAdapterPosition(), Constant.TATCAQUANAN_ADAPTER);
             }
         }
+    }
+
+    public void onItemRecyclerClickListener(ItemRecyclerClickListener itemRecyclerClickListener){
+        this.itemRecyclerClickListener = itemRecyclerClickListener;
     }
 }

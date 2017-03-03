@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn.LoaiQuanAnAdapter;
@@ -50,6 +51,7 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
     TopCheckinAdapter adapterTopCheckin;
     ArrayList<QuanAnChiTiet> listTop, listNear, listType;
     TextView txtXemAllTop, txtXemAllNear, txtXemAllType, txtXemTatCa;
+    ImageView imgMapIcon;
 
     TaskGetTopQuanAn taskGetTopQuanAn;
     TaskGetTypeQuanAn taskGetTypeQuanAn;
@@ -72,6 +74,7 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
         txtXemAllTop = (TextView) view.findViewById(R.id.textViewXemTatCaTCI);
         txtXemAllType = (TextView) view.findViewById(R.id.textViewXemTatCaLQ);
         txtXemTatCa = (TextView) view.findViewById(R.id.textViewXemTatCa);
+        imgMapIcon = (ImageView) view.findViewById(R.id.imageViewMapIcon);
 
         tatCaQuanAnFragment = new TatCaQuanAnFragment();
         chiTietQuanAnFragment = new ChiTietQuanAnFragment();
@@ -81,7 +84,13 @@ public class QuanAnFragment extends Fragment implements GetQuanAn, ItemRecyclerC
         txtXemAllNear.setOnClickListener(this);
         txtXemAllTop.setOnClickListener(this);
         txtXemTatCa.setOnClickListener(this);
-
+        imgMapIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogBanDoFragment dialogBanDoFragment = new DialogBanDoFragment();
+                dialogBanDoFragment.show(getFragmentManager(), "sdgf");
+            }
+        });
 
         try {
             id = getArguments().getInt("ID");
