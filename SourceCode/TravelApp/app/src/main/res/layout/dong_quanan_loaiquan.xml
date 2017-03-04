@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/width_dong_loaiquan"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="5dp">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,36 +10,83 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/margin_cardview_quanan"
         android:elevation="@dimen/elevation_cardview_quanan">
         <RelativeLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/imageViewHinhLoaiQuan"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/textViewTenLoaiQuan"/>
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/framelayout_replace_luotxem"
                 android:textSize="10dp"
                 android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
                 android:text="Lượt xem"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewLuotXemLoaiQuan"
-                android:layout_alignParentBottom="true"/>
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:textSize="10dp"
+                    android:text="Lượt xem"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="10dp"
+                        android:text="Lượt xem"
+                        android:layout_marginLeft="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewLuotXemLoaiQuan" />
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/ic_seen"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:textSize="10dp"
+                    android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
+                    android:text="Lượt xem"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="10dp"
+                        android:text="Lượt xem"
+                        android:layout_marginLeft="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewYeuLoaiQuan" />
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/heart_red"/>
+                </FrameLayout>
+            </LinearLayout>
+
 
             <TextView
-                android:layout_marginTop="@dimen/margin_text_dong_loaiquan"
+                android:textColor="@color/text_quanan"
+                android:textStyle="bold"
                 android:textSize="10dp"
-                android:layout_marginLeft="@dimen/margin_text_dong_loaiquan"
                 android:text="Tên loại quán"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewTenLoaiQuan"
-                android:layout_above="@+id/textViewLuotXemLoaiQuan"/>
+                android:layout_above="@+id/framelayout_replace_luotxem"
+                android:layout_alignLeft="@+id/framelayout_replace_luotxem"
+                android:layout_alignStart="@+id/framelayout_replace_luotxem" />
+
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/imageViewHinhLoaiQuan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/textViewTenLoaiQuan" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

@@ -1,9 +1,7 @@
 package com.greenacademy.travelapp.Activity.Utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -13,11 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 public class LuuThongTinDangNhap {
     public final String DEFAULT_VALUES = "";
 
+    public final String TYPE_LOGIN = "Type_login";
     public final String USER_ID = "user_id";
     public final String USER_NAME = "user_name";
     public final String USER_EMAIL = "user_email";
     public final String USER_LINK_PHOTO = "user_link_photo";
 
+    int typeLogin;
     String userId;
     String userName;
     String userEmail;
@@ -27,20 +27,22 @@ public class LuuThongTinDangNhap {
     SharedPreferences sharedPreferences;
 
 
-    public LuuThongTinDangNhap(AppCompatActivity activity, String userId, String userName, String userEmail, String userLinkPhoto) {
+    public LuuThongTinDangNhap(AppCompatActivity activity, int typeLogin, String userId, String userName, String userEmail, String userLinkPhoto) {
         sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
 
         this.activity = activity;
+        this.typeLogin = typeLogin;
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userLinkPhoto = userLinkPhoto;
     }
 
-    public LuuThongTinDangNhap(AppCompatActivity activity, String userId, String userName, String userLinkPhoto) {
+    public LuuThongTinDangNhap(AppCompatActivity activity, int typeLogin, String userId, String userName, String userLinkPhoto) {
         sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
 
         this.activity = activity;
+        this.typeLogin = typeLogin;
         this.userId = userId;
         this.userName = userName;
         this.userLinkPhoto = userLinkPhoto;
@@ -50,6 +52,7 @@ public class LuuThongTinDangNhap {
     public void startLuuThongTinNguoiDung(){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_ID, userId);
+        editor.putInt(TYPE_LOGIN, typeLogin);
         editor.putString(USER_NAME, userName);
         editor.putString(USER_EMAIL, userEmail);
         editor.putString(USER_LINK_PHOTO, userLinkPhoto);
@@ -58,6 +61,10 @@ public class LuuThongTinDangNhap {
 
     public String startLayId(){
         return sharedPreferences.getString(USER_ID, DEFAULT_VALUES);
+    }
+
+    public int startLayTypeLogin(){
+        return sharedPreferences.getInt(TYPE_LOGIN, -1);
     }
 
     public String startLayHoTen(){
@@ -70,6 +77,10 @@ public class LuuThongTinDangNhap {
 
     public String startLayLinkPhoto(){
         return sharedPreferences.getString(USER_LINK_PHOTO, DEFAULT_VALUES);
+    }
+
+    public void clearThongTin(){
+        sharedPreferences.edit().clear().commit();
     }
 
 }

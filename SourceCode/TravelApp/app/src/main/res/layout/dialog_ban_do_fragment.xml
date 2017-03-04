@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ban_do">
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp" android:paddingBottom="5dp"
+            android:id="@+id/layout_chua_btn"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:layout_height="25dp"
+                android:background="@drawable/button_map_fragment"
+                android:text="khách sạn"
+                android:layout_width="wrap_content"
+                android:id="@+id/btn_khach_san_map"
+                android:layout_toRightOf="@+id/btn_quan_an_map"
+                android:textSize="12sp"
+                android:layout_marginRight="2dp"
+                android:layout_marginLeft="2dp" />
+
+            <Button
+                android:background="@drawable/button_map_fragment"
+                android:text="quán ăn"
+                android:layout_width="wrap_content"
+                android:id="@+id/btn_quan_an_map"
+                android:layout_toRightOf="@+id/btn_dia_diem_map"
+                android:layout_height="25dp"
+                android:layout_marginRight="2dp"
+                android:textSize="12sp"
+                android:layout_marginLeft="2dp" />
+
+            <Button
+                android:background="@drawable/button_map_fragment"
+                android:text="địa điểm"
+                android:layout_width="wrap_content"
+                android:id="@+id/btn_dia_diem_map"
+                android:layout_toRightOf="@+id/btn_tat_ca_map"
+                android:layout_height="25dp"
+                android:layout_marginRight="2dp"
+                android:textSize="12sp"
+                android:layout_marginLeft="2dp" />
+
+            <Button
+                android:background="@drawable/button_map_fragment"
+                android:text="Tất cả"
+                android:layout_width="wrap_content"
+                android:id="@+id/btn_tat_ca_map"
+                android:layout_height="25dp"
+                android:layout_marginRight="2dp"
+                android:textSize="12sp"
+                android:layout_marginLeft="2dp" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.greenacademy.travelapp.R;
 
+
 /**
  * Created by GIT on 2/9/2017.
  */
@@ -28,13 +29,15 @@ public class DialogWaitingLogin {
         this.title = title;
     }
 
-    public void createDialog(){
+    public void createDialog(String title){
         dialog = new Dialog(context);
         dialog.setContentView(resource);
         TextView tvTitle = (TextView) dialog.findViewById(R.id.tvWaittingBarStyle);
         tvTitle.setText(title);
 //        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setTitle(title);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
     public void showDialog(){

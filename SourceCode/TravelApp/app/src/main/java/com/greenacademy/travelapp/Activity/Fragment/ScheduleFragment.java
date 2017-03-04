@@ -50,7 +50,7 @@ public class ScheduleFragment extends Fragment implements ScheduleInterface, Del
         registerForContextMenu(scheduleList);
 
         dialog = new DialogWaitingLogin(getContext(), R.layout.custom_dialog_progressbar, Constant.TITLE_DIALOG_WAITTING_PROCESS);
-        dialog.createDialog();
+        dialog.createDialog("Waiting...");
 
         scheduleList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override

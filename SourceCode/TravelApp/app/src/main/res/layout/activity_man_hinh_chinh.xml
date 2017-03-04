@@ -42,7 +42,7 @@
             layout="@layout/manhinhchinh_menu_dulich" />
 
         <include
-            android:id="@+id/Menu_QuanAn"
+            android:id="@+id/Menu_BanDo"
             layout="@layout/manhinhchinh_menu_bando" />
 
         <include
@@ -50,7 +50,7 @@
             layout="@layout/manhinhchinh_menu_hanhtrinh" />
 
         <include
-            android:id="@+id/Menu_BanThan"
+            android:id="@+id/Menu_TaiKhoan"
             layout="@layout/manhinhchinh_menu_nguoidung" />
 
     </LinearLayout>

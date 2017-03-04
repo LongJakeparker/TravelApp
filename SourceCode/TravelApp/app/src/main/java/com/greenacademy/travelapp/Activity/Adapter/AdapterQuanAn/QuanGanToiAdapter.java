@@ -2,6 +2,7 @@ package com.greenacademy.travelapp.Activity.Adapter.AdapterQuanAn;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.Connection.Interface.ItemRecyclerClickListener;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.Model.QuanAnChiTiet;
 import com.greenacademy.travelapp.R;
 import com.squareup.picasso.Picasso;
@@ -40,9 +42,9 @@ public class QuanGanToiAdapter extends RecyclerView.Adapter<QuanGanToiAdapter.Qu
     public void onBindViewHolder(QuanGanToiViewHolder holder, int position) {
         Picasso.with(context).load(listData.get(position).getLinkAnh()).into(holder.imgQuan);
         holder.txtTenQuanQGT.setText(listData.get(position).getTenQuanAn());
-        holder.txtDanhGiaQGT.setText("Lượt đánh giá" + listData.get(position).getDanhGia());
-        holder.txtMotaQGT.setText(listData.get(position).getMoTa());
-        holder.txtYeuThich.setText("Lượt yêu thích" + listData.get(position).getYeuThich());
+        holder.txtDanhGiaQGT.setText("Lượt đánh giá: " + listData.get(position).getDanhGia());
+        holder.txtMotaQGT.setText(Html.fromHtml(listData.get(position).getMoTa()).toString());
+        holder.txtYeuThich.setText("" + listData.get(position).getYeuThich());
 
     }
 
@@ -72,7 +74,7 @@ public class QuanGanToiAdapter extends RecyclerView.Adapter<QuanGanToiAdapter.Qu
         @Override
         public void onClick(View v) {
             if (itemRecyclerClickListener != null){
-                itemRecyclerClickListener.onClick(v, getAdapterPosition());
+                itemRecyclerClickListener.onClick(v, getAdapterPosition(), Constant.QUANGANTOI_ADAPTER);
             }
         }
     }

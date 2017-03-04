@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -24,13 +25,6 @@
                 android:layout_height="@dimen/size_image_login"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentRight="true"/>
-            <android.support.v7.widget.SearchView
-                android:id="@+id/searchViewQuanAn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/imageViewMapIcon"
-                android:layout_toStartOf="@+id/imageViewMapIcon">
-            </android.support.v7.widget.SearchView>
             <TextView
                 android:textSize="25dp"
                 android:textColor="@color/colorWhite"
@@ -38,13 +32,17 @@
                 android:text="@string/quan_an"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/searchViewQuanAn"/>
+                android:layout_toLeftOf="@+id/imageViewMapIcon"
+                android:layout_toStartOf="@+id/imageViewMapIcon" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/toolbar">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -145,14 +143,14 @@
                 android:layout_margin="@dimen/margin_quanan_text_recyclerview"
                 android:id="@+id/recyclerViewTopCheckin"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 android:layout_below="@+id/textViewTopCheckin"
                 android:layout_alignLeft="@+id/textViewCacQuanAn"
                 android:layout_alignStart="@+id/textViewCacQuanAn" />
             <android.support.v7.widget.CardView
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="@dimen/margin_quanan_text_recyclerview"
                 android:layout_marginLeft="@dimen/margin_quanan_text_recyclerview"
                 android:layout_marginRight="@dimen/margin_quanan_text_recyclerview"
@@ -161,6 +159,7 @@
                 android:elevation="50dp"
                 android:layout_below="@+id/recyclerViewTopCheckin">
                 <TextView
+                    android:id="@+id/textViewXemTatCa"
                     android:textSize="15dp"
                     android:textColor="@color/text_green"
                     android:layout_gravity="center"

@@ -46,7 +46,7 @@ public class DescriptionDialogFragment extends DialogFragment implements View.On
         tvName.setText(bundle.getString(Constant.KEY_NAME_LOCATION));
 
         dialog = new DialogWaitingLogin(getContext(), R.layout.custom_dialog_progressbar, Constant.TITLE_DIALOG_WAITTING_PROCESS);
-        dialog.createDialog();
+        dialog.createDialog("Waiting...");
 
         btnCancel.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
