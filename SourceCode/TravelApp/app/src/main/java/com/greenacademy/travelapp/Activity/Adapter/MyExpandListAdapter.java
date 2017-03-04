@@ -5,12 +5,14 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greenacademy.travelapp.Activity.AsyncTask.DownloadImageTask;
+import com.greenacademy.travelapp.Activity.Interface.CallBackContextMenu;
 import com.greenacademy.travelapp.Activity.Model.HeaderModel;
 import com.greenacademy.travelapp.R;
 import com.squareup.picasso.Picasso;
@@ -22,7 +24,7 @@ import java.util.List;
  */
 
 public class MyExpandListAdapter extends BaseExpandableListAdapter{
-    Bitmap bitmap;
+
     private Context context;
     private List<HeaderModel> headerModelList;
 
@@ -53,12 +55,12 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return childPosition;
     }
 
     @Override
@@ -72,6 +74,8 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_header_timeline, null);
+
+            convertView.setClickable(true);
 
             viewHolder = new groupViewHolder();
 
@@ -98,12 +102,13 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         childViewHolder viewHolder;
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_child_timeline, null);
             viewHolder = new childViewHolder();
+
 
             viewHolder.Time = (TextView) convertView.findViewById(R.id.tvTimeSchedule);
             viewHolder.Name = (TextView) convertView.findViewById(R.id.tvNameChildSchedule);
@@ -115,23 +120,22 @@ public class MyExpandListAdapter extends BaseExpandableListAdapter{
         }
         viewHolder = (childViewHolder) convertView.getTag();
 
-
-
         viewHolder.Time.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getTime());
         viewHolder.Name.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getName());
         viewHolder.Des.setText(headerModelList.get(groupPosition).getChild().get(childPosition).getDescribe());
         viewHolder.Likes.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getLikes()));
         viewHolder.Pics.setText(String.valueOf(headerModelList.get(groupPosition).getChild().get(childPosition).getPics()));
-        if (!(headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes().isEmpty())){
-            Picasso.with(context).load(headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes()).into(viewHolder.IconDes);
-        }
+        viewHolder.IconDes.setImageResource(R.drawable.com_facebook_auth_dialog_background);
+        new DownloadImageTask(viewHolder.IconDes ,headerModelList.get(groupPosition).getChild().get(childPosition).getIconDes()).execute();
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
+
+
 
 
     public static class groupViewHolder{

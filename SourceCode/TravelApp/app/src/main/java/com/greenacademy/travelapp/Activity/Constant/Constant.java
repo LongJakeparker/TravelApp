@@ -31,4 +31,13 @@ public class Constant extends Activity{
     public static final String TYPE_DATA_KHU_VUC = "khuvuc";
     public static final String TYPE_DATA_DIA_DIEM = "diadiem";
     public static final String TYPE_DATA_DIA_DIEM_CHI_TIET = "chitiet_diadiem";
+
+    //Constant Bundle key for Schedule
+    public static final String KEY_ID_DIADIEM ="IdDiaDiem";
+    public static final String KEY_ID_LOAIDIADIEM ="IdLoaiDiaDiem";
+    public static final String KEY_NAME_LOCATION ="NameLocation";
+
+    public static final String TITLE_DIALOG_WAITTING = "Waiting...";
+    public static final String TITLE_DIALOG_WAITTING_PROCESS = "Đang xử lí...";
+
 }

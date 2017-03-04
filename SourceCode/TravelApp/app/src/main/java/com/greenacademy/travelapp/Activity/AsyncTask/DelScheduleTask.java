@@ -35,7 +35,7 @@ public class DelScheduleTask extends AsyncTask<String, String, StatusDelSchedule
     protected StatusDelSchedule doInBackground(String... params) {
         try{
             URL url = new URL("http://103.237.147.137:9045/MyTravel/XoaDiaDiemChuyenDi?idDiaDiemChuyenDi="+ IdDiaDiemChuyenDi);
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.addRequestProperty("Content-Type"," application/json");
             connection.addRequestProperty("Accept","text/json");
             connection.setRequestMethod("GET");
