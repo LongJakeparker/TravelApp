@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
 import com.greenacademy.travelapp.Activity.Adapter.KhuVucAdapter;
-import com.greenacademy.travelapp.Activity.AsyncTask.GetKhuVucDiaDiemAsyncTask;
+import com.greenacademy.travelapp.Activity.AsyncTask.GetKhuVucDiaDiemThread;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.Model.KhuVucDuLich;
 import com.greenacademy.travelapp.R;
 
@@ -26,6 +28,7 @@ public class KhuVucFragment extends Fragment implements KhuVucAdapter.KhuVucVH.I
     View view;
     RecyclerView recyclerKhuVuc;
     ManHinhChinhActivity manHinhChinhActivity;
+    KhuVucAdapter khuVucAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,30 +39,40 @@ public class KhuVucFragment extends Fragment implements KhuVucAdapter.KhuVucVH.I
     }
 
     private void initView(){
-        new GetKhuVucDiaDiemAsyncTask().execute("http://103.237.147.137:9045/KhuVuc/AllKhuVuc");
-
+        ((ManHinhChinhActivity) getActivity()).linearControlDuLich.setVisibility(View.GONE);
         manHinhChinhActivity = (ManHinhChinhActivity) getActivity();
         manHinhChinhActivity.tvTitle.setText("Khu Vực");
 
+        arrKhuVuc = new ArrayList<>();
         recyclerKhuVuc = (RecyclerView) view.findViewById(R.id.recyclerKhuVuc_DuLich);
         recyclerKhuVuc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        arrKhuVuc = new ArrayList<>();
-        arrKhuVuc.add(new KhuVucDuLich(1,"Vũng Tàu", R.drawable.image_khuvuc1_default, "Đẹp quá trời", 109, 8173, 4.5));
-        arrKhuVuc.add(new KhuVucDuLich(1,"Vịnh Hạ Long", R.drawable.image_khuvuc2_default,"Đẹp không có chỗ chê", 109, 80, 4.7));
-        arrKhuVuc.add(new KhuVucDuLich(1,"Nha Trang", R.drawable.image_khuvuc1_default,"Đẹp không có từ ngữ nào có thể tả", 431, 5321, 4.1));
-        arrKhuVuc.add(new KhuVucDuLich(1,"Cà Mau", R.drawable.image_khuvuc2_default,"Đẹp không nói nên lời", 1345, 641, 3.5));
-        arrKhuVuc.add(new KhuVucDuLich(1,"Mũi Né", R.drawable.image_khuvuc1_default,"Đẹp không gì sánh bằng", 541, 653, 3.1));
-        arrKhuVuc.add(new KhuVucDuLich(1,"Đà Nẵng", R.drawable.image_khuvuc2_default,"Đẹp tuyệt vời", 1341, 1516, 4.8));
-        recyclerKhuVuc.setAdapter(new KhuVucAdapter(arrKhuVuc, this));
+        khuVucAdapter = new KhuVucAdapter(arrKhuVuc, this);
+        recyclerKhuVuc.setAdapter(khuVucAdapter);
+
+        new GetKhuVucDiaDiemThread(this, "http://103.237.147.137:9045/KhuVuc/AllKhuVuc", Constant.TYPE_DATA_KHU_VUC).start();
     }
 
     @Override
     public void callbackKhuVucFragment(int id) {
         ManHinhChinhActivity manHinhChinhActivity = (ManHinhChinhActivity) getActivity();
         manHinhChinhActivity.tvTitle.setText("Địa Điểm");
+        DiaDiemFragment diaDiemFragment = (DiaDiemFragment) getFragmentManager().findFragmentById(R.id.diadiem_fragment);
+        if (diaDiemFragment == null){
+            diaDiemFragment = new DiaDiemFragment();
+            Toast.makeText(getActivity(), "new", Toast.LENGTH_LONG).show();
+        }
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        diaDiemFragment.setArguments(bundle);
         getFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_container, new DiaDiemFragment())
-                .addToBackStack(null)
+                .replace(R.id.framelayout_container, diaDiemFragment)
+                .addToBackStack("dulich")
                 .commit();
+    }
+
+
+    public void updateData(KhuVucDuLich khuVucDuLich){
+        arrKhuVuc.add(khuVucDuLich);
+        khuVucAdapter.notifyDataSetChanged();
     }
 }

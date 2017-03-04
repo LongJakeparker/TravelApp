@@ -41,14 +41,14 @@ public class TopDiaDiemAdapter extends ArrayAdapter<DiaDiemDuLich> {
             tvLike          = (TextView) convertView.findViewById(R.id.tvLike_DiaDiem);
             tvView          = (TextView) convertView.findViewById(R.id.tvView_DiaDiem);
             tvStar          = (TextView) convertView.findViewById(R.id.tvStar_DiaDiem);
+        convertView.setLayoutParams(new RecyclerView.LayoutParams(width, (width*2)/3));
         tvTitleKhuVuc.setText(diadiem.getStrTenDiaDiem());
 //            imageKhuVuc.setImageResource(diadiem.getStrLinkAnh());
-        imageKhuVuc.setImageResource(R.drawable.image_khuvuc1_default);
+        imageKhuVuc.setImageBitmap(diadiem.getImageDiaDiem());
         tvDescription.setText(diadiem.getStrMoTa());
         tvLike.setText(String.valueOf(diadiem.getIntYeuThich()));
         tvView.setText(String.valueOf(diadiem.getIntSoLuotXem()));
         tvStar.setText(String.valueOf(diadiem.getDbDanhGia()));
-        convertView.setLayoutParams(new RecyclerView.LayoutParams(width, (width*2)/3));
         return convertView;
     }
 }

@@ -1,5 +1,7 @@
 package com.greenacademy.travelapp.Activity.Model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by PhamNhuVu on 2/11/2017.
  */
@@ -13,28 +15,11 @@ public class KhuVucDuLich {
     int view;
     int like;
     double star;
+    Bitmap imageKhuVuc;
 
     public KhuVucDuLich() {
     }
 
-    public KhuVucDuLich(int id, String title, int image, String description, int view, int like, double star) {
-        this.id = id;
-        this.title = title;
-        this.image = image;
-        this.description = description;
-        this.view = view;
-        this.like = like;
-        this.star = star;
-    }
-
-    public KhuVucDuLich(String title, int image, String description, int view, int like, double star) {
-        this.title = title;
-        this.image = image;
-        this.description = description;
-        this.view = view;
-        this.like = like;
-        this.star = star;
-    }
 
     public int getId() {
         return id;
@@ -99,4 +84,13 @@ public class KhuVucDuLich {
     public void setLink(String link) {
         this.link = link;
     }
+
+    public Bitmap getImageKhuVuc() {
+        return imageKhuVuc;
+    }
+
+    public void setImageKhuVuc(Bitmap imageKhuVuc) {
+        this.imageKhuVuc = imageKhuVuc;
+    }
+
 }

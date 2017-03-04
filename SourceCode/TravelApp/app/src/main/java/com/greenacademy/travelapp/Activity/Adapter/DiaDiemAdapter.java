@@ -64,13 +64,12 @@ public class DiaDiemAdapter extends RecyclerView.Adapter<DiaDiemAdapter.DiaDiemV
             tvStar          = (TextView) itemView.findViewById(R.id.tvStar_DiaDiem);
         }
         public void initView(DiaDiemDuLich diadiem){
-            tvTitleKhuVuc.setText(diadiem.getStrTenDiaDiem());
-//            imageKhuVuc.setImageResource(diadiem.getStrLinkAnh());
-            imageKhuVuc.setImageResource(R.drawable.image_khuvuc1_default);
-            tvDescription.setText(diadiem.getStrMoTa());
-            tvLike.setText(String.valueOf(diadiem.getIntYeuThich()));
-            tvView.setText(String.valueOf(diadiem.getIntSoLuotXem()));
-            tvStar.setText(String.valueOf(diadiem.getDbDanhGia()));
+            tvTitleKhuVuc   .setText(diadiem.getStrTenDiaDiem());
+            imageKhuVuc     .setImageBitmap(diadiem.getImageDiaDiem());
+            tvDescription   .setText(diadiem.getStrMoTa());
+            tvLike          .setText(String.valueOf(diadiem.getIntYeuThich()));
+            tvView          .setText(String.valueOf(diadiem.getIntSoLuotXem()));
+            tvStar          .setText(String.valueOf(diadiem.getDbDanhGia()));
         }
 
         public interface InterfaceDiaDiemDuLich{

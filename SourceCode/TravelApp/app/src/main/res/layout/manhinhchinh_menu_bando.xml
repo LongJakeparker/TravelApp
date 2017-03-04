@@ -15,7 +15,7 @@
         android:id="@+id/imageView2" />
 
     <TextView
-        android:text="@string/quanan"
+        android:text="@string/bando"
         android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

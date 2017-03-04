@@ -67,7 +67,7 @@ public class KhuVucAdapter extends RecyclerView.Adapter<KhuVucAdapter.KhuVucVH> 
 
         public void initView(KhuVucDuLich khuvuc){
             tvTitleKhuVuc.setText(khuvuc.getTitle());
-            imageKhuVuc.setImageResource(khuvuc.getImage());
+            imageKhuVuc.setImageBitmap(khuvuc.getImageKhuVuc());
             tvDescription.setText(khuvuc.getDescription());
             tvLike.setText(String.valueOf(khuvuc.getLike()));
             tvView.setText(String.valueOf(khuvuc.getView()));

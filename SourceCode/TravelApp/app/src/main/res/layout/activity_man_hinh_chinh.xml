@@ -39,11 +39,11 @@
 
         <include
             android:id="@+id/Menu_DiaDiem"
-            layout="@layout/manhinhchinh_menu_diadiem" />
+            layout="@layout/manhinhchinh_menu_dulich" />
 
         <include
             android:id="@+id/Menu_QuanAn"
-            layout="@layout/manhinhchinh_menu_quanan" />
+            layout="@layout/manhinhchinh_menu_bando" />
 
         <include
             android:id="@+id/Menu_HanhTrinh"
@@ -64,6 +64,7 @@
         android:layout_below="@+id/tvTitle" />
 
     <LinearLayout
+        android:id="@+id/linearControlDuLich"
         android:layout_width="wrap_content"
         android:orientation="vertical"
         android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
         <ImageView
+            android:id="@+id/btnDuLichSub"
             android:clickable="true"
             android:focusableInTouchMode="true"
             android:padding="5dp"
@@ -81,6 +83,7 @@
             android:layout_margin="5dp"
             android:layout_height="32dp" />
         <ImageView
+            android:id="@+id/btnQuanAnSub"
             android:clickable="true"
             android:focusableInTouchMode="true"
             android:padding="5dp"
@@ -90,6 +93,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp" />
         <ImageView
+            android:id="@+id/btnKhachSanSub"
             android:clickable="true"
             android:focusableInTouchMode="true"
             android:layout_margin="5dp"

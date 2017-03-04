@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
 import com.greenacademy.travelapp.R;
 
 
@@ -25,12 +26,11 @@ public class ChiTietDiaDiemFragment extends Fragment {
         return view;
     }
 
-    RecyclerView recyclerImage;
     ImageView imageDiaDiem;
     TextView numberLike, numberView, numberReview;
 
     private void initView(){
-        recyclerImage = (RecyclerView) view.findViewById(R.id.recyclerImage);
+        ((ManHinhChinhActivity) getActivity()).linearControlDuLich.setVisibility(View.VISIBLE);
         imageDiaDiem = (ImageView) view.findViewById(R.id.image_ChiTietDiaDiem);
 
         numberLike = (TextView) view.findViewById(R.id.numberLike);

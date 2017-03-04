@@ -11,10 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterViewFlipper;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
 import com.greenacademy.travelapp.Activity.Adapter.DiaDiemAdapter;
 import com.greenacademy.travelapp.Activity.Adapter.TopDiaDiemAdapter;
+import com.greenacademy.travelapp.Activity.AsyncTask.GetKhuVucDiaDiemThread;
+import com.greenacademy.travelapp.Activity.Constant.Constant;
 import com.greenacademy.travelapp.Activity.Model.DiaDiemDuLich;
 import com.greenacademy.travelapp.R;
 
@@ -29,46 +33,61 @@ public class DiaDiemFragment extends Fragment implements DiaDiemAdapter.DiaDiemV
     RecyclerView recyclerDiaDiem;
     AdapterViewFlipper flipperDiaDiem;
     ArrayList<DiaDiemDuLich> arrDiaDiem;
+    DiaDiemAdapter diaDiemAdapter;
     ArrayList<DiaDiemDuLich> arrTopDiaDiem;
+    int id;
+    private TopDiaDiemAdapter topDiaDiemAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_dia_diem, container, false);
+        id = getArguments().getInt("id");
+//        new GetKhuVucDiaDiemAsyncTask(Constant.TYPE_DATA_DIA_DIEM, this).execute();
+        new GetKhuVucDiaDiemThread(this, "http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc=".concat(String.valueOf(id)), Constant.TYPE_DATA_DIA_DIEM).start();
         initView();
         return view;
     }
 
     private void initView(){
-
+        ((ManHinhChinhActivity) getActivity()).linearControlDuLich.setVisibility(View.VISIBLE);
         arrTopDiaDiem = new ArrayList<>();
-        arrTopDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrTopDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrTopDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrTopDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrTopDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
         flipperDiaDiem = (AdapterViewFlipper) view.findViewById(R.id.flipperTopDiaDiem);
-        flipperDiaDiem.setAdapter(new TopDiaDiemAdapter(getActivity(), R.layout.item_recycler_diadiem, arrTopDiaDiem,
-                getActivity().getWindowManager().getDefaultDisplay().getWidth()));
+        topDiaDiemAdapter = new TopDiaDiemAdapter(getActivity(), R.layout.item_recycler_diadiem, arrTopDiaDiem,
+                getActivity().getWindowManager().getDefaultDisplay().getWidth());
+        flipperDiaDiem.setAdapter(topDiaDiemAdapter);
 
         arrDiaDiem = new ArrayList<>();
-        arrDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
-        arrDiaDiem.add(new DiaDiemDuLich("Cà Mau", "Phải đến nơi đây chơi thử một lần", 9.1, 1203, 32));
         recyclerDiaDiem = (RecyclerView) view.findViewById(R.id.recyclerDiaDiem_DuLich);
         recyclerDiaDiem.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false));
-        recyclerDiaDiem.setAdapter(new DiaDiemAdapter(arrDiaDiem, this));
+        diaDiemAdapter = new DiaDiemAdapter(arrDiaDiem, this);
+        recyclerDiaDiem.setAdapter(diaDiemAdapter);
     }
 
     @Override
     public void callbackDiaDiemFragment(int position) {
+        ChiTietDiaDiemFragment chiTietDiaDiemFragment = (ChiTietDiaDiemFragment) getFragmentManager().findFragmentById(R.id.chitiet_diadiem_fragment);
+        if (chiTietDiaDiemFragment == null){
+            chiTietDiaDiemFragment = new ChiTietDiaDiemFragment();
+            Toast.makeText(getActivity(), "new", Toast.LENGTH_SHORT).show();
+        }
         getFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_container, new ChiTietDiaDiemFragment())
-                .addToBackStack(null)
+                .replace(R.id.framelayout_container, chiTietDiaDiemFragment, "chitiet_diadiem")
+                .addToBackStack("dulich")
                 .commit();
     }
+
+    public void updateData(DiaDiemDuLich diadiem){
+        arrDiaDiem.add(diadiem);
+        arrTopDiaDiem.add(diadiem);
+        topDiaDiemAdapter.notifyDataSetChanged();
+        diaDiemAdapter.notifyDataSetChanged();
+    }
+
+    public void updateTopData(ArrayList<DiaDiemDuLich> arrDiaDiem){
+        arrTopDiaDiem = arrDiaDiem;
+        topDiaDiemAdapter.notifyDataSetChanged();
+    }
+
 }

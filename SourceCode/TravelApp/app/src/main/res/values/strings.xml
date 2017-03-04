@@ -7,8 +7,8 @@
     <string name="button_start">Bắt Đầu</string>
 
     <!-- TODO: Menu màn hình chính -->
-    <string name="diadiem">Địa điểm</string>
-    <string name="quanan">Quán ăn</string>
+    <string name="dulich">Du Lịch</string>
+    <string name="bando">Bản đồ</string>
     <string name="hanhtrinh">Hành trình</string>
     <string name="nguoidung">Tài khoản</string>
 

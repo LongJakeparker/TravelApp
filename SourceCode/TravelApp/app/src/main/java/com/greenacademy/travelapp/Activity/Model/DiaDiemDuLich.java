@@ -1,5 +1,7 @@
 package com.greenacademy.travelapp.Activity.Model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by PhamNhuVu on 2/11/2017.
  */
@@ -18,6 +20,7 @@ public class DiaDiemDuLich {
     private double dbLat;
     private double dbLng;
     private String strDiaChi;
+    private Bitmap imageDiaDiem;
 
     public DiaDiemDuLich() {
     }
@@ -140,5 +143,13 @@ public class DiaDiemDuLich {
 
     public void setStrDiaChi(String strDiaChi) {
         this.strDiaChi = strDiaChi;
+    }
+
+    public Bitmap getImageDiaDiem() {
+        return imageDiaDiem;
+    }
+
+    public void setImageDiaDiem(Bitmap imageDiaDiem) {
+        this.imageDiaDiem = imageDiaDiem;
     }
 }
