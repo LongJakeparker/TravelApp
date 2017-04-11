@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/diadiem_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content"
     tools:context="com.greenacademy.travelapp.Activity.Fragment.DiaDiemFragment">
-
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <AdapterViewFlipper
             android:id="@+id/flipperTopDiaDiem"
@@ -27,15 +27,21 @@
             android:layout_marginTop="10dp"
             android:background="@color/colorAccent"
             android:padding="3dp"
-            android:textStyle="bold"
             android:text="TOP ĐƯỢC YÊU THÍCH"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerDiaDiem_DuLich"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/flipperTopDiaDiem" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/flipperTopDiaDiem">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerDiaDiem_DuLich"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
 </ScrollView>

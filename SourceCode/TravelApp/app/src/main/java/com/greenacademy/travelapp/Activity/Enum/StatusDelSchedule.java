@@ -5,5 +5,5 @@ package com.greenacademy.travelapp.Activity.Enum;
  */
 
 public enum StatusDelSchedule {
-    THANH_CONG, THAT_BAI
+    THAT_BAI, THANH_CONG
 }

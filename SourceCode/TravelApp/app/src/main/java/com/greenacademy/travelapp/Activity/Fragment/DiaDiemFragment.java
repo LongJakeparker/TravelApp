@@ -44,7 +44,6 @@ public class DiaDiemFragment extends Fragment implements DiaDiemAdapter.DiaDiemV
 
         view = inflater.inflate(R.layout.fragment_dia_diem, container, false);
         id = getArguments().getInt("id");
-//        new GetKhuVucDiaDiemAsyncTask(Constant.TYPE_DATA_DIA_DIEM, this).execute();
         new GetKhuVucDiaDiemThread(this, "http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc=".concat(String.valueOf(id)), Constant.TYPE_DATA_DIA_DIEM).start();
         initView();
         return view;
@@ -52,26 +51,31 @@ public class DiaDiemFragment extends Fragment implements DiaDiemAdapter.DiaDiemV
 
     private void initView(){
         ((ManHinhChinhActivity) getActivity()).linearControlDuLich.setVisibility(View.VISIBLE);
-        arrTopDiaDiem = new ArrayList<>();
-        flipperDiaDiem = (AdapterViewFlipper) view.findViewById(R.id.flipperTopDiaDiem);
-        topDiaDiemAdapter = new TopDiaDiemAdapter(getActivity(), R.layout.item_recycler_diadiem, arrTopDiaDiem,
+
+        arrTopDiaDiem       = new ArrayList<>();
+        flipperDiaDiem      = (AdapterViewFlipper) view.findViewById(R.id.flipperTopDiaDiem);
+        topDiaDiemAdapter   = new TopDiaDiemAdapter(getActivity(), R.layout.item_recycler_diadiem, arrTopDiaDiem,
                 getActivity().getWindowManager().getDefaultDisplay().getWidth());
         flipperDiaDiem.setAdapter(topDiaDiemAdapter);
 
-        arrDiaDiem = new ArrayList<>();
+        arrDiaDiem      = new ArrayList<>();
         recyclerDiaDiem = (RecyclerView) view.findViewById(R.id.recyclerDiaDiem_DuLich);
         recyclerDiaDiem.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false));
-        diaDiemAdapter = new DiaDiemAdapter(arrDiaDiem, this);
+        diaDiemAdapter  = new DiaDiemAdapter(arrDiaDiem, this);
         recyclerDiaDiem.setAdapter(diaDiemAdapter);
+        recyclerDiaDiem.setNestedScrollingEnabled(false);
     }
 
     @Override
     public void callbackDiaDiemFragment(int position) {
+        DiaDiemDuLich diadiem = arrDiaDiem.get(position);
+        Bundle bundle = setBundleDiaDiem(diadiem);
         ChiTietDiaDiemFragment chiTietDiaDiemFragment = (ChiTietDiaDiemFragment) getFragmentManager().findFragmentById(R.id.chitiet_diadiem_fragment);
         if (chiTietDiaDiemFragment == null){
             chiTietDiaDiemFragment = new ChiTietDiaDiemFragment();
             Toast.makeText(getActivity(), "new", Toast.LENGTH_SHORT).show();
         }
+        chiTietDiaDiemFragment.setArguments(bundle);
         getFragmentManager().beginTransaction()
                 .replace(R.id.framelayout_container, chiTietDiaDiemFragment, "chitiet_diadiem")
                 .addToBackStack("dulich")
@@ -85,9 +89,21 @@ public class DiaDiemFragment extends Fragment implements DiaDiemAdapter.DiaDiemV
         diaDiemAdapter.notifyDataSetChanged();
     }
 
-    public void updateTopData(ArrayList<DiaDiemDuLich> arrDiaDiem){
-        arrTopDiaDiem = arrDiaDiem;
+    public void updateDataTop(){
         topDiaDiemAdapter.notifyDataSetChanged();
+    }
+
+    private Bundle setBundleDiaDiem(DiaDiemDuLich diadiem){
+        Bundle bundle = new Bundle();
+        bundle.putString("ten_dia_diem" , diadiem.getStrTenDiaDiem());
+        bundle.putString("mo_ta"        , diadiem.getStrMoTa());
+        bundle.putDouble("danh_gia"     , diadiem.getDbDanhGia());
+        bundle.putInt   ("yeu_thich"    , diadiem.getIntYeuThich());
+        bundle.putInt   ("so_luot_xem"  , diadiem.getIntSoLuotXem());
+        bundle.putInt   ("check_in"     , diadiem.getIntCheckIn());
+        bundle.putString("link_anh"     , diadiem.getStrLinkAnh());
+        bundle.putString("dia_chi"      , diadiem.getStrDiaChi());
+        return bundle;
     }
 
 }

@@ -16,6 +16,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.greenacademy.travelapp.Activity.Activity.ManHinhChinhActivity;
 import com.greenacademy.travelapp.Activity.Adapter.MyExpandListAdapter;
 import com.greenacademy.travelapp.Activity.AsyncTask.DelScheduleTask;
 import com.greenacademy.travelapp.Activity.AsyncTask.ScheduleTask;
@@ -41,11 +42,13 @@ public class ScheduleFragment extends Fragment implements ScheduleInterface, Del
     ImageButton btnAdd;
     List<HeaderModel> headerModel;
     DialogWaitingLogin dialog;
+    private MyExpandListAdapter myExpandListAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_schedule, null);
+        ((ManHinhChinhActivity) getActivity()).linearControlDuLich.setVisibility(View.GONE);
         scheduleList = (ExpandableListView) v.findViewById(R.id.schedule_list);
         registerForContextMenu(scheduleList);
 
@@ -84,7 +87,7 @@ public class ScheduleFragment extends Fragment implements ScheduleInterface, Del
     @Override
     public void CallBackData(List<HeaderModel> headerModel) {
         this.headerModel = headerModel;
-        MyExpandListAdapter myExpandListAdapter = new MyExpandListAdapter(getContext(), headerModel);
+        myExpandListAdapter = new MyExpandListAdapter(getContext(), headerModel);
         scheduleList.setAdapter(myExpandListAdapter);
     }
 
@@ -113,6 +116,7 @@ public class ScheduleFragment extends Fragment implements ScheduleInterface, Del
         switch (item.getItemId()){
             case R.id.DelScheduleMenu:
                 new DelScheduleTask(headerModel.get(groupPos).getChild().get(childPos).getId(), this).execute();
+                headerModel.get(groupPos).getChild().remove(childPos);
                 dialog.showDialog();
                 break;
         }
@@ -124,6 +128,8 @@ public class ScheduleFragment extends Fragment implements ScheduleInterface, Del
         if (statusDelSchedule == StatusDelSchedule.THANH_CONG){
             dialog.closeDialog();
             Toast.makeText(getContext(),"Đã Xóa", Toast.LENGTH_LONG).show();
+        } else {
+            dialog.closeDialog();
         }
     }
 

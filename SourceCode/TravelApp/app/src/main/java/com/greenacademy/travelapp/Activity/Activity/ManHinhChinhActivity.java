@@ -91,7 +91,6 @@ public class ManHinhChinhActivity extends AppCompatActivity implements View.OnCl
         findViewById(R.id.Menu_HanhTrinh).setOnClickListener(this);
         findViewById(R.id.Menu_TaiKhoan).setOnClickListener(this);
 
-
         findViewById(R.id.btnDuLichSub).setOnClickListener(this);
         findViewById(R.id.btnQuanAnSub).setOnClickListener(this);
         findViewById(R.id.btnKhachSanSub).setOnClickListener(this);

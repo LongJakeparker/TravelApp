@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.Fragment;
 
 import com.greenacademy.travelapp.Activity.Constant.Constant;
+import com.greenacademy.travelapp.Activity.Fragment.ChiTietDiaDiemFragment;
 import com.greenacademy.travelapp.Activity.Fragment.DiaDiemFragment;
 import com.greenacademy.travelapp.Activity.Fragment.KhuVucFragment;
 import com.greenacademy.travelapp.Activity.Model.DiaDiemDuLich;
@@ -30,6 +31,7 @@ public class GetKhuVucDiaDiemThread extends Thread {
     String link;
     String type;
     Fragment fragment;
+    ChiTietDiaDiemFragment chiTietDiaDiemFragment;
     DiaDiemFragment diaDiemFragment;
     KhuVucFragment khuVucFragment;
     HttpURLConnection connection;
@@ -43,6 +45,7 @@ public class GetKhuVucDiaDiemThread extends Thread {
     @Override
     public void run() {
         JSONObject jsonObject = null;
+
         try {
             initConnect(link);
             jsonObject = new JSONObject(resultData());
@@ -51,7 +54,19 @@ public class GetKhuVucDiaDiemThread extends Thread {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         switch (type){
+            case "get_image":
+                final Bitmap bitmap = getBitmap(link);
+                chiTietDiaDiemFragment = (ChiTietDiaDiemFragment) fragment;
+                chiTietDiaDiemFragment.getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chiTietDiaDiemFragment.setImageDiaDiem(bitmap);
+                    }
+                });
+                break;
+
             case Constant.TYPE_DATA_KHU_VUC:
                 khuVucFragment = (KhuVucFragment) fragment;
                 try {
@@ -62,6 +77,7 @@ public class GetKhuVucDiaDiemThread extends Thread {
                     e.printStackTrace();
                 }
                 break;
+
             case Constant.TYPE_DATA_DIA_DIEM:
                 diaDiemFragment = (DiaDiemFragment) fragment;
                 try {
@@ -164,34 +180,19 @@ public class GetKhuVucDiaDiemThread extends Thread {
                     }
             }
         }
-        final ArrayList<DiaDiemDuLich> topDiaDiem = new ArrayList<>();
-        for (int j = 0; j < arrDiaDiem.size(); j++){
-            DiaDiemDuLich diadiem = arrDiaDiem.get(j);
-            if (j < 5){
-                topDiaDiem.add(diadiem);
-            } else {
-                for (int i = 0; i < 5; i++){
-                    if (diadiem.getIntYeuThich() > arrDiaDiem.get(i).getIntYeuThich()){
-                        topDiaDiem.add(i, diadiem);
-                        topDiaDiem.remove(topDiaDiem.size()-1);
-                    }
-                }
-            }
-        }
-
         try {
             diaDiemFragment.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    diaDiemFragment.updateTopData(topDiaDiem);
+                    diaDiemFragment.updateDataTop();
                 }
             });
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
-    private Bitmap getBitmap(String link){
+    public static Bitmap getBitmap(String link){
         Bitmap bitmap = null;
         try {
             URL url = new URL(link);

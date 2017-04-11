@@ -79,6 +79,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/textViewLikeChitiet"
                         android:textColor="@color/text_quanan_small"
@@ -87,6 +88,7 @@
                         android:layout_height="wrap_content"
                         android:text="Like"
                         android:textSize="@dimen/textsize_chitiet_quanan"/>
+
                     <ImageView
                         android:src="@drawable/heart_red"
                         android:layout_width="@dimen/textsize_chitiet_quanan"

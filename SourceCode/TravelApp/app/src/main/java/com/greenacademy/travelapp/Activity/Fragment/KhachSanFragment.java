@@ -200,6 +200,6 @@ public class KhachSanFragment extends Fragment implements ChuyenDuLieuKhachSan {
     }
 }
 
-interface ChuyenDuLieuKhachSan{
+  interface ChuyenDuLieuKhachSan{
     void ChuyenListKhachSan(String listKhachSanString);
 }

@@ -51,7 +51,9 @@ public class DelScheduleTask extends AsyncTask<String, String, StatusDelSchedule
                 }
                 String data = testData.toString();
                 JSONObject jsonObject = new JSONObject(data);
-                if (jsonObject.getInt("Status") == 1) return StatusDelSchedule.THANH_CONG;
+                if (jsonObject.getInt("Status") == 1)
+                    return StatusDelSchedule.THANH_CONG;
+                
                 return StatusDelSchedule.THAT_BAI;
             }
 
